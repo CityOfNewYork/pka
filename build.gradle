@@ -1,0 +1,242 @@
+import gov.nyc.doitt.nyc.gis.gradle.*
+
+plugins {
+    id 'base'
+    id 'jetty'
+    id 'org.hidetake.ssh' version '1.1.2'
+    id 'groovy'
+}
+
+sourceSets{
+	test {
+		groovy {
+			srcDirs = ['src/test/groovy']
+		}
+	}
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.1.5'
+    testCompile group: 'com.googlecode.ez-vcard', name: 'ez-vcard', version: '0.9.8'
+}
+
+ext {
+	appName = 'pka'
+	ver = 'v0.0.1-SNAPSHOT'
+	default_env = 'local'
+	
+	local_nyclib = 'https://maps.nyc.gov/nyc-lib/'
+	stg_nyclib = '../../nyc-lib/'
+	prd_nyclib = '../../nyc-lib/'
+	
+	pkgDir = "${buildDir}/${appName}/${ver}"
+	
+	remoteDir = "${appName}/${ver}"
+	srcDir = "${projectDir}/src/main/webapp"
+	jsSrcDir = "${srcDir}/js"
+	jsTmpDir = "${buildDir}/tmp/js"
+	cssSrcDir = "${srcDir}/css"
+	
+	jsFiles = [
+		'field-access.js',
+		'style.js',
+		
+		'pka/application-period.js',
+		'pka/form.js',
+		'pka/splash.js',
+		'pka/style.js', 
+		'pka/lookup.js', 
+		'pka/message.js', 
+		'pka/field-access.js', 
+		'pka/html-renderer.js', 
+		
+		'ta/style.js', 
+		'ta/lookup.js', 
+		'ta/message.js', 
+		'ta/field-access.js', 
+		'ta/html-renderer.js',
+
+		'app.js',
+		'init.js'		
+		 
+
+	]
+	cssFiles = [
+		'pka.css', 
+		'ta.css', 
+		'form.css'
+	]
+}
+
+task npmPackage(type: NpmPackageTask) {
+	packageFile = "${pkgDir}/package.json"
+	libName = appName
+	version = ver
+	license = 'Apache-2.0'
+	desc = 'NYC Pre-K Finder'
+	author = 'Tim Keane'
+	contributors = []
+	gitHubUrl = 'https://github.com/timkeane/pka/'
+	keywords = ['ol3', 'CartoDB', 'LeafletJS', 'ChartJS']
+	dependencies = [
+		ol3: '> 3.11.0', 
+		CartoDB: '> 3.14', 
+		ChartJS: '> 1.0.1',
+		proj4js: '> 2.3.10', 
+		JQuery: '> 1.11.0', 
+		JQueryMobile: '> 1.4.5'
+	]
+}
+
+task setEnv << {
+	if (!project.hasProperty('env')) project.ext.env = default_env
+}
+
+task copyFiles(dependsOn: []) << {
+	copy {
+		from 'src/main/webapp'
+		include '*.html'
+		include 'data/**'
+		include 'img/**'
+		exclude 'img/Thumbs.db'
+		into pkgDir 
+	}
+}
+
+task replaceTokens(dependsOn: [setEnv, copyFiles]) << {
+	ant.taskdef(name: 'replace', classname: 'org.apache.tools.ant.taskdefs.Replace')	
+	if (project.hasProperty('pka.analytics')){
+		ant.replace(file: "${pkgDir}/index.html", token: '/* google analytics */', value: project.ext['pka.analytics'])
+	}
+
+	ant.replace(file: "${pkgDir}/index.html", token: 'css/form.css', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: 'css/ta.css', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: 'pka.css', value: "${appName}-min.css")
+
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/style.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/field-access.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/pka/application-period.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/pka/form.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/pka/splash.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/app.js"></script>', value: '')
+
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/pka/style.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/pka/message.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/pka/lookup.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/pka/field-access.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/pka/html-renderer.js"></script>', value: '')
+
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/ta/style.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/ta/message.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/ta/lookup.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/ta/field-access.js"></script>', value: '')
+	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/ta/html-renderer.js"></script>', value: '')
+
+	ant.replace(file: "${pkgDir}/index.html", token: 'js/init.js', value: "js/${appName}-min.js")
+	ant.replace(file: "${pkgDir}/index.html", token: local_nyclib, value: project.ext["${env}_nyclib"])
+
+}
+
+task minifyJs(type: MiniJsTask, dependsOn: [setEnv]) {
+	version = ver
+	libName = 'pka-min'
+	fileNames = jsFiles
+	sourceDir = jsTmpDir
+	destinationDir = "${pkgDir}/js"
+}
+minifyJs.doFirst {
+	copy {
+		from jsSrcDir
+		include '*.js'
+		include 'pka/**'
+		include 'ta/**'
+		into jsTmpDir
+	}
+	ant.taskdef(name: 'replace', classname: 'org.apache.tools.ant.taskdefs.Replace')	
+	if (project.hasProperty("pka.${env}.geoclient.url")){
+		ant.replace(file: "${jsTmpDir}/init.js", token: project.ext['pka.git.geoclient.url'], value: project.ext["pka.${env}.geoclient.url"])
+	}
+	if (project.hasProperty("pka.${env}.google.url")){
+		ant.replace(file: "${jsTmpDir}/init.js", token: project.ext['pka.local.google.url'], value: project.ext["pka.${env}.google.url"])
+	}
+}
+
+task minifyCss(type: MiniCssTask) {
+	libName = 'pka-min'
+	fileNames = cssFiles
+	sourceDir = cssSrcDir
+	destinationDir = "${pkgDir}/css"
+}
+
+
+task buildLibs(dependsOn: [minifyJs, minifyCss]) << {}
+
+task archive(type: Zip, dependsOn: [replaceTokens, buildLibs]) {
+	archiveName = "pka-${ver}.zip"
+	from {pkgDir}
+}
+
+remotes {
+	deployTarget {}
+}
+
+task deploy(dependsOn: [archive]) << {
+	def archiveDir = project.ext['archive.dir']
+	def deployDir = project.ext['pka.deploy.dir']
+	
+	remotes.deployTarget.host = project.ext["${env}.host"]
+    remotes.deployTarget.user = project.ext["${env}.user"]	
+    remotes.deployTarget.identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+	
+	ssh.run {
+        session(remotes.deployTarget) {
+        	execute "mkdir -p ${archiveDir}"
+        	execute "mkdir -p ${deployDir}"
+            put "build/distributions/${archive.archiveName}", archiveDir
+            execute "cp -R ${deployDir} ${deployDir}.bak"
+            execute "rm -rf ${deployDir}"
+            execute "unzip ${archiveDir}/${archive.archiveName} -d ${deployDir}"
+            execute "rm -rf ${deployDir}.bak"
+        }
+    }
+}
+
+[jettyRun]*.with {
+    webXml = file("etc/jetty/webdefault.xml")
+}
+
+jettyRun {
+	webAppSourceDirectory file('./')
+	contextPath ''
+	httpPort 8088
+	stopPort 8090
+	stopKey 'stopKey'
+	reload 'automatic'
+	scanIntervalSeconds 2
+}
+jettyRun.doFirst { 
+	if (project.hasProperty('git.geoclient.url')){
+	    ant.taskdef(name: 'replace', classname: 'org.apache.tools.ant.taskdefs.Replace')	
+		ant.replace(file: 'src/test/js/setup-teardown.js', token: project.ext['git.geoclient.url'], value: project.ext['test.geoclient.url'])
+	}
+}
+
+jettyStop {
+	stopPort 8090
+	stopKey 'stopKey'
+}
+jettyStop.doFirst { 
+	if (project.hasProperty('git.geoclient.url')){
+	    ant.taskdef(name: 'replace', classname: 'org.apache.tools.ant.taskdefs.Replace')	
+		ant.replace(file: 'src/test/js/setup-teardown.js', token: project.ext['test.geoclient.url'], value: project.ext['git.geoclient.url'])
+	}
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion '2.9'
+}

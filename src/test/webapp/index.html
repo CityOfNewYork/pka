@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>NYC Pre-K Finder QUnit Tests</title>
+	<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.0.css">
+	<style>
+		.test-map, #dir-map, .mock-splash, #form-page, .dia, #inf-full-screen {
+			position: fixed;
+			left: -1000px;
+			top: -1000px;
+		}
+		.test-map, #dir-map {
+			width: 1000px;
+			height: 1000px;
+		}
+		.ui-loader {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="form-page" data-role="page">
+		<form autocomplete="on" novalidate>
+			<div id="form-note" class="form-sect"></div>
+			<div class="child">
+				<label for="student-first-name">First name:</label>
+				<input id="student-first-name" name="studentFirstName" type="text">
+				<label for="student-last-name">Last name:</label>
+				<input id="student-last-name" name="studentLastName" type="text">
+			</div>
+			<label for="student-dob">Date of birth:</label>
+			<div id="student-dob"></div>
+			<span id="student-dob-note"></span>
+			<label for="house-number">House no:</label>
+			<input id="house-number" name="houseNumber" type="text" maxlength="10" required placeholder="52">
+			<label for="street-name">Street name:</label>
+			<input id="street-name" name="streetName" type="text" required placeholder="Chambers St">
+			<label for="apt">Apt:</label>
+			<input id="apt" name="apt" type="text" placeholder="1A">					
+			<label for="borough">Borough:</label>
+			<select id="borough" name="borough" class="notranslate" translate="no" required data-pattern="^((?!Choose).)*$">
+				<option value="" class="capitalize">choose...</option>
+				<option>Bronx</option>
+				<option>Brooklyn</option>
+				<option>Manhattan</option>
+				<option>Queens</option>
+				<option>Staten Island</option>
+			</select>
+			<label for="zip-code">ZIP Code:</label>
+			<input id="zip-code" name="zipCode" type="text" maxlength="5" required pattern="^\d{5}$" placeholder="10007">
+			<label for="parent-first-name">First name:</label>
+			<input id="parent-first-name" name="parentFirstName" type="text" required>
+			<label for="parent-last-name">Last name:</label>
+			<input id="parent-last-name" name="parentLastName" type="text" required>
+			<label for="relationship">Relationship:</label>
+			<select id="relationship" name="relationship" class="capitalize" required data-pattern="^((?!Choose).)*$">
+				<option value="">choose...</option>
+				<option value="Mother">mother</option>
+				<option value="Father">father</option>
+				<option value="Grandparent">grandparent</option>
+				<option value="Sister/Brother">sister / brother</option>
+				<option value="Other Relative">other relative</option>
+				<option value="Step Parent">step parent</option>
+				<option value="Foster Parent">foster parent</option>
+				<option value="Agency">agency</option>
+				<option value="Ward Of State">ward of state</option>
+				<option value="Other Legal Guardian">other legal guardian</option>
+				<option value="Non-Relative">non-relative</option>
+			</select>
+			<label for="day-telephone">Day phone:</label>
+			<input id="day-telephone" name="dayPhone" type="text" maxlength="10" required pattern="[0-9]{10}" placeholder="2125555555">
+			<label for="evening-telephone">Evening phone:</label>
+			<input id="evening-telephone" name="eveningPhone" maxlength="10" type="text" required pattern="[0-9]{10}" placeholder="2125555555">
+			<label for="email">Email address:</label>
+			<input id="email" name="email" type="text" required pattern="[\w-]+@([\w-]+\.)+[\w-]+">
+			<select id="language" name="language"></select>			
+			<input id="language-code" name="languageCode" type="hidden" value="en">
+			<button id="form-submit" class="capitalize">submit request</button>
+		</form>
+		<div id="form-review">		
+			<span id="review-studentFirstName"></span>
+			<span id="review-studentLastName"></span>
+			<span id="review-studentDob"></span>
+			<span id="review-houseNumber"></span> 
+			<span id="review-streetName"></span> 
+			<span id="review-apt"></span>
+			<span id="review-borough"></span>
+			<span id="review-zipCode"></span>
+			<span id="review-parentFirstName"></span>
+			<span id="review-parentLastName"></span>
+			<span id="review-relationship"></span>
+			<span id="review-dayPhone"></span>
+			<span id="review-eveningPhone"></span>
+			<span id="review-email"></span>
+			<span id="review-language"></span>
+			<button onclick="$('#form-review').fadeOut();">Cancel</button>
+			<button id="review-submit">Submit</button>
+		</div>
+		<div id="form-processing" style="display:none"></div>
+	</div>
+	<div id="qunit"></div>
+	<div id="qunit-fixture"></div>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+	<script src="https://code.jquery.com/qunit/qunit-1.23.0.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.14/proj4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.14.2/ol.js"></script>    
+	<script src="https://maps.nyc.gov/nyc-lib/v0.2.0-SNAPSHOT/js/nyc-ol-lib.js"></script>
+	
+	<!-- sources -->
+	<script src="../../main/webapp/js/field-access.js"></script>
+
+	<script src="../../main/webapp/js/pka/message.js"></script>
+	<script src="../../main/webapp/js/pka/lookup.js"></script>
+	<script src="../../main/webapp/js/pka/field-access.js"></script>
+	<script src="../../main/webapp/js/pka/html-renderer.js"></script>
+	<script src="../../main/webapp/js/pka/application-period.js"></script>
+	<script src="../../main/webapp/js/pka/splash.js"></script>
+	<script src="../../main/webapp/js/pka/form.js"></script>
+
+	<script src="../../main/webapp/js/ta/message.js"></script>
+	<script src="../../main/webapp/js/ta/lookup.js"></script>
+	<script src="../../main/webapp/js/ta/field-access.js"></script>
+	<script src="../../main/webapp/js/ta/html-renderer.js"></script>
+
+	<script src="../../main/webapp/js/style.js"></script>
+	<script src="../../main/webapp/js/pka/style.js"></script>
+	<script src="../../main/webapp/js/ta/style.js"></script>
+
+	<script src="../../main/webapp/js/app.js"></script>
+	
+	<!-- tests -->
+	<script src="js/setup-teardown.js"></script>
+
+	<script src="js/field-access.js"></script>
+
+	<script src="js/pka/field-access.js"></script>
+	<script src="js/pka/html-renderer.js"></script>
+	<script src="js/pka/application-period.js"></script>
+	<script src="js/pka/splash.js"></script>
+	<script src="js/pka/form.js"></script>
+
+	<script src="js/ta/field-access.js"></script>
+	<script src="js/ta/html-renderer.js"></script>
+
+	<script src="js/app.js"></script>
+
+</body>
+</html>

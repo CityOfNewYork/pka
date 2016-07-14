@@ -1,0 +1,21 @@
+key,value
+birth_year,2011
+start_year,2015
+school_year,2015-16
+apply_start_date,2016-05-06
+apply_end_date,2016-07-01
+splash_msg_no_apply,"<p>All NYC children born in 2011 are eligible to attend pre-K in September 2015.</p><p>Click &#34;<span class=""capitalize"">request a call</span>&#34; to hear from an enrollment specialist.</p><p>You can also apply in the <span class=""capitalize"">round 2</span> application period from June 22 - July 10</p>"
+splash_msg_yes_apply,"<p>All NYC children born in 2011 are eligible to attend pre-K in September 2015.</p><p>Click &#34;<span class=""capitalize"">request a call</span>&#34; to hear from an enrollment specialist.</p><p>The <span class=""capitalize"">main round</span> application period is now closed. You can still contact <span class=""capitalize"">main round</span> programs directly to inquire about waitlists and availability.</p><p>You can still apply for pre-K in the <span class=""capitalize"">round 2</span> application period from June 22-July 10. <span class=""capitalize"">round 2</span> programs include newly awarded NYCEEC pre-k programs</p>"
+btn_call,request a call
+btn_apply,apply now
+application_filter_btn,round 2 programs
+dynamic_filter_btn,
+form_msg_no_apply,"This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href=""http://nyc.gov/prek"" target=""_blank"">nyc.gov/prek</a> for more information."
+form_msg_yes_apply,"This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href=""http://nyc.gov/prek"" target=""_blank"">nyc.gov/prek</a> for more information."
+form_dob_msg,"<b>Note:</b> To be eligible for pre-K for the 2015-16 school year, your child must have been born in the year 2011."
+form_another,Your submission was successful!<br>You will recieve an email shortly.<br><br>Do you wish to submit again for another child?
+form_error,"There was an error processing your submission, please try again."
+min_dob_year,2011
+max_dob_year,2015
+hotline_number,(800) 555-5555
+hotline_msg,Call (800) 555-5555 to contact an enrollment specialist between 7AM-9PM Monday-Friday
