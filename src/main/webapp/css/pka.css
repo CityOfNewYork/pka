@@ -604,15 +604,16 @@ div.web a:before {
 /* ======================== begin hotline ======================== */
 
 .ui-btn.hotline {
-	width: 80px;
 	text-shadow: none;
+	min-width: 125px;	
+	padding-left: 0;
+	padding-right: 0;
 }
 .dia-3-btns .dia {
 	width: 400px;
 	margin-left: -210px;
 }
 .dia-3-btns .dia-btns a {
-	width: 99px;
 	color: rgb(1,51,100) !important;
 }
 body.translated .dia-3-btns .dia-btns a {
