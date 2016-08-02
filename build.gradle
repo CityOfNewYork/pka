@@ -27,7 +27,7 @@ dependencies {
 
 ext {
 	appName = 'pka'
-	ver = 'v0.0.1'
+	ver = 'v3.0.0'
 	default_env = 'local'
 	
 	local_nyclib = 'https://maps.nyc.gov/nyc-lib/'
