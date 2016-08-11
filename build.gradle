@@ -27,7 +27,7 @@ dependencies {
 
 ext {
 	appName = 'pka'
-	ver = 'v3.0.1-SNAPSHOT'
+	ver = 'v3.0.1'
 	default_env = 'local'
 	
 	local_nyclib = 'https://maps.nyc.gov/nyc-lib/'
@@ -192,6 +192,16 @@ task deploy(dependsOn: [archive]) << {
 	remotes.deployTarget.host = project.ext["${env}.host"]
     remotes.deployTarget.user = project.ext["${env}.user"]	
     remotes.deployTarget.identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+	
+	println ""
+	println "mkdir -p ${archiveDir}"
+	println "mkdir -p ${deployDir}"
+	println "put build/distributions/${archive.archiveName}, ${archiveDir}"
+	println "cp -R ${deployDir} ${deployDir}.bak"
+    println "rm -rf ${deployDir}"
+    println "unzip ${archiveDir}/${archive.archiveName} -d ${deployDir}"
+    println "rm -rf ${deployDir}.bak"
+	println ""
 	
 	ssh.run {
         session(remotes.deployTarget) {
