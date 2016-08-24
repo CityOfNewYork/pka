@@ -13,7 +13,7 @@ dynamic_filter_btn,
 form_msg_no_apply,"This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href=""http://nyc.gov/prek"" target=""_blank"">nyc.gov/prek</a> for more information."
 form_msg_yes_apply,"This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href=""http://nyc.gov/prek"" target=""_blank"">nyc.gov/prek</a> for more information."
 form_dob_msg,"<b>Note:</b> To be eligible for pre-K for the 2016-17 school year, your child must have been born in the year 2012."
-form_another,Your submission was successful!<br>You will recieve an email shortly.<br><br>Do you wish to submit again for another child?
+form_another,Your submission was successful!<br><br>Do you wish to submit again for another child?
 form_error,"There was an error processing your submission, please try again."
 min_dob_year,2012
 max_dob_year,2016
