@@ -40,7 +40,7 @@
 	margin: auto;
 	max-width: 600px;
 }
-#form-page .form-sect, #form-page .child, #form-page .language {
+#form-page .form-sect, #form-page div.optional {
 	border-radius: 0.6em;
 	padding: 5px;
 	margin: 0 0 10px 0;
@@ -49,11 +49,8 @@
 	border: 1px solid #5681ac;
 	background-color: #f9f9f9;	
 }
-#form-page .child, #form-page .language {
+#form-page div.optional {
 	background-color: rgba(1,51,100,0.1);
-}
-#form-page .language div {
-	text-align: center;
 }
 #student-dob {
 	margin-top: -9px;
@@ -64,10 +61,7 @@
 #student-dob td {
 	width: 33%;
 }
-#form-page .child .fields td {
-	width: 50%;	
-}
-#form-page .child .fields td[colspan="2"] {
+#form-page td.optional {
 	text-align: center;
 }
 #form-page .ui-selectmenu-button {
