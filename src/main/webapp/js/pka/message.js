@@ -13,11 +13,15 @@ pka.messages = [
 		flex_sched: 'Program may utilize flexible scheduling policy. Please contact program directly for details about pre-K schedule.',
 		sped_flg: 'If your child has an IEP recommending Related Services and/or SEIT, contact the program directly for more information before applying.',
 		income_flg: 'Program may have income or other eligibility requirements. Contact for more information.',
-		start_time: 'Daily Start Time: ${START_TIME}',
-		early_drop_off: 'Early Drop Off Available: ${EARLY_DROP}',
-		late_pick_up: 'Late Pick Up Available: ${LATE_PICKUP}',
+		start_time: 'Daily Start Time: ${start_time}',
+		early_drop_off: 'Early Drop Off Available: ${early_drop}',
+		late_pick_up: 'Late Pick Up Available: ${late_pickup}',
 		search_label: '<img src="img/${PREK_TYPE}.png" alt="${PREK_TYPE}"><span class="srch-loccode">${LOCCODE}</span>${NAME}',
-		hotline_call_now: 'call now'
+		hotline_call_now: 'call now',
+		yes: 'Yes',
+		no: 'No',
+		contact_start: 'Contact program about start time',
+		contact_extend: 'Contact program about extended hours'
 	},
 	/********* Pre-K Finder School Info HTML ***********/
 	{		

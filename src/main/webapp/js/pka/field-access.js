@@ -34,10 +34,30 @@ pka.fieldAccess = {
 		props.sped = props.SPED_FLG == '1' ? this.message('sped_flg') : '';
 		props.income = props.INCOME_FLG == '1' ? this.message('income_flg') : '';
 		props.lang = props.ENHANCED_LANG != '0' ? '1' : '';
+		
+		props.start_time = props.START_TIME ? props.START_TIME : this.message('contact_start');
 		props.start = this.message('start_time', props);
+
+		if (props.EARLY_DROP == '1'){
+			props.early_drop = this.message('yes');			
+		}else if (props.EARLY_DROP == '0'){
+			props.early_drop = this.message('no');
+		}else{
+			props.early_drop = this.message('contact_extend');	
+		}
 		props.early = this.message('early_drop_off', props);
+		
+		
+		if (props.LATE_PICKUP == '1'){
+			props.late_pickup = this.message('yes');			
+		}else if (props.LATE_PICKUP == '0'){
+			props.late_pickup = this.message('no');
+		}else{
+			props.late_pickup = this.message('contact_extend');	
+		}
 		props.late = this.message('late_pick_up', props);
-		props.extend = (props.EARLY_DROP.toLowerCase() != 'no' || props.LATE_PICKUP.toLowerCase() != 'no') ? '1' : '';
+		
+		
 		props.school_year = this.message('school_year');
 		props.day_length = this.day_length[props.DAY_LENGTH];
 		props.full_day = $.inArray(props.DAY_LENGTH * 1, this.full_day) > -1;
