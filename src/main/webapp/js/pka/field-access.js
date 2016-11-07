@@ -65,6 +65,10 @@ pka.fieldAccess = {
 		props.can_apply = this.applicationPeriod.isActive() && props.BUTTON_TYPE.toLowerCase() == 'apply' ? '1' : '';
 		props.btn_apply = this.message('btn_apply');
 		props.search_label = this.message('search_label', props);
+		
+		props.btn_pdf = this.message('btn_pdf');
+		props.pdf_url = this.message('quality_pdf', props);
+		
 		this.setProperties(props);
 	},
 	/**

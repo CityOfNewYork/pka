@@ -27,6 +27,7 @@ pka.htmlRenderer = {
 				.append(this.message('info_name', props))
 				.append(this.message('info_note', props))
 				.append(this.message('info_address', props))
+				.append(this.pdfBtnHtml(props))
 				.append(this.applyBtnHtml(props))
 				.append(this.phoneWebHtml(props))
 				.append(this.detailHtml(props))
@@ -141,6 +142,16 @@ pka.htmlRenderer = {
 			.append(this.getLangContent('info'))
 			.append(this.message('info_seats', props))
 			.append(this.contactHtml(props));
+	},
+	/**
+	 * @private 
+	 * @static
+	 * @method
+	 * @param {Object<string, Object>} props
+	 * @return {string} 
+	 */
+	pdfBtnHtml: function(props){
+		return $(this.message('info_pdf_btn', props));	
 	},
 	/**
 	 * @private 

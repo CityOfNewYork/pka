@@ -319,10 +319,10 @@ div.inf-pop div.inf-btn a {
 div.inf-pop div.inf-btn.contact div.email, div.inf-pop div.inf-btn.contact div.vcard {
 	min-width: 136px;
 }
-div.inf-pop div.phone.full-width, div.inf-pop div.inf-btn.apply {
+div.inf-pop div.phone.full-width, div.inf-pop div.inf-btn.apply, div.inf-pop div.inf-btn.pdf {
 	width: 284px;
 }
-body.lang-en div.inf-pop div.inf-btn.action div.apply {
+body.lang-en div.inf-pop div.inf-btn.action div.apply, body.lang-en div.inf-pop div.inf-btn.action div.pdf {
 	min-width: 114px;
 }
 div.inf-pop div.inf-detail {
@@ -372,7 +372,7 @@ div.inf-pop div.inf-name {
 #inf-full-screen div.inf-btn.contact div.full-width {
 	width: 100%;
 }
-#inf-full-screen div.inf-container, #inf-full-screen div.inf-detail, div.inf-full-screen div.inf-btn.apply {
+#inf-full-screen div.inf-container, #inf-full-screen div.inf-detail, div.inf-full-screen div.inf-btn.apply, div.inf-full-screen div.inf-btn.pdf {
 	width: auto;
 }
 
@@ -519,7 +519,7 @@ div.inf-detail div.inf-btn.contact div {
 div.inf-pop div.inf-btn.contact div, body.lang-en div.inf-pop div.inf-btn.action div {
 	min-width: 142px;
 }
-div.inf-list div.phone.full-width, div.inf-list div.inf-btn.apply {
+div.inf-list div.phone.full-width, div.inf-list div.inf-btn.apply, div.inf-list div.inf-btn.pdf {
 	width: 298px;
 }
 div.inf-btn.action div {
@@ -532,7 +532,7 @@ body.lang-en div.info a.ui-btn {
 	padding-left: 0;
 	padding-right: 0;
 }
-div.contact a:before, div.map a:before, div.detail a:before, div.directions a:before {
+div.pdf a:before, div.contact a:before, div.map a:before, div.detail a:before, div.directions a:before {
 	content: "";
 	padding: 10px;
 	background-repeat: no-repeat;
@@ -542,6 +542,9 @@ div.contact a:before, div.map a:before, div.detail a:before, div.directions a:be
 }
 div.email-lnk {
 	margin-bottom: 5px;
+}
+div.pdf a:before {
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3Asvg%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22512%22%20height%3D%22512%22%3E%3Cg%20style%3D%22fill%3A%23013364%22%3E%3Cpath%20d%3D%22M72%2C65.625C112.563%2C25.063%2C168.563%2C0%2C230.406%2C0v224L72%2C65.625z%20M256%2C64v224L97.625%2C129.625%20C57.063%2C170.156%2C32%2C226.156%2C32%2C288c0%2C123.688%2C100.313%2C224%2C224%2C224c123.688%2C0%2C224-100.312%2C224-224C480%2C164.313%2C379.688%2C64%2C256%2C64z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 }
 div.email a:before {
 	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3Asvg%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%3E%3Cg%20style%3D%22fill%3A%23013364%22%3E%3Cpath%20d%3D%22M%2017.449848%2C61.790635%2083.660515%2C128%2017.451349%2C194.21108%22%2F%3E%3Cpath%20d%3D%22m%20238.54475%2C61.795141%20-66.20762%2C66.203709%2066.21515%2C66.21424%22%2F%3E%3Cpath%20d%3D%22M%20226.20285%2C49.45403%20128%2C147.66787%2029.794881%2C49.451104%22%2F%3E%3Cpath%20d%3D%22m%20159.9889%2C140.33177%20-31.99646%2C32.0421%20-31.988464%2C-32.03608%20-66.218134%2C66.20858%20196.425988%2C0.006%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");

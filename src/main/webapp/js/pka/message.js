@@ -32,6 +32,7 @@ pka.messages = [
 		info_code: '<div class="code"><span class="inf-name">Program Code: ${LOCCODE}</span></div>',
 		info_address: '<div class="notranslate" translate="no">${address_1}</div><div class="notranslate" translate="no">${address_2}</div>',
 		info_apply_btn: '<div class="capitalize inf-btn apply"><a data-role="button" href="${apply_url}" target="_blank">${btn_apply}</a></div>',
+		info_pdf_btn: '<div class="capitalize inf-btn pdf"><a data-role="button" href="${pdf_url}" target="_blank">${btn_pdf}</a></div>',
 		info_contact: '<div class="capitalize inf-btn contact"></div>',
 		info_phone: '<div class="phone notranslate" translate="no"><a data-role="button" href="tel:${phone}">${PHONE}</a></div>',
 		info_vcard: '<div class="vcard"><a data-role="button" onclick="nyc.app.schoolVcard(\'${fid}\');">contact</a></div>',
