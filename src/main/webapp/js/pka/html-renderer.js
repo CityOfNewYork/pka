@@ -91,7 +91,7 @@ pka.htmlRenderer = {
 	 * @return {string} 
 	 */
 	flexHtml: function(props){
-		return props.sped ? this.message('info_flex', props) : '';
+		return props.flex ? this.message('info_flex', props) : '';
 	},
 	/**
 	 * @private 
