@@ -105,6 +105,9 @@ pka.Form.prototype = {
 			if (valid && pattern){
 				valid = new RegExp(pattern).test(val);
 			}
+			if (!valid && !$(n).prop('required') && $(n).attr('required') && !val.length){
+				valid = true;
+			}
 			if (!valid){
 				err.push(n);
 				$('label[for="' + n.id + '"]').addClass('err');												
@@ -115,7 +118,6 @@ pka.Form.prototype = {
 			this.dialog.ok({
 				message: this.content.message('form_invalid')
 			});				
-			
 		}else{
 			this.review();
 		}
