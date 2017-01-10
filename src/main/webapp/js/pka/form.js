@@ -10,6 +10,7 @@ var pka = pka || {};
  * @param {Object<String, String>} languages Options for preferred languages
  */
 pka.Form = function(applicationPeriod, content, languages){
+	this.englishOnly = /^(?=.*[A-Z0-9])[\w.,!"'-@\/$ ]+$/i;
 	this.content = content;
 	this.languages = languages;
 	this.dob = new nyc.DateField('#student-dob', 'studentDob', content.message('min_dob_year'), content.message('max_dob_year'));
@@ -87,27 +88,34 @@ pka.Form.prototype = {
 	 * @return {boolean}
 	 */
 	valid: function(){
-		var err = [];
+		var err = [], englishOnly = this.englishOnly;
 		$('#form-page label, #form-page span').removeClass('err');
 		if (!this.dob.val()){
 			err.push(this.dob.selectMonth[0]);
 			$('label[for="student-dob"]').addClass('err');												
 		}
 		$.each($('#form-page input, #form-page select'), function(_, n){
+			var val = $(n).val(), pattern = $(n).attr('pattern') || $(n).data('pattern'), valid = true;
 			if ($(n).prop('required') || $(n).attr('required')){
-				var val = $(n).val(), pattern = $(n).attr('pattern') || $(n).data('pattern'), valid = val.length;
-				if (valid && pattern){
-					var regex = new RegExp(pattern);
-					valid = regex.test(val);
-				}
-				if (!valid){
-					err.push(n);
-					$('label[for="' + n.id + '"]').addClass('err');												
-				}
+				valid = val.length;
+			}
+			if (valid && val.length){
+				valid = englishOnly.test(val);
+			}
+			if (valid && pattern){
+				valid = new RegExp(pattern).test(val);
+			}
+			if (!valid){
+				err.push(n);
+				$('label[for="' + n.id + '"]').addClass('err');												
 			}
 		});
 		if (err.length){
 			$(err[0]).focus();
+			this.dialog.ok({
+				message: this.content.message('form_invalid')
+			});				
+			
 		}else{
 			this.review();
 		}

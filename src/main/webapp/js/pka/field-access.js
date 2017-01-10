@@ -23,6 +23,7 @@ pka.fieldAccess = {
 		var props = this.getProperties();
 		this.setId(this.getId());
 		props.fid = this.getId();
+		props.loccode4 = props.fid.substr(props.fid.length - 4);
 		props.address_1 = props.ADDRESS;
 		props.city = this.borough[props.BOROUGH];
 		props.address_2 = props.city + ', NY ' + props.ZIP;

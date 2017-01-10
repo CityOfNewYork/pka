@@ -4,20 +4,21 @@ start_year,2016
 school_year,2016-17
 apply_start_date,42492
 apply_end_date,42510
-splash_msg_no_apply,"<p>The 2016-2017 school year has already begun! </p><p> All NYC children born in 2013 will be eligible to attend pre-K in September 2017. </p><p>The application for the 2017-2018 school year will open in early 2017.</p><p>To ensure that you will be notified about the opening of the application, please click the &#34;<span class=""capitalize"">request a call</span>&#34; button and fill out the Get in Touch form, marking the correct birth year of your child.</p><p>If your child was born in 2012 and you have not yet found a pre-K program, please contact the Pre-K Outreach Team at (212) 637-8000 regarding programs that may still have openings.</p>"
-splash_msg_yes_apply,"<p>All NYC children born in 2012 are eligible to attend pre-K in September 2016.</p><p>Click &#34;<span class=""capitalize"">request a call</span>&#34; to hear from an enrollment specialist.</p><p>The <span class=""capitalize"">main round</span> application period is now closed. You can still contact <span class=""capitalize"">main round</span> programs directly to inquire about waitlists and availability.</p><p>You can still apply for pre-K in the <span class=""capitalize"">round 2</span> application period from June 22-July 10. <span class=""capitalize"">round 2</span> programs include newly awarded NYCEEC pre-k programs</p>"
+splash_msg_no_apply,"<p>The 2016-2017 school year has already begun! </p><p> All NYC children born in 2013 will be eligible to attend pre-K in September 2017. </p><p>The application for the 2017-2018 school year will open in early 2017.</p><p>To ensure that you will be notified about the opening of the application, please click the &#34;<span class='capitalize'>request a call</span>&#34; button and fill out the Get in Touch form, marking the correct birth year of your child.</p><p>If your child was born in 2012 and you have not yet found a pre-K program, please contact the Pre-K Outreach Team at (212) 637-8000 regarding programs that may still have openings.</p>"
+splash_msg_yes_apply,<p>All NYC children born in 2012 are eligible to attend pre-K in September 2016.</p><p>Click &#34;<span class='capitalize'>request a call</span>&#34; to hear from an enrollment specialist.</p><p>The <span class='capitalize'>main round</span> application period is now closed. You can still contact <span class='capitalize'>main round</span> programs directly to inquire about waitlists and availability.</p><p>You can still apply for pre-K in the <span class='capitalize'>round 2</span> application period from June 22-July 10. <span class='capitalize'>round 2</span> programs include newly awarded NYCEEC pre-k programs</p>
 btn_call,request a call
 btn_apply,
 application_filter_btn,round 2 programs
 dynamic_filter_btn,Programs that may have immediate availability
-form_msg_no_apply,"This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href=""http://nyc.gov/prek"" target=""_blank"">nyc.gov/prek</a> for more information."
-form_msg_yes_apply,"This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href=""http://nyc.gov/prek"" target=""_blank"">nyc.gov/prek</a> for more information."
+form_msg_no_apply,This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href='http://nyc.gov/prek' target='_blank'>nyc.gov/prek</a> for more information.
+form_msg_yes_apply,This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href='http://nyc.gov/prek' target='_blank'>nyc.gov/prek</a> for more information.
 form_dob_msg,"<b>Note:</b> To be eligible for pre-K for the 2016-17 school year, your child must have been born in the year 2012."
 form_another,Your submission was successful!<br><br>Do you wish to submit again for another child?
 form_error,"There was an error processing your submission, please try again. Please call 718-935-2009 (Monday-Friday between 8am and 6pm) to speak to a representative."
+form_invalid,"You have entered invalid information.<p>The form only accepts English language characters.</p>Please correct the information in the red fields. If you are having difficulty submitting this form, please call 718-935-2009 (Monday-Friday between 8am and 6pm) to speak to a representative."
 min_dob_year,2012
 max_dob_year,2016
 hotline_number,(212) 637-8000
 hotline_msg,Call (212) 637-8000 to contact an enrollment specialist between 9AM-5PM Monday-Friday
-quality_pdf,http://schools.nyc.gov/OA/SchoolReports/2014-15/School_Quality_Snapshot_2015_HS_${LOCCODE}.pdf
-btn_pdf,quality snapshot
+quality_pdf,http://schools.nyc.gov/OA/SchoolReports/2014-15/School_Quality_Snapshot_2015_HS_${loccode4}.pdf
+btn_pdf,Pre-K Snapshot

@@ -8,7 +8,7 @@ QUnit.module('nyc.fieldAccess', {
 });
 
 QUnit.test('getCoordinates', function(assert){
-	assert.expect(3);
+	assert.expect(6);
 
 	var done = assert.async();
 	var validateFeatureProperties = this.validateFeatureProperties;
@@ -16,9 +16,12 @@ QUnit.test('getCoordinates', function(assert){
 	var schoolSrc = this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		assert.deepEqual(schoolSrc.getFeatureById('code1').getCoordinates(), [980985.0000000003, 175779.9999999349]);
-		assert.deepEqual(schoolSrc.getFeatureById('code2').getCoordinates(), [996604.000000001, 187903.99999993955]);
-		assert.deepEqual(schoolSrc.getFeatureById('code3').getCoordinates(), [1005772.9999999997, 189030.999999948]);
+		assert.equal(schoolSrc.getFeatureById('code1').getCoordinates()[0].toFixed(0), "980985");
+		assert.equal(schoolSrc.getFeatureById('code1').getCoordinates()[1].toFixed(0), "175780");
+		assert.equal(schoolSrc.getFeatureById('code2').getCoordinates()[0].toFixed(0), "996604");
+		assert.equal(schoolSrc.getFeatureById('code2').getCoordinates()[1].toFixed(0), "187904");
+		assert.equal(schoolSrc.getFeatureById('code3').getCoordinates()[0].toFixed(0), "1005773");
+		assert.equal(schoolSrc.getFeatureById('code3').getCoordinates()[1].toFixed(0), "189031");
 		done();
 	});	
 });

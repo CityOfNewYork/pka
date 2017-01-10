@@ -5,6 +5,8 @@ QUnit.module('pka.fieldAccess', {
 		this.validateFeatureProperties = function(schoolSrc, done){
 			$.each(schoolSrc.getFeatures(), function(_, feature){
 				var props = feature.getProperties();
+				assert.equal(props.fid, props.LOCCODE);
+				assert.equal(props.loccode4, props.fid.substr(props.fid.length - 4));
 				assert.equal(props.address_1, props.ADDRESS);
 				assert.equal(props.city, feature.borough[props.BOROUGH]);
 				assert.equal(props.address_2, props.city + ', NY ' + props.ZIP);
@@ -16,17 +18,32 @@ QUnit.module('pka.fieldAccess', {
 				assert.equal(props.sped, props.SPED_FLG == '1' ? feature.message('sped_flg') : '');
 				assert.equal(props.income, props.INCOME_FLG == '1' ? feature.message('income_flg') : '');
 				assert.equal(props.lang, props.ENHANCED_LANG != '0' ? '1' : '');
-				assert.equal(props.start, feature.message('start_time', props));
+				assert.equal(props.start_time, props.START_TIME ? props.START_TIME : feature.message('contact_start'));
+				if (props.EARLY_DROP == '1'){
+					assert.equal(props.early_drop, feature.message('yes'));			
+				}else if (props.EARLY_DROP == '0'){
+					assert.equal(props.early_drop, feature.message('no'));
+				}else{
+					assert.equal(props.early_drop, feature.message('contact_extend'));	
+				}
 				assert.equal(props.early, feature.message('early_drop_off', props));
+				if (props.LATE_PICKUP == '1'){
+					assert.equal(props.late_pickup, feature.message('yes'));			
+				}else if (props.LATE_PICKUP == '0'){
+					assert.equal(props.late_pickup, feature.message('no'));
+				}else{
+					assert.equal(props.late_pickup, feature.message('contact_extend'));	
+				}
 				assert.equal(props.late, feature.message('late_pick_up', props));
-				assert.equal(props.extend, (props.EARLY_DROP.toLowerCase() != 'no' || props.LATE_PICKUP.toLowerCase() != 'no') ? '1' : '');
 				assert.equal(props.school_year, feature.message('school_year'));
 				assert.equal(props.day_length, feature.day_length[props.DAY_LENGTH]);
 				assert.equal(props.full_day, $.inArray(props.DAY_LENGTH * 1, feature.full_day) > -1);
 				assert.equal(props.apply_url, feature.apply_url);
 				assert.equal(props.can_apply, feature.applicationPeriod.isActive() && props.BUTTON_TYPE.toLowerCase() == 'apply' ? '1' : '');
 				assert.equal(props.btn_apply, feature.message('btn_apply'));
-				assert.equal(props.search_label, feature.message('search_label', props)); 		
+				assert.equal(props.search_label, feature.message('search_label', props)); 	
+				assert.equal(props.btn_pdf, feature.message('btn_pdf'));	
+				assert.equal(props.pdf_url, feature.message('quality_pdf', props));	
 			});
 			done();
 		};
@@ -37,7 +54,7 @@ QUnit.module('pka.fieldAccess', {
 });
 
 QUnit.test('nyc.ol.source.Decorating.AUTO_EXEC (active application period)', function(assert){
-	assert.expect(66);
+	assert.expect(81);
 
 	var done = assert.async();
 	var validateFeatureProperties = this.validateFeatureProperties;
@@ -50,7 +67,7 @@ QUnit.test('nyc.ol.source.Decorating.AUTO_EXEC (active application period)', fun
 });
 
 QUnit.test('nyc.ol.source.Decorating.AUTO_EXEC (no active application period)', function(assert){
-	assert.expect(66);
+	assert.expect(81);
 
 	var done = assert.async();
 	var validateFeatureProperties = this.validateFeatureProperties;
@@ -146,7 +163,7 @@ QUnit.test('getJcardJson', function(assert){
 	var schoolSrc = this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		assert.equal(schoolSrc.getFeatureById('code1').getJcardJson(), '["vcard",[["version",{},"text","4.0"],["org",{},"text","P.S. 1 The Bergen"],["adr",{"type":"work","label":"309 47th St\\nBrooklyn, NY 11220\\nU.S.A."},"text",["309 47th St","Brooklyn","","NY","11220","U.S.A."]],["email",{"type":"work"},"text","aramos4@schools.nyc.gov"],["tel",{},"uri","+1-718-undefined"],["url",{"type":"work"},"uri","http://schools.nyc.gov/schoolportals/15/k001"],["tz",{},"utc-offset","-5:00"],["geo",{},"uri","geo:NaN,NaN"],["note",{},"text","\\nProgram Code: code1\\n\\nProgram Features:\\n\\n\\tBreakfast\\n\\tIndoor playspace\\n\\tDaily Start Time: 9:00 AM\\n\\tEarly Drop Off Available: no\\n\\tLate Pick Up Available: no\\n\\n2015-16 Seats: 125 Full day\\n\\nDual Language: Spanish\\n\\nDual Language: Greek\\n\\nDual Language: Vietnamese\\n\\nEnhanced Language Support: Arabic\\n\\nEnhanced Language Support: Bengali\\n\\nEnhanced Language Support: French\\n\\n\\n\\nhttp://maps.nyc.gov/pka/?fid=code1#map-page"],["fn",{},"text","P.S. 1 The Bergen"]]]');
+		assert.equal(schoolSrc.getFeatureById('code1').getJcardJson(), '["vcard",[["version",{},"text","4.0"],["org",{},"text","P.S. 1 The Bergen"],["adr",{"type":"work","label":"309 47th St\\nBrooklyn, NY 11220\\nU.S.A."},"text",["309 47th St","Brooklyn","","NY","11220","U.S.A."]],["email",{"type":"work"},"text","aramos4@schools.nyc.gov"],["tel",{},"uri","+1-718-undefined"],["url",{"type":"work"},"uri","http://schools.nyc.gov/schoolportals/15/k001"],["tz",{},"utc-offset","-5:00"],["geo",{},"uri","geo:NaN,NaN"],["note",{},"text","\\nProgram Code: code1\\n\\nProgram Features:\\n\\n\\tBreakfast\\n\\tIndoor playspace\\n\\tDaily Start Time: 9:00 AM\\n\\tEarly Drop Off Available: Contact program about extended hours\\n\\tLate Pick Up Available: Contact program about extended hours\\n\\n2015-16 Seats: 125 Full day\\n\\nDual Language: Spanish\\n\\nDual Language: Greek\\n\\nDual Language: Vietnamese\\n\\nEnhanced Language Support: Arabic\\n\\nEnhanced Language Support: Bengali\\n\\nEnhanced Language Support: French\\n\\n\\n\\nhttp://maps.nyc.gov/pka/?fid=code1#map-page"],["fn",{},"text","P.S. 1 The Bergen"]]]');
 		done();
 	});	
 	
