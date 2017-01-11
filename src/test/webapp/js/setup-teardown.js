@@ -142,16 +142,12 @@ function setup(assert, hooks){
 		})
 	});
 	
-	hooks.MOCK_DIRECTIONS = {
-			
-	};
+	hooks.MOCK_DIRECTIONS = {};
 
-	hooks.MOCK_POPUP = {
-			
-	};
+	hooks.MOCK_POPUP = {};
 	
 	hooks.MOCK_FORM = {
-			
+		reset: function(){}	
 	};
 	
 	hooks.TEST_APP_ACTTIVE_APPLICATION_PERIOD = function(){
@@ -189,14 +185,21 @@ function setup(assert, hooks){
 };
 
 function teardown(assert, hooks){
-	delete hooks.APPLICATION_PERIOD_NOT_ACTIVE;
 	delete hooks.APPLICATION_PERIOD_ACTIVE;
+	delete hooks.APPLICATION_PERIOD_NOT_ACTIVE;
 	delete hooks.CSV_MESSAGES;
 	delete hooks.SCHOOL_CONTENT;
 	delete hooks.SCHOOL_SRC_ACTTIVE_APPLICATION_PERIOD;
 	delete hooks.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
 	delete hooks.SUBWAY_STA_SRC;
 	delete hooks.SUBWAY_LINE_SRC;
+	delete hooks.LOCATION_MGR.controls;
+	delete hooks.LOCATION_MGR;
+	delete hooks.MOCK_DIRECTIONS;
+	delete hooks.MOCK_POPUP;
+	delete hooks.MOCK_FORM;
+	delete hooks.TEST_APP_ACTTIVE_APPLICATION_PERIOD;
+	delete hooks.TEST_APP_NOT_ACTTIVE_APPLICATION_PERIOD
 	
 	var div = hooks.TEST_MAP.getTarget();
 	delete hooks.TEST_MAP;

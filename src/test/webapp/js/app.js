@@ -29,12 +29,15 @@ QUnit.test('constructor', function(assert){
 		assert.deepEqual(applPeriod, applicationPeriod);
 	};
 	
+	var app;
+	
 	nyc.App.prototype.ready = function(){
 		assert.ok(true);
+		delete app;
 		done();
 	};
 	
-	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	
 });
 
@@ -48,6 +51,7 @@ QUnit.test('schoolVcard', function(assert){
 
 	window.open = function(url){
 		assert.equal(url, '/vcard/?jcard=jcard+json');
+		delete app;
 		done();
 	};
 
@@ -73,6 +77,7 @@ QUnit.test('hotline', function(assert){
 	assert.ok(app.hotlineDiag);
 	assert.equal($('.dia').html(), '<div class="dia-msg"></div><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input></div><div class="dia-btns"><a class="btn-ok ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">OK</a><a class="btn-yes ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">Yes</a><a class="btn-no ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">No</a><a class="btn-submit ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">OK</a><a class="btn-cancel ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">Cancel</a></div>');
 	
+	delete app;
 	$('.dia').remove();
 });
 
@@ -83,15 +88,18 @@ QUnit.test('goToSchool (not fullscreen, has good fid, panel not full width)', fu
 	
 	var expectedCoordinates, expectedHtml;
 	
+	var app;
+	
 	nyc.App.prototype.showPopup = function(coordinates, html){
 		var div = $('<div></div>');
 		div.append(html);
 		assert.deepEqual(coordinates, expectedCoordinates);
 		assert.equal(div.html(), expectedHtml);
+		delete app;
 		done();
 	};
 	
-	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var schoolSrc = app.schoolSrc;
 
 	app.view.setZoom = function(zoom){
@@ -127,16 +135,19 @@ QUnit.test('goToSchool (not fullscreen, has good fid, panel is full width)', fun
 
 	var expectedCoordinates, expectedHtml;
 	
+	var app;
+	
 	nyc.App.prototype.showPopup = function(coordinates, html){
 		var div = $('<div></div>');
 		div.append(html);
 		assert.deepEqual(coordinates, expectedCoordinates);
 		assert.equal(div.html(), expectedHtml);
 		done();
+		delete app;		
 		$('#panel').remove();
 	};
 		
-	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var schoolSrc = app.schoolSrc;
 
 	app.view.setZoom = function(zoom){
@@ -179,6 +190,7 @@ QUnit.test('goToSchool (not fullscreen, has no fid)', function(assert){
 		setTimeout(function(){
 			assert.equal(app.view.getZoom(), zoom);
 			assert.deepEqual(app.view.getCenter(), center);
+			delete app;		
 			done();
 		}, 1000);
 	});	
@@ -205,6 +217,7 @@ QUnit.test('goToSchool (not fullscreen, has bad fid)', function(assert){
 		setTimeout(function(){
 			assert.equal(app.view.getZoom(), zoom);
 			assert.deepEqual(app.view.getCenter(), center);
+			delete app;		
 			done();
 		}, 1000);
 	});	
@@ -234,6 +247,7 @@ QUnit.test('goToSchool (is fullscreen)', function(assert){
 			assert.equal(app.view.getZoom(), zoom);
 			assert.deepEqual(app.view.getCenter(), center);
 			assert.equal($('#inf-full-screen').css('display'), 'none');
+			delete app;		
 			done();
 			$('#inf-full-screen').remove();
 		}, 1000);
@@ -259,6 +273,7 @@ QUnit.test('schoolDetail (popup, is fullscreen)', function(assert){
 
 	setTimeout(function(){
 		assert.equal($('#inf-pop-1 .inf-detail').css('display'), 'none');
+		delete app;		
 		done();
 		$('#inf-pop-1').remove();
 	}, 1000);
@@ -285,6 +300,7 @@ QUnit.test('schoolDetail (popup, not fullscreen)', function(assert){
 
 	setTimeout(function(){
 		assert.equal($('#inf-pop-1 .inf-detail').css('display'), 'block');
+		delete app;		
 		done();
 		$('#inf-pop-1').remove();
 	}, 1000);
@@ -311,6 +327,7 @@ QUnit.test('direct', function(assert){
 		}else{
 			app.direct('code1'); //first time directions are generated (assertins are made above)
 			app.direct('code1'); //second time no need to regenerated directions (assertins are not made)
+			delete app;		
 			done();
 		}
 	};
@@ -336,6 +353,8 @@ QUnit.test('fullScreenDetail', function(assert){
 	app.fullScreenDetail('inf-popcode1');
 	assert.equal($('#inf-full-screen div').html(), 'TEST_HTML');
 	assert.equal($('#inf-full-screen').css('display'), 'block');
+
+	delete app;		
 	$('#inf-full-screen').remove();
 });
 
@@ -350,6 +369,8 @@ QUnit.test('origin', function(assert){
 
 	app.location = {type: 'geocode', name: '59 Maiden Lane, New York, NY 10038'};
 	assert.deepEqual(app.origin(), '59 Maiden Lane, New York, NY 10038');
+	
+	delete app;		
 });
 
 QUnit.test('zoomChange', function(assert){
@@ -387,6 +408,8 @@ QUnit.test('zoomChange', function(assert){
 	assert.equal(tipsSet.length, 2);
 	assert.ok($.inArray(app.districtLyr.getSource(), tipsSet) > -1);
 	assert.ok($.inArray(app.subwayStationLyr.getSource(), tipsSet) > -1);
+	
+	delete app;		
 });
 
 //QUnit.test('setTips', function(assert){

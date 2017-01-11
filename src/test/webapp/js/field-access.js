@@ -13,6 +13,8 @@ QUnit.test('getCoordinates', function(assert){
 	var done = assert.async();
 	var validateFeatureProperties = this.validateFeatureProperties;
 		
+	var app = this.TEST_APP_NOT_ACTTIVE_APPLICATION_PERIOD();
+
 	var schoolSrc = this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
@@ -22,6 +24,7 @@ QUnit.test('getCoordinates', function(assert){
 		assert.equal(schoolSrc.getFeatureById('code2').getCoordinates()[1].toFixed(0), "187904");
 		assert.equal(schoolSrc.getFeatureById('code3').getCoordinates()[0].toFixed(0), "1005773");
 		assert.equal(schoolSrc.getFeatureById('code3').getCoordinates()[1].toFixed(0), "189031");
+		delete app;
 		done();
 	});	
 });
