@@ -1,6 +1,6 @@
 key,value
-birth_year,2012
-start_year,2016
+birth_year,2013
+start_year,2017
 school_year,2016-17
 apply_start_date,42492
 apply_end_date,42510
@@ -20,5 +20,5 @@ min_dob_year,2012
 max_dob_year,2016
 hotline_number,(212) 637-8000
 hotline_msg,Call (212) 637-8000 to contact an enrollment specialist between 9AM-5PM Monday-Friday
-quality_pdf,http://schools.nyc.gov/OA/SchoolReports/2014-15/School_Quality_Snapshot_2015_HS_${loccode4}.pdf
-btn_pdf,Pre-K Snapshot
+quality_pdf,http://schools.nyc.gov/OA/SchoolReports/2015-16/School_Quality_Snapshot_PK_2016_${loccode4}.pdf
+btn_pdf,Pre-K Quality Snapshot
