@@ -58,6 +58,7 @@ pka.fieldAccess = {
 		}
 		props.late = this.message('late_pick_up', props);
 		
+		props.extend = props.EARLY_DROP == '1' || props.LATE_PICKUP == '1' ? '1' : '';
 		
 		props.school_year = this.message('school_year');
 		props.day_length = this.day_length[props.DAY_LENGTH];
