@@ -13,11 +13,7 @@ html, body, .ui-mobile .ui-page-active, #main {
 div.ui-loader {
 	z-index: -1;	
 }
-.ui-page-theme-a *, .ui-page-theme-a .ui-btn[role="button"], .ui-page-theme-a .ui-btn[role="button"]:hover {
-	font-size: 14px;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	text-shadow: none !important;
-	text-decoration: none;
+html, body, body *, body.ui-mobile-viewport, body.ui-mobile-viewport *, .ui-page-theme-a .ui-btn, .ui-page-theme-a .ui-btn:hover {
 	color: rgb(1,51,100);
 }
 #map, #inf-full-screen {
@@ -263,9 +259,9 @@ span.current-value {
 
 /* ===================== begin header buttons ==================== */
 
-.hdr-btn {
+.ui-btn.hdr-btn {
 	top: -4px;
-	padding: 9px 9px 9px 35px;
+	padding: 8px 8px 8px 35px;
 }
 .ui-btn:after {
 	background-color: rgba(1,51,100,0.5);
@@ -290,9 +286,6 @@ span.current-value {
 div.dia button.ui-btn {
 	background-color: rgba(1,51,100,0.5);
 	color: white;
-}
-.ui-btn.ui-corner-all {
-	border-radius: 0.6em;
 }
 #btn-call {
 	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22512px%22%20height%3D%22512px%22%3E%3Cpath%20style%3D%22fill%3A%23fff%22%20d%3D%22M34%2C144.063v-36c0.031-6.406%2C7.406-17.844%2C7.719-18.125C98.188%2C32.5%2C175.438%2C0%2C256.063%2C0%20c80.813%2C0%2C158.313%2C32.656%2C214.813%2C90.438c0.063%2C0%2C7.125%2C11.25%2C7.125%2C17.625v36c0%2C13.188-9.688%2C28.875-21.5%2C34.75l-5.063%2C2.5%20c-11.75%2C5.938-30.813%2C5.375-42.25-1.125L366.875%2C156c-11.5-6.563-21.063-22.75-21.063-35.938V96.031%20C290.313%2C64.094%2C221.719%2C64.125%2C166.188%2C96v24.063c0%2C13.188-9.563%2C29.313-21%2C35.938l-42.375%2C24.125%20c-11.406%2C6.563-30.438%2C7.125-42.281%2C1.188l-5.031-2.5C43.688%2C172.875%2C34%2C157.25%2C34%2C144.063z%20M480%2C352v128c0%2C17.594-14.375%2C32-32%2C32%20H64c-17.563%2C0-32-14.406-32-32V352c0-17.594%2C10.188-42.188%2C22.625-54.625l82.75-82.75C149.813%2C202.188%2C174.438%2C192%2C192%2C192v-32%20c15.125-20.125%2C38.813-32%2C64-32s48.938%2C11.875%2C64%2C32v32c17.625%2C0%2C42.188%2C10.188%2C54.625%2C22.625l82.75%2C82.75%20C469.813%2C309.813%2C480%2C334.406%2C480%2C352z%20M352%2C352c0-53.031-42.938-96-96-96c-53%2C0-96%2C42.969-96%2C96s43%2C96%2C96%2C96%20C309.063%2C448%2C352%2C405.031%2C352%2C352z%20M256%2C288c-35.281%2C0-64%2C28.719-64%2C64s28.719%2C64%2C64%2C64c35.313%2C0%2C64-28.719%2C64-64%20S291.313%2C288%2C256%2C288z%22%2F%3E%3C%2Fsvg%3E");

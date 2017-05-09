@@ -40,7 +40,7 @@ nyc.App = function(applicationPeriod, map, layers, filterControls, lookup, conte
 	me.pager = new nyc.ListPager();
 	me.controls = locationMgr.controls;
 		
-	me.setTips([me.schoolSrc, locationMgr.locator.layerSource]);
+	new nyc.ol.FeatureTip(me.map, [{layer: me.schoolLyr, labelFunction: me.getTip}])
 
 	me.filterDisplay(applicationPeriod);
 	
@@ -205,18 +205,13 @@ nyc.App.prototype = {
 			var me = this, feature = me.schoolSrc.getFeatureById(fid);
 			if (feature){
 				var coordinates = feature.getCoordinates();
-				me.map.beforeRender(
-					ol.animation.zoom({resolution: me.view.getResolution()}), 
-					ol.animation.pan({source: me.view.getCenter()})
-				);
 				me.map.once('moveend', function(){
 					me.showPopup(feature.getCoordinates(), feature.html('inf-pop'))
 				});
 				if ($('#panel').width() == $(window).width()){
 					$('#map-tab-btn a').trigger('click');
 				}
-				me.view.setZoom(me.locationMgr.locator.zoom);
-				me.view.setCenter(coordinates);			
+				me.view.animate({zoom: me.locationMgr.locator.zoom, center: coordinates});
 			}
 		}
 	},
@@ -300,7 +295,7 @@ nyc.App.prototype = {
 			if (!lyr.get('added') && res >= lyr.getMinResolution() && res <= lyr.getMaxResolution()){
 				me.map.addLayer(lyr);
 				if (lyr !== me.subwayLineLyr){
-					me.setTips([lyr.getSource()]);
+					new nyc.ol.FeatureTip(me.map, [{layer: lyr, labelFunction: me.getTip}])
 				}
 				lyr.set('added', true, true);
 			}
@@ -309,13 +304,10 @@ nyc.App.prototype = {
 	/** 
 	 * @private 
 	 * @method
-	 * @param {Array<ol.source.Vector>} sources
+	 * @param {ol.layer.Vector} layer
 	 */
-	setTips: function(sources){
-		var me = this;
-		$.each(sources, function(_, src){
-			new nyc.ol.FeatureTip(me.map, [{source: src, labelFunction: me.getTip}])
-		})
+	setTips: function(layer){
+		new nyc.ol.FeatureTip(me.map, [{layer: layer, labelFunction: this.getTip}])
 	},
 	/** 
 	 * @private 
@@ -336,6 +328,7 @@ nyc.App.prototype = {
 	 */
 	ready: function(){
 		var me = this;
+		me.view.fit(nyc.ol.Basemap.EXTENT, me.map.getSize());		
 		me.listSchools();
 		$('#tabs').tabs({active: 1});
 		$('#first-load').fadeOut(function(){
@@ -451,6 +444,7 @@ nyc.App.prototype = {
 		}
 		$('.school-yr').html(this.content.message('school_year'));
 		if (!this.mapLoaded){
+			this.view.fit(nyc.ol.Basemap.EXTENT, this.map.getSize());		
 			this.map.once('change:size', function(){
 				this.mapLoaded = true;
 				$('#first-load').fadeOut();				

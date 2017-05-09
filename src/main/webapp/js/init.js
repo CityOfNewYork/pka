@@ -28,19 +28,7 @@ function csvContentLoaded(csvContent){
 		
 		new nyc.Share('#map');
 
-		var base = new nyc.ol.layer.BaseLayer();
-		base.setOpacity(0.7);
-		
-		var map = new ol.Map({
-			target: $('#map').get(0),
-			layers: [base],
-			view: new ol.View({
-				projection: 'EPSG:2263',
-				resolutions: nyc.ol.layer.BaseLayer.RESOLUTIONS,
-				zoom: 3,
-				center: nyc.ol.CENTER
-			})
-		});
+		var map = new nyc.ol.Basemap({target: $('#map').get(0)});
 		
 		var applicationPeriod = new pka.ApplicationPeriod(csvContent.apply_start_date, csvContent.apply_end_date);
 		var schoolContent = new nyc.Content(pka.messages);
@@ -61,13 +49,13 @@ function csvContentLoaded(csvContent){
 			 	pka.htmlRenderer, 
 			 	pka.lookup
 		 	],
-			{projection: 'EPSG:2263'}
+			{projection: 'EPSG:3857'}
 		);
 
 		var schoolLyr = new ol.layer.Vector({
 			source: schoolSrc, 
 			style: $.proxy(schoolStyle.school, schoolStyle),
-			maxResolution: nyc.ol.layer.BaseLayer.RESOLUTIONS[2],
+			maxResolution: nyc.ol.TILE_GRID.getResolution(11),
 			zIndex: 400
 		});
 		map.addLayer(schoolLyr);
@@ -82,7 +70,9 @@ function csvContentLoaded(csvContent){
 		var districtLyr = new ol.layer.Vector({
 			source: districtSrc, 
 			style: $.proxy(schoolStyle.district, schoolStyle),
-			zIndex: -1
+			zIndex: 1,
+			maxResolution: nyc.ol.TILE_GRID.getResolution(10),
+			opacity: .5
 		});
 		
 		var subwayStyle = new ta.Style(ta.lookup);
@@ -95,7 +85,7 @@ function csvContentLoaded(csvContent){
 		var subwayLineLyr = new ol.layer.Vector({
 			source: subwayLineSrc, 
 			style: $.proxy(subwayStyle.line, subwayStyle),
-			maxResolution: nyc.ol.layer.BaseLayer.RESOLUTIONS[3],
+			maxResolution: nyc.ol.TILE_GRID.getResolution(10),
 			zIndex: 100,
 			opacity: 0.6
 		});
@@ -107,12 +97,13 @@ function csvContentLoaded(csvContent){
 				xCol: 'X',
 				yCol: 'Y'
 			})}, 
-			[subwayContent, ta.lookup, nyc.fieldAccess, ta.fieldAccess, ta.htmlRenderer]
+			[subwayContent, ta.lookup, nyc.fieldAccess, ta.fieldAccess, ta.htmlRenderer],
+			{projection: 'EPSG:3857'}
 		);
 		var subwayStationLyr = new ol.layer.Vector({
 			source: subwayStationSrc, 
 			style: $.proxy(subwayStyle.station, subwayStyle),
-			maxResolution: nyc.ol.layer.BaseLayer.RESOLUTIONS[3],
+			maxResolution: nyc.ol.TILE_GRID.getResolution(14),
 			zIndex: 200
 		});
 
@@ -162,15 +153,7 @@ function csvContentLoaded(csvContent){
 		        ]
 			})
 		];
-			
-		var locationStyle = new nyc.Style();
-		window.locationLyr = new ol.layer.Vector({
-			source: new nyc.ol.source.Decorating({}, [{getName: function(){return this.get('name')}}]),
-			style: $.proxy(locationStyle.location, locationStyle),
-			zIndex: 1000
-		});
-		map.addLayer(locationLyr);
-		
+					
 		nyc.app = new nyc.App(
 			applicationPeriod,
 			map,
@@ -179,17 +162,9 @@ function csvContentLoaded(csvContent){
 			pka.lookup,
 			schoolContent,
 			new nyc.LocationMgr({
-				autoLocate: true,
 				controls: new nyc.ol.control.ZoomSearch(map),
-				locate: new nyc.ol.Locate(
-					new nyc.Geoclient(GEOCLIENT_URL),
-					'EPSG:2263',
-					nyc.ol.EXTENT
-				),
-				locator: new nyc.ol.Locator({
-					map: map,
-					layer: locationLyr
-				})
+				locate: new nyc.ol.Locate(new nyc.Geoclient(GEOCLIENT_URL)),
+				locator: new nyc.ol.Locator({map: map})
 			}),
 			new nyc.Directions('#dir-map', '#directions', GOOGLE_URL),
 			new nyc.ol.Popup(map),
