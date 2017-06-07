@@ -408,10 +408,22 @@ nyc.App.prototype = {
 	/** 
 	 * @private 
 	 * @method
+	 * @param {Array<string>} values
+	 */
+	bannerHtml: function(values){
+		if (values && values.indexOf('p') == -1) {
+			$('.banner h1').html('3-K Finder');
+		}else{
+			$('.banner h1').html('Pre-K Finder');
+		}
+	},
+	/** 
+	 * @private 
+	 * @method
 	 */
 	filter: function(){
 		var me = this, namedFilters = {}, filters = [];
-		$.each(this.filterControls, function(_, control){
+		$.each(me.filterControls, function(_, control){
 			$.each(control.val(), function(__, choice){
 				var filter = namedFilters[choice.name] || [];
 				filter = filter.concat(choice.value.split(','));
@@ -421,6 +433,9 @@ nyc.App.prototype = {
 		for (var name in namedFilters){
 			filters.push({property: name, values: namedFilters[name]});
 		}
+
+		me.bannerHtml(namedFilters.prek3k);
+		
 		//provide time for checkbox display to update
 		setTimeout(function(){
 			me.schoolSrc.filter(filters);
@@ -429,6 +444,10 @@ nyc.App.prototype = {
 			me.clearPopup();
 		}, 100);
 	},
+	/** 
+	 * @private 
+	 * @method
+	 */
 	clearPopup: function(){
 		var id = $('.inf-pop').attr('id')
 		if (id) {

@@ -23,6 +23,15 @@ pka.fieldAccess = {
 		var props = this.getProperties();
 		this.setId(this.getId());
 		props.fid = this.getId();
+		
+		if (props.PREK_SEATS > 0 && props['3K_SEATS'] > 0){
+			props.prek3k = 'b';
+		}else if (props.PREK_SEATS > 0){
+			props.prek3k = 'p';
+		}else if (props['3K_SEATS'] > 0){
+			props.prek3k = '3';
+		}
+		
 		props.loccode4 = props.fid.substr(props.fid.length - 4);
 		props.address_1 = props.ADDRESS;
 		props.city = this.borough[props.BOROUGH];
@@ -84,14 +93,14 @@ pka.fieldAccess = {
 		return this.get('LOCCODE');
 	},
 	/**
-	 * @desc Return the facility PREK_TYPE 
+	 * @desc Return the facility TYPE 
 	 * @public 
 	 * @static
 	 * @method
 	 * @returns {string}
 	 */
 	getType: function(){
-		return this.get('PREK_TYPE');
+		return this.get('TYPE');
 	},
 	/**
 	 * @desc Return the distance from the user location 
