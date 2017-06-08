@@ -77,7 +77,6 @@ html, body, body *, body.ui-mobile-viewport, body.ui-mobile-viewport *, .ui-page
 	z-index: 1000;
 	border-top: none;
 	overflow: hidden;
-	border-bottom: 1px solid #fff;
 }
 .banner-logo {
 	height: 24px;
