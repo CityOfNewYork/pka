@@ -6,6 +6,11 @@ function csvContentLoaded(csvContent){
 	
 	$(document).ready(function(){
 
+		nyc.ol.style.LOCATION_ICON = new ol.style.Icon({
+			scale: 48 / 512,
+			src: nyc.util.isIe() || nyc.util.isIos() ? 'img/me.png' : 'img/me.svg'
+		});
+		
 		var GEOCLIENT_URL = '//maps.nyc.gov/geoclient/v1/search.json?app_key=YOUR_APP_KEY&app_id=YOUR_APP_ID';
 		var GOOGLE_URL = 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization';
 		
