@@ -1,8 +1,8 @@
 LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,X,Y,EMAIL,WEBSITE,MEALS,INDOOR_OUTDOOR,SEMS_CODE,BUTTON_TYPE,START_TIME,EARLY_DROP,LATE_PICKUP,ENHANCED_LANG,FLEX_SCHED,SPED_FLG,INCOME_FLG,SPECIAL_PRIOR,DYNAMIC,3K_SEATS
-01M015,DOE,M,P.S. 15 Roberto Clemente,,212-228-8730,333 East 4th Street,10009,1,36,990123,202281,isanchez11@schools.nyc.gov,http://schools.nyc.gov/schoolportals/01/m015,3,3,01M015,info,,,,0,0,0,0,,,
+01M015,DOE,M,P.S. 15 Roberto Clemente,,212-228-8730,333 East 4th Street,10009,1,36,990123,202281,isanchez11@schools.nyc.gov,http://schools.nyc.gov/schoolportals/01/m015,3,3,01M015,info,,,,0,0,0,0,,1,
 01M019,DOE,M,P.S. 19 Asher Levy,,212-533-5340,185 First Avenue,10003,1,36,988634,205140,jflanagan@schools.nyc.gov,http://schools.nyc.gov/schoolportals/01/m019,2,3,01M019,info,,,,0,0,0,0,,,
 01M020,DOE,M,P.S. 20 Anna Silver,,212-254-9577,166 Essex Street,10002,1,54,988025,202056,ccolon5@schools.nyc.gov,http://schools.nyc.gov/schoolportals/01/m020,2,3,01M020,info,,,,102,0,0,0,,,
-01M034,DOE,M,P.S. 34 Franklin D. Roosevelt,,212-228-4433,730 East 12th Street,10009,1,18,991118,203875,rgonzal52@schools.nyc.gov,http://schools.nyc.gov/schoolportals/01/m034,3,3,01M034,info,,,,0,0,0,0,,,5
+01M034,DOE,M,P.S. 34 Franklin D. Roosevelt,,212-228-4433,730 East 12th Street,10009,1,18,991118,203875,rgonzal52@schools.nyc.gov,http://schools.nyc.gov/schoolportals/01/m034,3,3,01M034,info,,,,0,0,0,0,,1,5
 01M063,DOE,M,The STAR Academy - P.S. 63,,212-674-3180,121 East 3rd Street,10009,1,36,988036,203208,dcameron2@schools.nyc.gov,http://staracademyps63.com,3,3,01M063,info,8:00 a.m,0,0,0,0,0,0,,,
 01M064,DOE,M,P.S. 64 Robert Simon,,212-673-6510,600 East 6th Street,10009,1,36,989364,203121,mhosang@schools.nyc.gov,http://schools.nyc.gov/schoolportals/01/m064,2,3,01M064,info,,,,0,0,0,0,,,
 01M110,DOE,M,P.S. 110 Florence Nightingale,,212-674-2690,285 Delancy Street,10002,1,36,989803,199925,parentcoordinator110@yahoo.com,http://ps110pta.org,2,3,01M110,info,,,,0,0,0,0,,,

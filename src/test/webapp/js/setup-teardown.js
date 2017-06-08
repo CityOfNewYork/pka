@@ -55,7 +55,7 @@ function setup(assert, hooks){
 			 	pka.htmlRenderer, 
 			 	pka.lookup
 		 	],
-			{projection: 'EPSG:2263'}
+			{nativeProjection: 'EPSG:2263', projection: 'EPSG:3857'}
 		);
 
 	hooks.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD = new nyc.ol.source.FilteringAndSorting(
@@ -73,7 +73,7 @@ function setup(assert, hooks){
 			 	pka.htmlRenderer, 
 			 	pka.lookup
 		 	],
-			{projection: 'EPSG:2263'}
+			{nativeProjection: 'EPSG:2263', projection: 'EPSG:3857'}
 		);
 
 	hooks.SUBWAY_STA_SRC = new nyc.ol.source.Decorating(
@@ -84,7 +84,7 @@ function setup(assert, hooks){
 				yCol: 'Y'
 			})}, 
 			[new nyc.Content(ta.messages), ta.lookup, nyc.fieldAccess, ta.fieldAccess, ta.htmlRenderer],
-			{projection: 'EPSG:2263'}
+			{nativeProjection: 'EPSG:2263', projection: 'EPSG:3857'}
 		);
 
 	hooks.SUBWAY_LINE_SRC = new nyc.ol.source.Decorating(
@@ -150,13 +150,71 @@ function setup(assert, hooks){
 		reset: function(){}	
 	};
 	
+	$('body').append('<div id="filters"><div id="chk-prek-3k"></div><div id="chk-dynamic"></div><div id="chk-apply"></div><div id="chk-sch-type"></div><div id="chk-day-len"></div><div id="chk-prog-feat"></div></div>');
+
+	var filterControls = [
+		new nyc.Check({
+		target: '#chk-prek-3k',
+		title: '',
+		expanded: true,
+		choices: [
+			{name: 'prek3k', value: '3,b', label: '3-K (3 year olds)', checked: true},
+			{name: 'prek3k', value: 'p,b', label: 'Pre-K (4 year olds)', checked: true}
+	    ]
+	}),
+	new nyc.Check({
+		target: '#chk-dynamic',
+		title: '',
+		expanded: true,
+		choices: [{name: 'DYNAMIC', value: '1', label: ''}]
+	}),
+	new nyc.Check({
+		target: '#chk-apply',
+		title: '',
+		expanded: true,
+		choices: [{name: 'can_apply', value: '1', label: ''}]
+	}),
+	new nyc.Check({
+		target: '#chk-sch-type',
+		title: 'school type',
+		expanded: true,
+		choices: [
+			{name: 'TYPE', value: 'DOE', label: '<img alt="District School" src="img/DOE.png">district school', checked: true},
+			{name: 'TYPE', value: 'NYCEEC', label: '<img alt="Early Ed Center" src="img/NYCEEC.png">early ed center', checked: true},
+			{name: 'TYPE', value: 'CHARTER', label: '<img alt="Charter School" src="img/CHARTER.png">charter school', checked: true},
+			{name: 'TYPE', value: 'PKC', label: '<img alt="Pre-K Center" src="img/PKC.png">Pre-K center', checked: true}
+	    ]
+	}),
+	new nyc.Check({
+		target: '#chk-day-len',
+		title: 'day length',
+		expanded: true,
+		choices: [
+			{name: 'DAY_LENGTH', value: '1,2,5,7', label: 'full day', checked: true},
+			{name: 'DAY_LENGTH', value: '3,6,7', label: 'half day', checked: true},
+			{name: 'DAY_LENGTH', value: '4,5,6,7', label: '5-hour', checked: true}
+	    ]
+	}),
+	new nyc.Check({
+		target: '#chk-prog-feat',
+		title: 'program features',
+		expanded: true,
+		choices: [
+			{name: 'extend', value: '1', label: 'extended hours'},
+			{name: 'INCOME_FLG', value: '1', label: 'income eligibility'},
+			{name: 'lang', value: '1', label: 'dual/enhanced language'}//,
+			//{name: 'sped', value: '1', label: 'special education'}
+	        ]
+		})
+	];
+	
 	hooks.TEST_APP_ACTTIVE_APPLICATION_PERIOD = function(){
 		var schoolLyr = new ol.layer.Vector({source: hooks.SCHOOL_SRC_ACTTIVE_APPLICATION_PERIOD});
 		return new nyc.App(
 			hooks.APPLICATION_PERIOD_ACTIVE,
 			hooks.TEST_MAP,
 			{school: schoolLyr, district: districtLyr, subwayStation: subwayStationLyr, subwayLine: subwayLineLyr},
-			[],
+			filterControls,
 			pka.lookup,
 			hooks.SCHOOL_CONTENT,
 			hooks.LOCATION_MGR,
@@ -172,7 +230,7 @@ function setup(assert, hooks){
 			hooks.APPLICATION_PERIOD_ACTIVE,
 			hooks.TEST_MAP,
 			{school: schoolLyr, district: districtLyr, subwayStation: subwayStationLyr, subwayLine: subwayLineLyr},
-			[],
+			filterControls,
 			pka.lookup,
 			hooks.SCHOOL_CONTENT,
 			hooks.LOCATION_MGR,
@@ -185,6 +243,7 @@ function setup(assert, hooks){
 };
 
 function teardown(assert, hooks){
+	$('#filters').remove();
 	delete hooks.APPLICATION_PERIOD_ACTIVE;
 	delete hooks.APPLICATION_PERIOD_NOT_ACTIVE;
 	delete hooks.CSV_MESSAGES;

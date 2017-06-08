@@ -186,7 +186,21 @@ div.banner-school-yr {
 	background-color: #fff;
 	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2214px%22%20height%3D%2214px%22%3E%3Cpolygon%20style%3D%22fill%3A%23013364%3B%22%20points%3D%2211.949%2C3.404%207%2C8.354%202.05%2C3.404%20-0.071%2C5.525%207%2C12.596%2014.07%2C5.525%20%22%2F%3E%3C%2Fsvg%3E");
 }
-
+#splash-page div[data-role="content"] {
+	background: url(../img/splash.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;	
+}
+.splash-msg {
+	background-color: rgba(255,255,255,.7);
+	padding: 1px 5px;
+	border-radius: 3px;
+}
+#splash-page p {
+	margin: 10px 0;
+}
 
 /* ========================== end splash ========================= */
 

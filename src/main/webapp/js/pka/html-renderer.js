@@ -140,7 +140,7 @@ pka.htmlRenderer = {
 			.append(this.specialHtml(props))
 			.append(this.incomeHtml(props))
 			.append(this.getLangContent('info'))
-			.append(this.message('info_3k_seats', props))
+			.append(this.get('3K_SEATS') > 0 ? this.message('info_3k_seats', props) : '')
 			.append(this.message('info_prek_seats', props))
 			.append(this.contactHtml(props));
 	},

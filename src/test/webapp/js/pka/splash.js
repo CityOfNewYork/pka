@@ -56,3 +56,23 @@ QUnit.test('constructor (not active application period)', function(assert){
 	$('.splash-filters').trigger('click');
 	assert.equal(this.MOCK_APP.lastPageRequested, '#map-page');
 });
+
+QUnit.test('constructor (3k URL)', function(assert){
+	assert.expect(1);
+	
+	this.MOCK_APP.is3k = true;
+	
+	new pka.Splash(this.APPLICATION_PERIOD_NOT_ACTIVE, pka.lookup, this.SCHOOL_CONTENT, this.MOCK_APP);
+	
+	assert.equal($('.splash-filters span.notranslate').html(), ' 3-K Finder ');
+
+});
+
+QUnit.test('constructor (Not 3k URL)', function(assert){
+	assert.expect(1);
+	
+	new pka.Splash(this.APPLICATION_PERIOD_NOT_ACTIVE, pka.lookup, this.SCHOOL_CONTENT, this.MOCK_APP);
+	
+	assert.equal($('.splash-filters span.notranslate').html(), ' Pre-K Finder ');
+
+});

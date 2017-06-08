@@ -37,7 +37,7 @@ function csvContentLoaded(csvContent){
 			 	pka.htmlRenderer, 
 			 	pka.lookup
 		 	],
-			{projection: 'EPSG:3857'}
+			{nativeProjection: 'EPSG:2263', projection: 'EPSG:3857'}
 		);
 
 		var schoolLyr = new ol.layer.Vector({

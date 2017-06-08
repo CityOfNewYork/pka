@@ -34,22 +34,21 @@ pka.Style.prototype = {
 	school: function(feature, resolution){
 		var zoom = this.zoom(resolution),
 			type = feature.getType(),
-			is3k = feature.get('3K_SEATS') > 0,
+			prek3k = feature.get('3K_SEATS') > 0 ? '3k' : 'prek',
 			radius = [8, 8, 16, 16, 16, 24, 24, 32, 32, 48, 48][zoom],
 			image = 'img/' + type + this.imgExt();
 		this.schoolCache[zoom] = this.schoolCache[zoom] || {};
-		if (!this.schoolCache[zoom][type]){
-			this.schoolCache[zoom][type] = new ol.style.Style({
+		this.schoolCache[zoom][type] = this.schoolCache[zoom][type] || {};
+		if (!this.schoolCache[zoom][type][prek3k]){
+			this.schoolCache[zoom][type][prek3k] = new ol.style.Style({
 				image: new ol.style.Icon({
 					scale: radius / 54,
 					src: image
 				})
 			});
-		}
-		if (!this.schoolCache[zoom][type][is3k]){
-			if (is3k){
+			if (prek3k == '3k'){
 				var size = zoom > 8 ? 14 : 10;
-				this.schoolCache[zoom][type][is3k] = this.schoolCache[zoom][type].setText(
+				this.schoolCache[zoom][type][prek3k].setText(
 					new ol.style.Text({
 						text: '3K',
 						fill: new ol.style.Fill({color: 'rgb(1,51,100)'}),
@@ -60,9 +59,8 @@ pka.Style.prototype = {
 					})
 				);
 			}
-			this.schoolCache[zoom][type][is3k] = this.schoolCache[zoom][type];		
 		}
-		return this.schoolCache[zoom][type][is3k];
+		return this.schoolCache[zoom][type][prek3k];
 	},
 	/**
 	 * @desc Style function for school district features

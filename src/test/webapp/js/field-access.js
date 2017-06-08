@@ -18,12 +18,12 @@ QUnit.test('getCoordinates', function(assert){
 	var schoolSrc = this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		assert.equal(schoolSrc.getFeatureById('code1').getCoordinates()[0].toFixed(0), "980985");
-		assert.equal(schoolSrc.getFeatureById('code1').getCoordinates()[1].toFixed(0), "175780");
-		assert.equal(schoolSrc.getFeatureById('code2').getCoordinates()[0].toFixed(0), "996604");
-		assert.equal(schoolSrc.getFeatureById('code2').getCoordinates()[1].toFixed(0), "187904");
-		assert.equal(schoolSrc.getFeatureById('code3').getCoordinates()[0].toFixed(0), "1005773");
-		assert.equal(schoolSrc.getFeatureById('code3').getCoordinates()[1].toFixed(0), "189031");
+		assert.equal(schoolSrc.getFeatureById('code1').getCoordinates()[0].toFixed(0), "-8238952");
+		assert.equal(schoolSrc.getFeatureById('code1').getCoordinates()[1].toFixed(0), "4960729");
+		assert.equal(schoolSrc.getFeatureById('code2').getCoordinates()[0].toFixed(0), "-8232684");
+		assert.equal(schoolSrc.getFeatureById('code2').getCoordinates()[1].toFixed(0), "4965611");
+		assert.equal(schoolSrc.getFeatureById('code3').getCoordinates()[0].toFixed(0), "-8229003");
+		assert.equal(schoolSrc.getFeatureById('code3').getCoordinates()[1].toFixed(0), "4966063");
 		delete app;
 		done();
 	});	

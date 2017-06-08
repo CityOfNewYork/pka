@@ -319,14 +319,6 @@ nyc.App.prototype = {
 	/** 
 	 * @private 
 	 * @method
-	 * @param {ol.layer.Vector} layer
-	 */
-	setTips: function(layer){
-		new nyc.ol.FeatureTip(me.map, [{layer: layer, labelFunction: this.getTip}])
-	},
-	/** 
-	 * @private 
-	 * @method
 	 * @param {pka.ApplicationPeriod} applicationPeriod
 	 */
 	filterDisplay: function(applicationPeriod){

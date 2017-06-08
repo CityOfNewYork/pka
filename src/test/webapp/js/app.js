@@ -12,7 +12,7 @@ QUnit.module('nyc.app', {
 });
 
 QUnit.test('constructor', function(assert){
-	assert.expect(4);
+	assert.expect(3);
 	
 	var done = assert.async();
 	
@@ -20,25 +20,32 @@ QUnit.test('constructor', function(assert){
 	var locationMgr = this.LOCATION_MGR;
 	var applicationPeriod = this.APPLICATION_PERIOD_ACTIVE;
 	
-	nyc.App.prototype.setTips = function(sources){
-		assert.ok($.inArray(schoolSrc, sources) > -1);
-		assert.ok($.inArray(locationMgr.locator.layerSource, sources) > -1);
-	};
+	var app;
+
+	var filterDisplay = nyc.App.prototype.filterDisplay;
+	var ready = nyc.App.prototype.ready;
+	var checkUrl = nyc.App.prototype.checkUrl;
 	
 	nyc.App.prototype.filterDisplay = function(applPeriod){
 		assert.deepEqual(applPeriod, applicationPeriod);
 	};
-	
-	var app;
-	
+		
 	nyc.App.prototype.ready = function(){
 		assert.ok(true);
 		delete app;
 		done();
 	};
-	
+
+	nyc.App.prototype.checkUrl = function(){
+		assert.ok(true);
+	};
+
 	app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	
+	nyc.App.prototype.filterDisplay = filterDisplay;
+	nyc.App.prototype.ready = ready;
+	nyc.App.prototype.checkUrl = checkUrl;
+
 });
 
 QUnit.test('schoolVcard', function(assert){
@@ -75,7 +82,7 @@ QUnit.test('hotline', function(assert){
 	app.hotline();
 
 	assert.ok(app.hotlineDiag);
-	assert.equal($('.dia').html(), '<div class="dia-msg"></div><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input></div><div class="dia-btns"><a class="btn-ok ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">OK</a><a class="btn-yes ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">Yes</a><a class="btn-no ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">No</a><a class="btn-submit ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">OK</a><a class="btn-cancel ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">Cancel</a></div>');
+	assert.equal($('.dia').html(), '<div class="dia-msg"></div><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input class="dia-input"></div><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input class="dia-login dia-user" placeholder="Enter user name"></div><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input class="dia-login dia-pw" type="password" placeholder="Enter password"></div><div class="dia-btns"><a class="btn-ok ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">OK</a><a class="btn-yes ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">Yes</a><a class="btn-no ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">No</a><a class="btn-submit ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">OK</a><a class="btn-cancel ui-link ui-btn ui-shadow ui-corner-all" data-role="button" role="button">Cancel</a></div>');
 	
 	delete app;
 	$('.dia').remove();
@@ -102,14 +109,10 @@ QUnit.test('goToSchool (not fullscreen, has good fid, panel not full width)', fu
 	app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var schoolSrc = app.schoolSrc;
 
-	app.view.setZoom = function(zoom){
-		assert.equal(zoom, app.locationMgr.locator.zoom);
+	app.view.animate = function(args){
+		assert.equal(args.zoom, app.locationMgr.locator.zoom);
+		assert.deepEqual(args.center, expectedCoordinates);
 	};
-	app.view.setCenter = function(center){
-		assert.deepEqual(center, expectedCoordinates);
-		app.view.set('resolution', 0); //force a moveend event to be triggered by the map
-	};
-	
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
 		var feature = schoolSrc.getFeatureById('code1'), div = $('<div></div>');
 		
@@ -150,12 +153,9 @@ QUnit.test('goToSchool (not fullscreen, has good fid, panel is full width)', fun
 	app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var schoolSrc = app.schoolSrc;
 
-	app.view.setZoom = function(zoom){
-		assert.equal(zoom, app.locationMgr.locator.zoom);
-	};
-	app.view.setCenter = function(center){
-		assert.deepEqual(center, expectedCoordinates);
-		app.view.set('resolution', 0); //force a moveend event to be triggered by the map
+	app.view.animate = function(args){
+		assert.equal(args.zoom, app.locationMgr.locator.zoom);
+		assert.deepEqual(args.center, expectedCoordinates);
 	};
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
@@ -262,6 +262,8 @@ QUnit.test('schoolDetail (popup, is fullscreen)', function(assert){
 	$('body').append('<div id="inf-pop-1"><div class="inf-detail" style="display:none"></div></div>');
 	$(this.TEST_MAP.getTarget()).width($(window).width());
 	
+	var fullScreenDetail = nyc.App.prototype.fullScreenDetail;
+	
 	nyc.App.prototype.fullScreenDetail = function(id){
 		assert.equal(id, 'inf-pop-1');
 	};
@@ -276,6 +278,7 @@ QUnit.test('schoolDetail (popup, is fullscreen)', function(assert){
 		delete app;		
 		done();
 		$('#inf-pop-1').remove();
+		nyc.App.prototype.fullScreenDetail = fullScreenDetail;
 	}, 1000);
 });
 
@@ -290,6 +293,8 @@ QUnit.test('schoolDetail (popup, not fullscreen)', function(assert){
 	
 	$('body').append('<div id="inf-pop-1"><div class="inf-detail" style="display:none"></div></div>');
 	
+	var fullScreenDetail = nyc.App.prototype.fullScreenDetail;
+
 	nyc.App.prototype.fullScreenDetail = function(id){
 		assert.notOk(true);
 	};
@@ -303,6 +308,7 @@ QUnit.test('schoolDetail (popup, not fullscreen)', function(assert){
 		delete app;		
 		done();
 		$('#inf-pop-1').remove();
+		nyc.App.prototype.fullScreenDetail = fullScreenDetail;
 	}, 1000);
 });
 
@@ -374,18 +380,10 @@ QUnit.test('origin', function(assert){
 });
 
 QUnit.test('zoomChange', function(assert){
-	assert.expect(15);
+	assert.expect(12);
 
-	var tipsSet = [];
-	nyc.App.prototype.setTips = function(sources){
-		$.each(sources, function(_, src){
-			tipsSet.push(src);
-		});
-	};
-	
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var layers = app.map.getLayers().getArray();
-	tipsSet = [];
 	
 	assert.notOk(app.districtLyr.get('added'));
 	assert.notOk(app.subwayLineLyr.get('added'));
@@ -404,34 +402,20 @@ QUnit.test('zoomChange', function(assert){
 	assert.ok($.inArray(app.districtLyr, layers) > -1);
 	assert.ok($.inArray(app.subwayLineLyr, layers) > -1);
 	assert.ok($.inArray(app.subwayStationLyr, layers) > -1);
-	
-	assert.equal(tipsSet.length, 2);
-	assert.ok($.inArray(app.districtLyr.getSource(), tipsSet) > -1);
-	assert.ok($.inArray(app.subwayStationLyr.getSource(), tipsSet) > -1);
-	
+		
 	delete app;		
 });
 
-//QUnit.test('setTips', function(assert){
-//	assert.expect(8);
-//
-//	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
-//
-//	var mockSources = ['mockSource1', 'mockSource2'];
-//
-//	var FeatureTip = nyc.ol.FeatureTip;
-//
-//	var i = 0;
-//	nyc.ol.FeatureTip = function(map, tipdefs){
-//		assert.deepEqual(map, app.map);
-//		assert.equal(tipdefs.length, 1);
-//		assert.equal(tipdefs[0].source, mockSources[i]);
-//		assert.deepEqual(tipdefs[0].labelFunction, app.getTip);
-//		i++;
-//	};
-//
-//	app.setTips(mockSources);
-//	
-//	nyc.ol.FeatureTip = FeatureTip;
-//});
+QUnit.test('filter3k', function(assert){
+	assert.expect(1);
 
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+
+	app.filterControls[0].on('change', function(){
+		assert.deepEqual(app.filterControls[0].val(), [{checked: true, label: '3-K (3 year olds)', name: 'prek3k', value: '3,b'}]);
+	});
+	
+	app.filter3k();
+	
+	delete app;		
+});
