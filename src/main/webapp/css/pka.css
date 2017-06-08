@@ -242,9 +242,6 @@ li#map-tab-btn {
 	padding: 0 5px;
 	text-transform: capitalize;
 }
-.ui-collapsible {
-	border-radius: 0.6em;
-}
 #chk-apply, #chk-dynamic {
 	display: none;
 }
@@ -394,7 +391,6 @@ div.inf-pop div.inf-name {
 
 #filter {
 	padding: 5px 4px;
-	border-radius: 0.6em;
 	margin: 0;
 }
 #filter label {
@@ -433,6 +429,22 @@ div#schools-tab, div#filters-tab {
 	overflow-y: auto;
 	overflow-x: hidden;
 }
+.ctl-collapse a.ui-collapsible-heading-toggle:hover:after {
+	background-color: rgb(1,51,100);
+}
+#chk-prek-3k h3.ui-collapsible-heading a {
+	background-color: rgb(1,51,100);
+	color: #fff;
+}
+#chk-prek-3k.ctl-collapse a.ui-collapsible-heading-toggle:after {
+	background-color: #679acd;
+}
+#chk-prek-3k .ui-collapsible-content {
+	background-color: #679acd;
+	}
+#chk-prek-3k .ui-collapsible-content label.ui-btn, #chk-prek-3k.ctl-collapse a.ui-collapsible-heading-toggle:hover:after {
+	background-color: #f8993a;
+}
 
 /* ========================== end filter ========================= */
 
@@ -448,7 +460,6 @@ div.inf-detail {
 	display: none;
 	background-color: #fff;
 	border: 1px solid rgb(1,51,100);
-	border-radius: 0.6em;
 	padding: 5px;
 	margin-bottom: 8px;
 }

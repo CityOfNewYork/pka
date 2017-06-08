@@ -68,15 +68,22 @@ nyc.App = function(applicationPeriod, map, layers, filterControls, lookup, conte
 	$('#map').append($('#btn-call'));
 	$('#btn-call').click($.proxy(me.hotline, me));
 	
+	me.checkUrl();
+	
 	$(window).resize($.proxy(me.resize, me));
 };
 
 nyc.App.prototype = {
 	/**
+	 * @public
+	 * @member {boolean}
+	 */
+	is3k: false,
+	/**
 	 * @private
 	 * @member {pka.ApplicationPeriod}
 	 */
-	applicationPeriod: null,
+		applicationPeriod: null,
 	/**
 	 * @private
 	 * @member {ol.Map}
@@ -252,6 +259,14 @@ nyc.App.prototype = {
 		}
 	},
 	/** 
+	 * @desc Show only 3-K sites
+	 * @public 
+	 * @method
+	 */
+	filter3k: function(){
+		this.filterControls[0].inputs[1].click();
+	},
+	/** 
 	 * @private 
 	 * @method
 	 * @return {boolean}
@@ -404,6 +419,16 @@ nyc.App.prototype = {
 	located: function(location){
 		this.location = location;
 		this.listSchools();
+	},
+	/** 
+	 * @private 
+	 * @method
+	 */
+	checkUrl: function(){
+		if (document.location.href.indexOf('3k') > -1){
+			this.filterControls[0].inputs[1].click();
+			this.is3k = true;
+		}
 	},
 	/** 
 	 * @private 

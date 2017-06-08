@@ -34,6 +34,7 @@ pka.Style.prototype = {
 	school: function(feature, resolution){
 		var zoom = this.zoom(resolution),
 			type = feature.getType(),
+			is3k = feature.get('3K_SEATS') > 0,
 			radius = [8, 8, 16, 16, 16, 24, 24, 32, 32, 48, 48][zoom],
 			image = 'img/' + type + this.imgExt();
 		this.schoolCache[zoom] = this.schoolCache[zoom] || {};
@@ -45,7 +46,23 @@ pka.Style.prototype = {
 				})
 			});
 		}
-		return this.schoolCache[zoom][type];
+		if (!this.schoolCache[zoom][type][is3k]){
+			if (is3k){
+				var size = zoom > 8 ? 14 : 10;
+				this.schoolCache[zoom][type][is3k] = this.schoolCache[zoom][type].setText(
+					new ol.style.Text({
+						text: '3K',
+						fill: new ol.style.Fill({color: 'rgb(1,51,100)'}),
+						stroke: new ol.style.Stroke({color: '#fff', width: size == 14 ? 4 : 2}),
+						font: 'bold ' + size + 'px "Helvetica Neue", Helvetica, Arial, sans-serif',
+						offsetX: size == 14 ? -2 : -1,
+						offsetY: size == 14 ? 10 : 5
+					})
+				);
+			}
+			this.schoolCache[zoom][type][is3k] = this.schoolCache[zoom][type];		
+		}
+		return this.schoolCache[zoom][type][is3k];
 	},
 	/**
 	 * @desc Style function for school district features

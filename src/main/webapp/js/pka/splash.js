@@ -20,5 +20,9 @@ pka.Splash = function(applicationPeriod, lookup, content, app){
 		$('.splash-msg').html(content.message('splash_msg_no_apply'));
 		$('.splash-apply').hide();
 	}
+	if (app.is3k){
+		$('.splash-filters .notranslate').html(' 3-K Finder ');
+	}
+	$('a.3k').click($.proxy(app.filter3k, app));
 	$('.splash-call, .splash-map, .splash-filters').click($.proxy(app.page, app));
 };

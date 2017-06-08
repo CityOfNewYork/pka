@@ -42,6 +42,7 @@ pka.messages = [
 		info_web: '<div class="web" translate="no"><a data-role="button" href="${WEBSITE}" target="_blank">website</a></div>',
 		info_note: '<div class="note">${NOTE}</div>',
 		info_program_features: '<div class="inf-name">Program Features:</div><ul class="feats"><li>${meals}</li><li>${in_out}</li><li>${start}</li><li>${early}</li><li>${late}</li></ul>',
+		info_3k_seats: '<div class="seats"><span class="inf-name">${school_year} 3-K Seats: </span>${3K_SEATS} ${day_length}</div>',
 		info_prek_seats: '<div class="seats"><span class="inf-name">${school_year} Pre-K Seats: </span>${PREK_SEATS} ${day_length}</div>',
 		info_dual_lang: '<div><b>Dual Language:</b> ${lang}</div>',
 		info_enhanced_lang: '<div><b>Enhanced Language Support:</b> ${lang}</div>',
