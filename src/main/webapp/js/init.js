@@ -5,11 +5,6 @@ function csvContentLoaded(csvContent){
 	pka.messages.push(csvContent);
 	
 	$(document).ready(function(){
-
-		nyc.ol.style.LOCATION_ICON = new ol.style.Icon({
-			scale: 48 / 512,
-			src: nyc.util.isIe() || nyc.util.isIos() ? 'img/me.png' : 'img/me.svg'
-		});
 		
 		var GEOCLIENT_URL = '//maps.nyc.gov/geoclient/v1/search.json?app_key=YOUR_APP_KEY&app_id=YOUR_APP_ID';
 		var GOOGLE_URL = 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization';
@@ -155,7 +150,9 @@ function csvContentLoaded(csvContent){
 		        ]
 			})
 		];
-					
+		
+		var locationStyle = new nyc.Style();
+		
 		nyc.app = new nyc.App(
 			applicationPeriod,
 			map,
@@ -166,7 +163,10 @@ function csvContentLoaded(csvContent){
 			new nyc.LocationMgr({
 				controls: new nyc.ol.control.ZoomSearch(map),
 				locate: new nyc.ol.Locate(new nyc.Geoclient(GEOCLIENT_URL)),
-				locator: new nyc.ol.Locator({map: map})
+				locator: new nyc.ol.Locator({
+					map: map, 
+					style: $.proxy(locationStyle.location, locationStyle)
+				})
 			}),
 			new nyc.Directions('#dir-map', '#directions', GOOGLE_URL),
 			new nyc.ol.Popup(map),

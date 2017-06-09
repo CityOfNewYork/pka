@@ -39,7 +39,7 @@ ta.Style.prototype = {
 	 * @return {ol.Style} 
 	 */
 	line: function(feature, resolution){
-		var zoom = this.zoom(resolution),
+		var zoom = this.zoom(resolution) - 8,
 			line = feature.get('RT_SYMBOL'),
 			width = [1, 1, 1, 1, 1, 2, 4, 6, 7, 8, 9][zoom];
 		this.lineCache[zoom] = this.lineCache[zoom] || {};

@@ -34,16 +34,7 @@ nyc.Style.prototype = {
 	 * @return {number} 
 	 */
 	zoom: function(resolution){
-		var resolutions = nyc.ol.layer.BaseLayer.RESOLUTIONS, zoom = resolutions.indexOf(resolution);
-		if (zoom == -1) {
-			for (var z = 0; z < resolutions.length; z++){
-				if (resolution > resolutions[z]){
-					zoom = z;
-					break;
-				}
-			}
-		}
-		return zoom > -1 ? zoom : resolutions.length - 1;
+		return nyc.ol.TILE_GRID.getZForResolution(resolution) - 8;
 	},
 	/**
 	 * @desc Style function for user location features
@@ -55,12 +46,11 @@ nyc.Style.prototype = {
 	 */
 	location: function(feature, resolution){
 		var zoom = this.zoom(resolution), 
-			opts = {scale: 48 / 512, src: 'img/me' + this.imgExt()},
 			isFeature = feature.get('isFeature');
 		this.locationCache[zoom] = this.locationCache[zoom] || {};
 		if (!this.locationCache[zoom][isFeature]){			
 			if (isFeature && zoom > 3){
-				this.locationCache[zoom][isFeature] = [new ol.style.Style({
+				this.locationCache[zoom][isFeature] = new ol.style.Style({
 					image: new ol.style.Circle({
 						radius: 3.2 * zoom,
 						stroke: new ol.style.Stroke({
@@ -68,11 +58,14 @@ nyc.Style.prototype = {
 							width: 5
 						})
 					})
-				})];
+				});
 			}else{
-				this.locationCache[zoom][isFeature] = [new ol.style.Style({
-					image: new ol.style.Icon(opts)
-				})];
+				this.locationCache[zoom][isFeature] = new ol.style.Style({
+					image: new ol.style.Icon({
+						scale: 48 / 512, 
+						src: 'img/me' + this.imgExt()
+					})
+				});
 			}
 
 		}

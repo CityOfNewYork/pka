@@ -307,16 +307,18 @@ nyc.App.prototype = {
 	 * @param {ol.ObjectEvent} event
 	 */
 	zoomChange: function(event){
-		var me = this, res = me.view.getResolution();
-		$.each([me.districtLyr, me.subwayLineLyr, me.subwayStationLyr], function(_, lyr){
-			if (!lyr.get('added') && res >= lyr.getMinResolution() && res <= lyr.getMaxResolution()){
-				me.map.addLayer(lyr);
-				if (lyr !== me.subwayLineLyr){
-					new nyc.ol.FeatureTip(me.map, [{layer: lyr, labelFunction: me.getTip}])
+		if (this.mapLoaded){
+			var me = this, res = me.view.getResolution();
+			$.each([me.districtLyr, me.subwayLineLyr, me.subwayStationLyr], function(_, lyr){
+				if (!lyr.get('added') && res >= lyr.getMinResolution() && res <= lyr.getMaxResolution()){
+					me.map.addLayer(lyr);
+					if (lyr !== me.subwayLineLyr){
+						new nyc.ol.FeatureTip(me.map, [{layer: lyr, labelFunction: me.getTip}])
+					}
+					lyr.set('added', true, true);
 				}
-				lyr.set('added', true, true);
-			}
-		});
+			});
+		}
 	},
 	/** 
 	 * @private 
@@ -403,7 +405,8 @@ nyc.App.prototype = {
 			info.attr('role', 'listitem');
 			if (i % 2 != 0) info.addClass('odd-row');
 			$(container).append(info).trigger('create');
-		});	
+		});
+		$('#btn-more')[$('div.inf-list.info').length == this.schoolSrc.getFeatures().length ? 'fadeOut' : 'fadeIn']();
 	},
 	/** 
 	 * @private 
@@ -482,11 +485,11 @@ nyc.App.prototype = {
 		}
 		$('.school-yr').html(this.content.message('school_year'));
 		if (!this.mapLoaded){
-			this.view.fit(nyc.ol.Basemap.EXTENT, this.map.getSize());		
 			this.map.once('change:size', function(){
-				this.mapLoaded = true;
 				$('#first-load').fadeOut();				
 			});
+			this.view.setZoom(12);
+			this.mapLoaded = true;
 		}
 		var div = $('#map');
 		this.map.setSize([div.width(), div.height()]);
