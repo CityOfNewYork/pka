@@ -365,13 +365,17 @@ QUnit.test('fullScreenDetail', function(assert){
 });
 
 QUnit.test('origin', function(assert){
-	assert.expect(3);
+	assert.expect(4);
 
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	assert.equal(app.origin(), '');
 	
 	app.location = {type: 'geolocation', coordinates: [1, 2]};
-	assert.deepEqual(app.origin(), [40.11239089296253, -77.51958108681406]);
+	
+	var p = app.origin();
+	
+	assert.equal(p[0].toFixed(7), 40.1123909);
+	assert.equal(p[1].toFixed(7), -77.5195811);
 
 	app.location = {type: 'geocode', name: '59 Maiden Lane, New York, NY 10038'};
 	assert.deepEqual(app.origin(), '59 Maiden Lane, New York, NY 10038');

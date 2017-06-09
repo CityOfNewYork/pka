@@ -250,7 +250,9 @@ nyc.App.prototype = {
 			to = feature.get('address'),
 			name = feature.getName(),
 			from = me.origin();
-		
+		if (me.isFullScreen()){
+			$('a.full-screen-close').click();
+		}
 		$('body').pagecontainer('change', $('#dir-page'), {transition: 'slideup'});
 		if (me.lastDir != from + '|' + to){
 			var args = {from: unescape(from), to: unescape(to), facility: unescape(name)};

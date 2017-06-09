@@ -150,7 +150,7 @@ pka.fieldAccess = {
 	getJcardJson: function(){
 		var props = this.getProperties(),
 			builder = this.jcardBuilder,
-			coordinates = proj4('EPSG:4326', 'EPSG:2263', this.getCoordinates());
+			coordinates = proj4( 'EPSG:3857', 'EPSG:4326', this.getCoordinates());
 		builder.add(builder.organization({name: props.NAME}));
 		builder.add(builder.address({
 			type: 'work', 
