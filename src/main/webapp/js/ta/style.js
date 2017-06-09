@@ -63,14 +63,14 @@ ta.Style.prototype = {
 	 */
 	station: function(feature, resolution){
 		var zoom = this.zoom(resolution),
-			radius = [2, 2, 4, 4, 4, 6, 8, 10, 12, 16, 24][zoom];
+			radius = [2, 2, 4, 4, 4, 6, 8, 10, 12, 16, 24][zoom - 4];
 		if (!this.stationCache[zoom]){
 			this.stationCache[zoom] = new ol.style.Style({
 				image: new ol.style.Circle({
 					radius: radius,
 					stroke: new ol.style.Stroke({
 						color: '#000',
-						width: 2
+						width: radius > 2 ? 2 : 1
 					}),
 					fill: new ol.style.Fill({
 						color: 'rgba(255,255,255,0.9)'

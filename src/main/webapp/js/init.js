@@ -96,7 +96,7 @@ function csvContentLoaded(csvContent){
 		var subwayStationLyr = new ol.layer.Vector({
 			source: subwayStationSrc, 
 			style: $.proxy(subwayStyle.station, subwayStyle),
-			maxResolution: nyc.ol.TILE_GRID.getResolution(14),
+			maxResolution: nyc.ol.TILE_GRID.getResolution(10),
 			zIndex: 200
 		});
 
