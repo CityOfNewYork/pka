@@ -266,7 +266,10 @@ nyc.App.prototype = {
 	 * @method
 	 */
 	filter3k: function(){
-		this.filterControls[0].inputs[1].click();
+		var prek = this.filterControls[0].inputs[1];
+		if (prek.prop('checked')){
+			prek.click();
+		}
 	},
 	/** 
 	 * @private 
@@ -315,7 +318,7 @@ nyc.App.prototype = {
 					if (lyr !== me.subwayLineLyr){
 						new nyc.ol.FeatureTip(me.map, [{layer: lyr, labelFunction: me.getTip}])
 					}
-					lyr.set('added', true, true);
+					lyr.set('added', true);
 				}
 			});
 		}
@@ -423,7 +426,7 @@ nyc.App.prototype = {
 	 */
 	checkUrl: function(){
 		if (document.location.href.indexOf('3k') > -1){
-			this.filterControls[0].inputs[1].click();
+			this.filter3k();
 			this.is3k = true;
 		}
 	},
