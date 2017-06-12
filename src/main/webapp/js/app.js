@@ -296,7 +296,7 @@ nyc.App.prototype = {
 	origin: function(){
 		var location = this.location || {};
 		if (location.type == 'geolocation'){
-			var coordinates = proj4('EPSG:2263', 'EPSG:4326', location.coordinates);
+			var coordinates = proj4('EPSG:3857', 'EPSG:4326', location.coordinates);
 			return [coordinates[1], coordinates[0]];
 		}
 		return location.name || '';
@@ -463,7 +463,7 @@ nyc.App.prototype = {
 			me.schoolSrc.filter(filters);
 			me.isFiltered();
 			me.listSchools();
-			me.clearPopup();
+			me.clearLocation();
 		}, 100);
 	},
 	/** 
@@ -471,13 +471,27 @@ nyc.App.prototype = {
 	 * @method
 	 */
 	clearPopup: function(){
-		var id = $('.inf-pop').attr('id')
+		var id = $('.inf-pop').attr('id');
 		if (id) {
 			var feature = this.schoolSrc.getFeatureById(id.replace(/inf-pop/, ''));
 			if (!feature){
 				this.popup.hide();
 			}
 		}
+	},
+	/** 
+	 * @private 
+	 * @method
+	 */
+	clearLocation: function(){
+		var id = this.location ? this.location.data.LOCCODE : '';
+		if (id) {
+			var feature = this.schoolSrc.getFeatureById(id);
+			if (!feature){
+				this.locationMgr.locator.source.clear();
+			}
+		}
+		this.clearPopup();
 	},
 	pageChanged: function(){
 		if ($('#panel').width() == $(window).width() && !this.showingFilters){
