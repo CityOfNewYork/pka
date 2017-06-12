@@ -353,7 +353,8 @@ QUnit.test('fullScreenDetail', function(assert){
 			assert.equal(id, 'code1');
 			return {html: function(){return 'TEST_HTML';}}
 		},
-		sort: function(){return [];}
+		sort: function(){return [];},
+		getFeatures: function(){return [];}
 	};
 	
 	app.fullScreenDetail('inf-popcode1');
@@ -370,12 +371,12 @@ QUnit.test('origin', function(assert){
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	assert.equal(app.origin(), '');
 	
-	app.location = {type: 'geolocation', coordinates: [1, 2]};
+	app.location = {type: 'geolocation', coordinates: [-8237876.301139942, 4969241.81643751]};
 	
 	var p = app.origin();
 	
-	assert.equal(p[0].toFixed(7), 40.1123909);
-	assert.equal(p[1].toFixed(7), -77.5195811);
+	assert.equal(p[0].toFixed(7), 40.7071498);
+	assert.equal(p[1].toFixed(7), -74.0021019);
 
 	app.location = {type: 'geocode', name: '59 Maiden Lane, New York, NY 10038'};
 	assert.deepEqual(app.origin(), '59 Maiden Lane, New York, NY 10038');
@@ -384,30 +385,47 @@ QUnit.test('origin', function(assert){
 });
 
 QUnit.test('zoomChange', function(assert){
-	assert.expect(12);
+	assert.expect(18);
 
+	var done = assert.async();
+	
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
-	var layers = app.map.getLayers().getArray();
 	
 	assert.notOk(app.districtLyr.get('added'));
 	assert.notOk(app.subwayLineLyr.get('added'));
 	assert.notOk(app.subwayStationLyr.get('added'));
 	
-	assert.equal($.inArray(app.districtLyr, layers), -1);
-	assert.equal($.inArray(app.subwayLineLyr, layers), -1);
-	assert.equal($.inArray(app.subwayStationLyr, layers), -1);
+	assert.equal($.inArray(app.districtLyr, app.map.getLayers().getArray()), -1);
+	assert.equal($.inArray(app.subwayLineLyr, app.map.getLayers().getArray()), -1);
+	assert.equal($.inArray(app.subwayStationLyr, app.map.getLayers().getArray()), -1);
 	
-	app.view.setZoom(7);
+	function secondTest(){
+		assert.ok(app.districtLyr.get('added'));
+		assert.ok(app.subwayLineLyr.get('added'));
+		assert.ok(app.subwayStationLyr.get('added'));
+		assert.ok($.inArray(app.districtLyr, app.map.getLayers().getArray()) > -1);
+		assert.ok($.inArray(app.subwayLineLyr, app.map.getLayers().getArray()) > -1);
+		assert.ok($.inArray(app.subwayStationLyr, app.map.getLayers().getArray()) > -1);
+		done();
+		delete app;			
+	};
 	
-	assert.ok(app.districtLyr.get('added'));
-	assert.ok(app.subwayLineLyr.get('added'));
-	assert.ok(app.subwayStationLyr.get('added'));
+	function firstTest(){
+		assert.notOk(app.districtLyr.get('added'));
+		assert.notOk(app.subwayLineLyr.get('added'));
+		assert.notOk(app.subwayStationLyr.get('added'));
+		assert.equal($.inArray(app.districtLyr, app.map.getLayers().getArray()), -1);
+		assert.equal($.inArray(app.subwayLineLyr, app.map.getLayers().getArray()), -1);
+		assert.equal($.inArray(app.subwayStationLyr, app.map.getLayers().getArray()), -1);		
+		app.view.once('change:resolution', secondTest);
+		app.mapLoaded = true; 
+		app.view.setZoom(13);
+	};
 	
-	assert.ok($.inArray(app.districtLyr, layers) > -1);
-	assert.ok($.inArray(app.subwayLineLyr, layers) > -1);
-	assert.ok($.inArray(app.subwayStationLyr, layers) > -1);
-		
-	delete app;		
+	app.view.once('change:resolution', firstTest);
+	
+	app.view.setZoom(12);
+	
 });
 
 QUnit.test('filter3k', function(assert){
