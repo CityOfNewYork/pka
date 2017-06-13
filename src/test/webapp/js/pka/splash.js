@@ -2,7 +2,7 @@ QUnit.module('pka.Splash', {
 	beforeEach: function(assert){
 		setup(assert, this);
 
-		this.MOCK_SPLASH = $('<div class="mock-splash"><div class="splash-btns"><div id="lang" data-role="button"></div></div><div class="splash-msg"></div><div class="splash-btns capitalize"><a class="splash-call" data-role="button" data-page="#form-page"></a><a class="splash-apply" data-role="button" target="_blank"></a><a class="splash-map" data-role="button" data-page="#map-page"><span>continue to <span class="notranslate" translate="no"> Pre-K Finder </span> map</span></a><a class="splash-filters" data-role="button" data-page="#map-page"><span>Continue to <span class="notranslate" translate="no"> Pre-K Finder </span> Search Filters</span></a></div></div>');
+		this.MOCK_SPLASH = $('<div class="mock-splash"><div class="splash-btns"><div id="lang" data-role="button"></div></div><div class="splash-msg"></div><div class="splash-btns"><a class="splash-call capitalize" data-role="button" data-page="#form-page"></a><a class="splash-apply capitalize" data-role="button" target="_blank"></a><button class="splash-map capitalize 3k" data-role="button" data-page="#map-page">continue to&nbsp;<span class="notranslate" translate="no">3-K Finder</span>&nbsp;map</button><button class="splash-map capitalize prek" data-role="button" data-page="#map-page">continue to&nbsp;<span class="notranslate" translate="no">Pre-K Finder</span>&nbsp;map</button><button class="splash-filters capitalize" data-role="button" data-page="#map-page">continue to&nbsp;<span class="notranslate" translate="no">Pre-K Finder</span>&nbsp;search filters</button></div></div>');
 		$('body').append(this.MOCK_SPLASH);
 		
 		this.MOCK_APP = {
@@ -64,7 +64,7 @@ QUnit.test('constructor (3k URL)', function(assert){
 	
 	new pka.Splash(this.APPLICATION_PERIOD_NOT_ACTIVE, pka.lookup, this.SCHOOL_CONTENT, this.MOCK_APP);
 	
-	assert.equal($('.splash-filters span.notranslate').html(), ' 3-K Finder ');
+	assert.equal($('.splash-filters span.notranslate').html(), '3-K Finder');
 
 });
 
@@ -73,6 +73,6 @@ QUnit.test('constructor (Not 3k URL)', function(assert){
 	
 	new pka.Splash(this.APPLICATION_PERIOD_NOT_ACTIVE, pka.lookup, this.SCHOOL_CONTENT, this.MOCK_APP);
 	
-	assert.equal($('.splash-filters span.notranslate').html(), ' Pre-K Finder ');
+	assert.equal($('.splash-filters span.notranslate').html(), 'Pre-K Finder');
 
 });

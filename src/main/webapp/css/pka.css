@@ -156,7 +156,7 @@ div.banner-school-yr {
     background-color: #f8993a;
     border: 1px solid #013364;
 }
-#splash-page a.splash-filters {
+#splash-page button.splash-filters {
 	padding: 0.7em 0.1em;
 }
 #splash-page .ui-btn:hover, #splash-page .ui-btn:hover span, #splash-page .ui-btn:hover font {
@@ -612,15 +612,6 @@ div.web a:before {
 }
 
 /* ====================== end zoom controls ====================== */
-
-
-/* ========================= begin share ========================= */
-
-#share-btns {
-	bottom: 2px;
-}
-
-/* ========================== end share ========================== */
 
 
 /* ======================== begin hotline ======================== */

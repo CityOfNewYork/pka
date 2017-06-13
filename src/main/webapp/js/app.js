@@ -272,6 +272,17 @@ nyc.App.prototype = {
 		}
 	},
 	/** 
+	 * @desc Show only 3-K sites
+	 * @public 
+	 * @method
+	 */
+	filterPreK: function(){
+		var prek = this.filterControls[0].inputs[1];
+		if (!prek.prop('checked')){
+			prek.click();
+		}
+	},
+	/** 
 	 * @private 
 	 * @method
 	 * @return {boolean}
@@ -436,11 +447,15 @@ nyc.App.prototype = {
 	 * @param {Array<string>} values
 	 */
 	bannerHtml: function(values){
+		var title, click;
 		if (values && values.indexOf('p') == -1) {
-			$('.banner h1').html('3-K Finder');
+			title = '3-K Finder';
+			click = 'document.location="../3k"';
 		}else{
-			$('.banner h1').html('Pre-K Finder');
+			title = 'Pre-K Finder';
+			click = 'document.location="../upk"';
 		}
+		$('.banner h1, .banner img').html(title).attr('title', 'NYC ' + title).attr('onclick', click).attr('alt', 'NYC ' + title);
 	},
 	/** 
 	 * @private 
@@ -584,6 +599,9 @@ nyc.App.prototype = {
 	resize: function(){
 		if ($('#panel').width() != $(window).width() && $('#map-tab-btn').hasClass('ui-tabs-active')){
 			$('#schools-tab-btn a').trigger('click');
+		}
+		if($(window).height() < $(window).width() && $('body').pagecontainer('getActivePage').attr('id') == 'dir-page'){
+			$('#dir-toggle a:last-of-type:not(.ui-btn-active)').trigger('click');
 		}
 	}
 };
