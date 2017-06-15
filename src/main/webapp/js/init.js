@@ -101,8 +101,8 @@ function csvContentLoaded(csvContent){
 				title: schoolContent.message('prek_3k_btn'),
 				expanded: true,
 				choices: [
-					{name: 'prek3k', value: '3,b', label: '3-K (3 year olds)', checked: true},
-					{name: 'prek3k', value: 'p,b', label: 'Pre-K (4 year olds)', checked: true}
+					{name: 'prek3k', value: '3,b', label: '3-K (' + (schoolContent.message('start_year') - 3) + ' birth year)', checked: true},
+					{name: 'prek3k', value: 'p,b', label: 'Pre-K (' + (schoolContent.message('start_year') - 4) + ' birth year)', checked: true}
 		        ]
 			}),
 			new nyc.Check({

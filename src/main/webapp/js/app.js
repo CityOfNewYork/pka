@@ -156,11 +156,6 @@ nyc.App.prototype = {
 	mapLoaded: false,
 	/**
 	 * @private
-	 * @member {boolean}
-	 */
-	showingFilters: false,
-	/**
-	 * @private
 	 * @member {nyc.Dialog}
 	 */
 	hotlineDiag: null,
@@ -180,9 +175,9 @@ nyc.App.prototype = {
 	 * @method
 	 */
 	hotline: function(){
-		var me = this;
+		var me = this, apply = me.applicationPeriod.isActive();
 		if (!me.hotlineDiag){
-			var dialog = new nyc.Dialog(), apply = me.applicationPeriod.isActive();
+			var dialog = new nyc.Dialog();
 			dialog.container.find('.dia-btns a').addClass('capitalize hotline');
 			me.hotlineDiag = dialog;
 		}
@@ -512,7 +507,7 @@ nyc.App.prototype = {
 		this.clearPopup();
 	},
 	pageChanged: function(){
-		if ($('#panel').width() == $(window).width() && !this.showingFilters){
+		if ($('#panel').width() == $(window).width()){
 			$('#map-tab-btn a').trigger('click');
 		}
 		$('.school-yr').html(this.content.message('school_year'));
@@ -527,20 +522,11 @@ nyc.App.prototype = {
 		this.map.setSize([div.width(), div.height()]);
 		this.map.render();
 		this.form.reset();
-		this.showingFilters = false;
 	},
 	page: function(event){
 		var target = $(event.currentTarget);
 		if (!this.mapLoaded){
 			$('#first-load').fadeIn();
-		}
-		if (target.hasClass('splash-filters')){
-			this.showingFilters = true;
-			$('#tabs .ui-tabs-nav li').removeClass('ui-tabs-active');
-			$('#tabs .ui-tabs-nav a').removeClass('ui-btn-active');
-			$('a[href="#filters-tab"]').click()
-				.addClass('ui-btn-active')
-				.parent().addClass('ui-tabs-active');
 		}
 		$('body').pagecontainer('change', target.data('page'), {transition: 'slideup'});
 	},

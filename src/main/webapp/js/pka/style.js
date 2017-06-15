@@ -47,15 +47,18 @@ pka.Style.prototype = {
 				})
 			});
 			if (prek3k == '3k'){
-				var size = zoom > 8 ? 14 : 10;
+				var size = zoom > 8 ? 20 : 12;
+				console.info({font: 'bold ' + size + 'px "Helvetica Neue", Helvetica, Arial, sans-serif',
+					offsetX: size == 20 ? -4 : -1,
+							offsetY: size == 20 ? 15 : 6 });
 				this.schoolCache[zoom][type][prek3k].setText(
 					new ol.style.Text({
 						text: '3K',
 						fill: new ol.style.Fill({color: 'rgb(1,51,100)'}),
-						stroke: new ol.style.Stroke({color: '#fff', width: size == 14 ? 4 : 2}),
+						stroke: new ol.style.Stroke({color: '#fff', width: size == 20 ? 4 : 2}),
 						font: 'bold ' + size + 'px "Helvetica Neue", Helvetica, Arial, sans-serif',
-						offsetX: size == 14 ? -2 : -1,
-						offsetY: size == 14 ? 10 : 5
+						offsetX: size == 20 ? -3 : -1,
+						offsetY: size == 20 ? 10 : 6 
 					})
 				);
 			}

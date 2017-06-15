@@ -156,9 +156,6 @@ div.banner-school-yr {
     background-color: #f8993a;
     border: 1px solid #013364;
 }
-#splash-page button.splash-filters {
-	padding: 0.7em 0.1em;
-}
 #splash-page .ui-btn:hover, #splash-page .ui-btn:hover span, #splash-page .ui-btn:hover font {
 	background-color: rgb(1,51,100);
     color: #fff;

@@ -1,13 +1,13 @@
 key,value
-birth_year,2013
+birth_year,2014
 start_year,2017
-school_year,2016-17
-apply_start_date,42492
-apply_end_date,42510
+school_year,2017-18
+apply_start_date,2017-06-01
+apply_end_date,2017-09-01
 splash_msg_no_apply,"<p>The 2017-2018 Application is open! </p><p> All NYC children born in 2013 will be eligible to attend pre-K in September 2017. </p><p>If your child was born in 2012 and you have not yet found a pre-K program, please contact the Pre-K Outreach Team at (212) 637-8000 regarding programs that may still have openings.</p>"
 splash_msg_yes_apply,<p>All NYC children born in 2012 are eligible to attend pre-K in September 2016.</p><p>Click &#34;<span class='capitalize'>request a call</span>&#34; to hear from an enrollment specialist.</p><p>The <span class='capitalize'>main round</span> application period is now closed. You can still contact <span class='capitalize'>main round</span> programs directly to inquire about waitlists and availability.</p><p>You can still apply for pre-K in the <span class='capitalize'>round 2</span> application period from June 22-July 10. <span class='capitalize'>round 2</span> programs include newly awarded NYCEEC pre-k programs</p>
 btn_call,request a call
-btn_apply,
+btn_apply,apply now
 application_filter_btn,round 2 programs
 prek_3k_btn,age group
 dynamic_filter_btn,Programs that may have immediate availability
