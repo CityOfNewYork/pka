@@ -1,19 +1,18 @@
 key,value
-birth_year,2014
+birth_year,2013
 start_year,2017
 school_year,2017-18
 apply_start_date,2017-06-01
 apply_end_date,2017-09-01
-splash_msg_no_apply,"<p>The 2017-2018 Application is open! </p><p> All NYC children born in 2013 will be eligible to attend pre-K in September 2017. </p><p>If your child was born in 2012 and you have not yet found a pre-K program, please contact the Pre-K Outreach Team at (212) 637-8000 regarding programs that may still have openings.</p>"
-splash_msg_yes_apply,<p>All NYC children born in 2012 are eligible to attend pre-K in September 2016.</p><p>Click &#34;<span class='capitalize'>request a call</span>&#34; to hear from an enrollment specialist.</p><p>The <span class='capitalize'>main round</span> application period is now closed. You can still contact <span class='capitalize'>main round</span> programs directly to inquire about waitlists and availability.</p><p>You can still apply for pre-K in the <span class='capitalize'>round 2</span> application period from June 22-July 10. <span class='capitalize'>round 2</span> programs include newly awarded NYCEEC pre-k programs</p>
+splash_msg_no_apply,"<p>Round 2 pre-K results letters were sent on June 7. If you would like to reserve a seat at the program where you received your Round 2 offer, pre-register in person with your child and the <a href='http://schools.nyc.gov/ChoicesEnrollment/NewStudents/default.htm##whattobring' target='_blank'>required documents</a> by Wednesday, June 28! If you applied before in Round 2 before the May 9 deadline, but have not received your results letter yet, please call 718-935-2009.</p><p> All NYC children born in 2013 are eligible to attend pre-K in September 2017! </p><p>If you haven't applied to pre-K yet, please click the <b>Request a Call</b> button below to have an Enrollment Specialist contact you about your options.</p><p> Have questions about the new Pre-K Quality Snapshot? Click <a href='http://schools.nyc.gov/Academics/EarlyChildhood/parentfamilies/default.htm' target='_blank'>here</a> for resources.</p>  "
+splash_msg_yes_apply,"<p><i><b>Round 2 is now open! Apply for Pre-K until Tuesday, May 9, 2017! </b></i></p><p> Please use this tool to find information about programs, and <b> click the Apply Now button below when you're ready! </b> You can find programs that are included in Round 2 by clicking the <b>Programs with  Seats Available in Round 2</b> button. </p><p>As of April 10, we have added some new programs to Round 2! You can find them by clicking the <b>Programs with Seats Available in Round 2 button</b>, and add them to your application!</p><p>If you have already applied in Round 1 by the March 3 deadline, please wait until you receive your Round 1 offer letter on April 20 before making a decision about whether to apply in Round 2.</p><p> All NYC children born in 2013 will be eligible to attend pre-K in September 2017. </p><p> Have questions about the new Pre-K Quality Snapshot? Click <a href='http://schools.nyc.gov/Academics/EarlyChildhood/parentfamilies/default.htm' target='_blank'>here</a> for resources.</p>"
 btn_call,request a call
-btn_apply,apply now
-application_filter_btn,round 2 programs
-prek_3k_btn,age group
-dynamic_filter_btn,Programs that may have immediate availability
+btn_apply,Apply Now
+application_filter_btn,
+dynamic_filter_btn,
 form_msg_no_apply,This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href='http://nyc.gov/prek' target='_blank'>nyc.gov/prek</a> for more information.
 form_msg_yes_apply,This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href='http://nyc.gov/prek' target='_blank'>nyc.gov/prek</a> for more information.
-form_dob_msg,"<b>Note:</b> To be eligible for pre-K for the 2016-17 school year, your child must have been born in the year 2012."
+form_dob_msg,"<b>Note:</b> To be eligible for pre-K for the 2017-18 school year, your child must have been born in the year 2013."
 form_another,Your submission was successful!<br><br>Do you wish to submit again for another child?
 form_error,"There was an error processing your submission, please try again. Please call 718-935-2009 (Monday-Friday between 8am and 6pm) to speak to a representative."
 form_invalid,"You have entered invalid information.<p>The form only accepts English language characters.</p>Please correct the information in the red fields. If you are having difficulty submitting this form, please call 718-935-2009 (Monday-Friday between 8am and 6pm) to speak to a representative."

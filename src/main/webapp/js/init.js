@@ -98,7 +98,7 @@ function csvContentLoaded(csvContent){
 		var filterControls = [
   			new nyc.Check({
 				target: '#chk-prek-3k',
-				title: schoolContent.message('prek_3k_btn'),
+				title: 'age group',
 				expanded: true,
 				choices: [
 					{name: 'prek3k', value: '3,b', label: '3-K (' + (schoolContent.message('start_year') - 3) + ' birth year)', checked: true},
