@@ -48,9 +48,6 @@ pka.Style.prototype = {
 			});
 			if (prek3k == '3k'){
 				var size = zoom > 8 ? 20 : 12;
-				console.info({font: 'bold ' + size + 'px "Helvetica Neue", Helvetica, Arial, sans-serif',
-					offsetX: size == 20 ? -4 : -1,
-							offsetY: size == 20 ? 15 : 6 });
 				this.schoolCache[zoom][type][prek3k].setText(
 					new ol.style.Text({
 						text: '3K',

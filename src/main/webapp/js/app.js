@@ -1,5 +1,5 @@
 /** 
- * @public 
+* @public 
  * @namespace
  */
 var nyc = nyc || {};
@@ -44,7 +44,8 @@ nyc.App = function(applicationPeriod, map, layers, filterControls, lookup, conte
 
 	me.filterDisplay(applicationPeriod);
 	
-	map.on('click', $.proxy(me.mapClick, me));
+	$(map.getTarget()).on('tap click', $.proxy(me.tap, me));
+
 	me.view.on('change:resolution', $.proxy(me.zoomChange, me));
 
 	me.schoolSrc.once(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, $.proxy(me.ready, me));
@@ -529,6 +530,14 @@ nyc.App.prototype = {
 			$('#first-load').fadeIn();
 		}
 		$('body').pagecontainer('change', target.data('page'), {transition: 'slideup'});
+	},
+	/** 
+	 * @private 
+	 * @method
+	 * @param {Object} event
+	 */
+	tap: function(event){
+		this.mapClick({pixel: [event.offsetX, event.offsetY]});
 	},
 	/** 
 	 * @private 
