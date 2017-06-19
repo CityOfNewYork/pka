@@ -1,18 +1,18 @@
 key,value
-birth_year,2013
+birth_year,2014
 start_year,2017
 school_year,2017-18
-apply_start_date,2017-06-01
-apply_end_date,2017-09-01
-splash_msg_no_apply,"<p>Round 2 pre-K results letters were sent on June 7. If you would like to reserve a seat at the program where you received your Round 2 offer, pre-register in person with your child and the <a href='http://schools.nyc.gov/ChoicesEnrollment/NewStudents/default.htm##whattobring' target='_blank'>required documents</a> by Wednesday, June 28! If you applied before in Round 2 before the May 9 deadline, but have not received your results letter yet, please call 718-935-2009.</p><p> All NYC children born in 2013 are eligible to attend pre-K in September 2017! </p><p>If you haven't applied to pre-K yet, please click the <b>Request a Call</b> button below to have an Enrollment Specialist contact you about your options.</p><p> Have questions about the new Pre-K Quality Snapshot? Click <a href='http://schools.nyc.gov/Academics/EarlyChildhood/parentfamilies/default.htm' target='_blank'>here</a> for resources.</p>  "
-splash_msg_yes_apply,"<p><i><b>Round 2 is now open! Apply for Pre-K until Tuesday, May 9, 2017! </b></i></p><p> Please use this tool to find information about programs, and <b> click the Apply Now button below when you're ready! </b> You can find programs that are included in Round 2 by clicking the <b>Programs with  Seats Available in Round 2</b> button. </p><p>As of April 10, we have added some new programs to Round 2! You can find them by clicking the <b>Programs with Seats Available in Round 2 button</b>, and add them to your application!</p><p>If you have already applied in Round 1 by the March 3 deadline, please wait until you receive your Round 1 offer letter on April 20 before making a decision about whether to apply in Round 2.</p><p> All NYC children born in 2013 will be eligible to attend pre-K in September 2017. </p><p> Have questions about the new Pre-K Quality Snapshot? Click <a href='http://schools.nyc.gov/Academics/EarlyChildhood/parentfamilies/default.htm' target='_blank'>here</a> for resources.</p>"
+apply_start_date,2017-06-20
+apply_end_date,2017-08-14
+splash_msg_no_apply,"<p>The 2016-2017 school year has already begun! </p><p> All NYC children born in 2013 will be eligible to attend pre-K in September 2017. </p><p>The application for the 2017-2018 school year will open in early 2017.</p><p>To ensure that you will be notified about the opening of the application, please click the &#34;<span class='capitalize'>request a call</span>&#34; button and fill out the Get in Touch form, marking the correct birth year of your child.</p><p>If your child was born in 2012 and you have not yet found a pre-K program, please contact the Pre-K Outreach Team at (212) 637-8000 regarding programs that may still have openings.</p>"
+splash_msg_yes_apply,"<p><b>The <i>3-K for All</i> application is  open!</b> If your child was born in 2014 and you live in New York City, you can apply for free, full-day, high-quality <i>3-K for All</i> in School Districts 7 (South Bronx) and 23 (Brownsville, East New York, and Ocean Hill). The deadline to apply is Friday, July 14. </p><p>To find out what school district you live in, please enter your address <a href='http://schools.nyc.gov/SchoolSearch/' target='_blank'>here</a>.</p><p>To see  <i>3-K for All</i> programs,  click &ldquo;Continue to 3-K Finder Map&rdquo; below. Please check back for updates &#8208; new programs may be added throughout the summer!</p><br /><p>If you applied to <i>Pre-K for All</i> in Round 2 <u>before</u> the May 9 deadline, you must pre-register in person with your child and <a href='http://schools.nyc.gov/SchoolSearch/' target='_blank'>the required documents</a> by Wednesday, June 28! If you have not yet received your results letter, please call 718-935-2009.</p><p>If you haven't applied to <i>Pre-K for All</i> yet for this fall, it&rsquo;s not too late! Please click the Request a Call button below to have an Enrollment Specialist contact you about your options.</p><p>Have questions about the Pre-K Quality Snapshot? Click <ahref='http://schools.nyc.gov/Academics/EarlyChildhood/parentfamilies/default.htm' target='_blank'>here</a> for resources.</p>"
 btn_call,request a call
-btn_apply,Apply Now
+btn_apply,Apply Now!
 application_filter_btn,
-dynamic_filter_btn,
-form_msg_no_apply,This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href='http://nyc.gov/prek' target='_blank'>nyc.gov/prek</a> for more information.
+dynamic_filter_btn,Programs that may have immediate availability
+form_msg_no_apply,Programs that may have immediate availability
 form_msg_yes_apply,This form is only a statement of interest and not an application. An Enrollment Specialist will contact you shortly. Please visit <a href='http://nyc.gov/prek' target='_blank'>nyc.gov/prek</a> for more information.
-form_dob_msg,"<b>Note:</b> To be eligible for pre-K for the 2017-18 school year, your child must have been born in the year 2013."
+form_dob_msg,"<b>Note:</b> If your child was born in 2013, they are eligible for pre-K for the 2017-18 school year! If your child was born in 2014, they are eligible for 3-K programs for the 2017-18 school year in Districts 7 and 23."
 form_another,Your submission was successful!<br><br>Do you wish to submit again for another child?
 form_error,"There was an error processing your submission, please try again. Please call 718-935-2009 (Monday-Friday between 8am and 6pm) to speak to a representative."
 form_invalid,"You have entered invalid information.<p>The form only accepts English language characters.</p>Please correct the information in the red fields. If you are having difficulty submitting this form, please call 718-935-2009 (Monday-Friday between 8am and 6pm) to speak to a representative."
@@ -21,4 +21,4 @@ max_dob_year,2016
 hotline_number,(212) 637-8000
 hotline_msg,Call (212) 637-8000 to contact an enrollment specialist between 9AM-5PM Monday-Friday
 quality_pdf,http://schools.nyc.gov/OA/SchoolReports/2015-16/School_Quality_Snapshot_PK_2016_${loccode4}.pdf
-btn_pdf,Pre-K Quality Snapshot
+btn_pdf,Pre-K Snapshot

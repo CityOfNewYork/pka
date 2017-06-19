@@ -113,7 +113,6 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 03MACU,NYCEEC,M,Corpus Christi,,212-662-9344,535 West 121st Street,10027,1,36,,995106,234772,m004@adnyeducation.org,http://ccschoolnyc.org,3,4,03MACU,info,8:15 AM,1,1,0,0,0,0,,
 03MAQH,NYCEEC,M,Goddard Riverside Preschool at W 83rd 2,,212-877-7780,128 West 83rd Street,10024,1,,,991209,225238,mplace@goddard.org,http://goddard.org,3,7,03MAQH,info,,0,0,0,0,0,1,,
 03MAQI,NYCEEC,M,Child Center of NY,,212-799-2440,169 West 87th Street,10024,1,25,,991571,226415,patriciamachado@childcenterny.org,http://childcenterny.org,3,6,03MAQI,info,8:15 a.m,1,1,0,0,0,1,,
-03MAQL,NYCEEC,M,Goddard Riverside Day Care Center at West 84th Street 3,,212-799-2369,26 West 84th Street,10024,1,18,,992097,225040,mplace@goddard.org,http://goddard.org,3,3,03MAQL,info,8:00 a.m,0,,0,0,0,1,,1
 03MASJ,NYCEEC,M,Children's Aid Society Milbank Early Childhood Program,,212-996-1716,14-32 West 118th Street,10026,1,,,999028,231563,lillianaj@childrensaidsociety.org,http://childrensaidsociety.org,3,3,03MASJ,info,7:55 a.m,0,,0,1,0,1,,
 03MASP,NYCEEC,M,Goddard Riverside Head Start Center at West 95th Street 4,,212-531-2727,70 West 95th Street,10025,1,18,,993216,227730,pbibbo@goddard.org,http://goddard.org,2,7,03MASP,info,8:00 a.m,0,0,0,0,0,1,,
 03MAUZ,NYCEEC,M,Bloomingdale Family Program I,,212-663-4067,125 West 109th Street,10025,1,19,,994554,231443,treyes@bloomingdalefamilyprogram.org,http://bloomingdalefamilyprogram.org,3,7,03MAUZ,info,8:15 a.m,0,0,0,0,0,1,,1
@@ -252,47 +251,47 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 06MBBI,NYCEEC,M,Manhattan Early Childhood Center,,212-740-5157,554 Fort Washington Avenue,10033,1,,,1001726,250330,marjory.antoine@birchfamilyservices.org,http://birchfamilyservices.org,5,9,06MBBI,info,,0,0,0,1,0,0,,
 06MBBJ,NYCEEC,M,Fort George Child Center 1,,212-927-2210,601 West 186 Street,10033,1,17,,1003145,249930,eguzman@ftgeocenterhs.org,,3,6,06MBBJ,info,7:30 a.m,0,0,0,0,0,1,,1
 06MBGU,NYCEEC,M,Sugar Hill Museum Preschool,,212-862-7155,400 W 155th Street,10032,1,54,,1000579,241793,cmelville@broadwayhousing.org,http://bhc.org,3,2,06MBGU,info,8:00 AM,0,1,0,0,0,1,,
-07X001,DOE,X,P.S. 1 Courtlandt School,,718-292-9191,335 East 152nd Street,10451,1,18,18,1006649,237683,jperdom@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x001,2,3,07X001,info,,0,0,0,0,0,0,,
-07X005,DOE,X,P.S. 5 Port Morris,,718-292-2683,564 Jackson Avenue,10455,1,36,18,1009538,235709,tcozzocrea@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x005,2,3,07X005,info,8:20 AM,0,0,0,0,0,0,,
-07X018,DOE,X,P.S. 18 John Peter Zenger,,718-292-2868,502 Morris Avenue,10451,1,36,18,1005598,236750,lsewell3@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x018,2,3,07X018,info,8:00 AM,0,0,0,0,0,0,,
-07X025,DOE,X,P.S. 25 Bilingual School,,718-292-2995,811 East 149th Street,10455,1,18,,1010315,235403,ctoledo@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x025,2,3,07X025,info,8:20 AM,0,0,0,0,0,0,,
-07X029,DOE,X,P.S./M.S. 29 Melrose School,,718-292-3785,758 Courtlandt Avenue,10451,1,36,18,1007217,238546,families@psms29.org,http://schools.nyc.gov/schoolportals/07/x029,2,3,07X029,info,8:00 AM,1,0,0,0,0,0,,
-07X030,DOE,X,P.S. 30 Wilton,,718-292-8817,510 East 141st Street,10454,1,54,18,1007030,234117,dmichau@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x030,3,3,07X030,info,8:15 AM,0,0,0,0,0,0,,1
-07X031,DOE,X,P.S./M.S. 31 The William Lloyd Garrison,,718-292-4397,250 East 156th Street,10451,1,18,18,1005923,239014,jhunnew@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x031,2,1,07X031,info,,0,0,0,0,0,0,,1
-07X043,DOE,X,P.S. 43 Jonas Bronck,,718-292-4502,165 Brown Place,10454,1,36,,1006012,233079,gdelucc@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x043,2,3,07X043,info,8:15 AM,0,0,0,0,0,0,,1
-07X049,DOE,X,P.S. 49 Willis Avenue,,718-292-4623,383 East 139th Street,10454,1,54,,1005573,234479,fhernandez2@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x049,2,3,07X049,info,8:15 AM,0,0,0,0,0,0,,1
-07X065,DOE,X,P.S. 65 Mother Hale Academy,,718-292-4628,677 East 141st Street,10454,1,18,18,1008419,233518,jgonzalez@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x065,2,3,07X065,info,8:00 AM,0,0,0,0,0,0,,1
-07X154,DOE,X,P.S. 154 Jonathan D. Hyatt,,718-292-4742,333 East 135th Street,10454,1,36,18,1004724,233748,acoviello@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x154,2,3,07X154,info,8:15 AM,0,1,0,0,0,0,,1
-07X157,DOE,X,P.S. 157 Grove Hill,,718-292-5255,757 Cauldwell Avenue,10456,1,36,18,1009479,237756,rduran@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x157,2,3,07X157,info,8:00 AM,0,0,0,0,0,0,,
-07X161,DOE,X,P.S. 161 Juan Ponce De Leon School,,718-292-5478,628 Tinton Avenue,10455,1,18,,1010460,236117,esoto2@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x161,3,3,07X161,info,8:00 AM,0,0,109,0,0,0,,1
-07X179,DOE,X,P.S. 179,,718-292-2237,468 East 140th Street,10454,1,36,18,1006356,234188,swillia4@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x179,2,3,07X179,info,8:00 AM,0,0,0,0,0,0,,1
-07X277,DOE,X,P.S. 277,,718-292-3594,519 St Anns Avenue,10455,1,54,18,1008130,235625,ldaliot@ps277x.com,http://ps277x.com,2,3,07X277,info,8:20 AM,0,0,0,0,0,0,,1
-07X359,DOE,X,Concourse Village Elementary School,,718-402-7503,750 Concourse Village West,10451,1,18,18,1005524,239082,asorden@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x359,2,3,07X359,info,8:45 AM,0,0,0,0,1,0,,
-07X369,DOE,X,Young Leaders Elementary School,,718-292-7391,468 East 140th Street,10454,1,34,,1006464,234126,jcooke@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x369,2,3,07X369,info,8:15 AM,0,0,0,0,0,0,,1
+07X001,DOE,X,P.S. 1 Courtlandt School,,718-292-9191,335 East 152nd Street,10451,1,18,30,1006649,237683,jperdom@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x001,2,3,07X001,info,,0,0,0,0,0,0,,
+07X005,DOE,X,P.S. 5 Port Morris,,718-292-2683,564 Jackson Avenue,10455,1,36,,1009538,235709,tcozzocrea@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x005,2,3,07X005,info,8:20 AM,0,0,0,0,0,0,,
+07X018,DOE,X,P.S. 18 John Peter Zenger,,718-292-2868,502 Morris Avenue,10451,1,36,,1005598,236750,lsewell3@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x018,2,3,07X018,info,8:00 AM,0,0,0,0,0,0,,
+07X025,DOE,X,P.S. 25 Bilingual School,,718-292-2995,811 East 149th Street,10455,1,18,15,1010315,235403,ctoledo@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x025,2,3,07X025,info,8:20 AM,0,0,0,0,0,0,,
+07X029,DOE,X,P.S./M.S. 29 Melrose School,,718-292-3785,758 Courtlandt Avenue,10451,1,36,30,1007217,238546,families@psms29.org,http://schools.nyc.gov/schoolportals/07/x029,2,3,07X029,info,8:00 AM,1,0,0,0,0,0,,
+07X030,DOE,X,P.S. 30 Wilton,,718-292-8817,510 East 141st Street,10454,1,54,,1007030,234117,dmichau@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x030,3,3,07X030,info,8:15 AM,0,0,0,0,0,0,,1
+07X031,DOE,X,P.S./M.S. 31 The William Lloyd Garrison,,718-292-4397,250 East 156th Street,10451,1,18,,1005923,239014,jhunnew@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x031,2,1,07X031,info,,0,0,0,0,0,0,,1
+07X043,DOE,X,P.S. 43 Jonas Bronck,,718-292-4502,165 Brown Place,10454,1,36,30,1006012,233079,gdelucc@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x043,2,3,07X043,info,8:15 AM,0,0,0,0,0,0,,1
+07X049,DOE,X,P.S. 49 Willis Avenue,,718-292-4623,383 East 139th Street,10454,1,54,30,1005573,234479,fhernandez2@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x049,2,3,07X049,info,8:15 AM,0,0,0,0,0,0,,1
+07X065,DOE,X,P.S. 65 Mother Hale Academy,,718-292-4628,677 East 141st Street,10454,1,18,,1008419,233518,jgonzalez@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x065,2,3,07X065,info,8:00 AM,0,0,0,0,0,0,,1
+07X154,DOE,X,P.S. 154 Jonathan D. Hyatt,,718-292-4742,333 East 135th Street,10454,1,36,,1004724,233748,acoviello@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x154,2,3,07X154,info,8:15 AM,0,1,0,0,0,0,,1
+07X157,DOE,X,P.S. 157 Grove Hill,,718-292-5255,757 Cauldwell Avenue,10456,1,36,,1009479,237756,rduran@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x157,2,3,07X157,info,8:00 AM,0,0,0,0,0,0,,
+07X161,DOE,X,P.S. 161 Juan Ponce De Leon School,,718-292-5478,628 Tinton Avenue,10455,1,18,15,1010460,236117,esoto2@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x161,3,3,07X161,info,8:00 AM,0,0,109,0,0,0,,1
+07X179,DOE,X,P.S. 179,,718-292-2237,468 East 140th Street,10454,1,36,,1006356,234188,swillia4@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x179,2,3,07X179,info,8:00 AM,0,0,0,0,0,0,,1
+07X277,DOE,X,P.S. 277,,718-292-3594,519 St Anns Avenue,10455,1,54,30,1008130,235625,ldaliot@ps277x.com,http://ps277x.com,2,3,07X277,info,8:20 AM,0,0,0,0,0,0,,1
+07X359,DOE,X,Concourse Village Elementary School,,718-402-7503,750 Concourse Village West,10451,1,18,,1005524,239082,asorden@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x359,2,3,07X359,info,8:45 AM,0,0,0,0,1,0,,
+07X369,DOE,X,Young Leaders Elementary School,,718-292-7391,468 East 140th Street,10454,1,34,15,1006464,234126,jcooke@schools.nyc.gov,http://schools.nyc.gov/schoolportals/07/x369,2,3,07X369,info,8:15 AM,0,0,0,0,0,0,,1
 07X394,CHARTER,X,Little Haven at Mott Haven Academy Charter School,,718-292-7015,170 Brown Place,10454,1,36,,1006079,233073,info@havenacademy.org,http://havenacademy.org,7,3,84X394,info,,,,0,0,0,0,,
 07X487,CHARTER,X,Girls and Boys Preparatory Charter School of The Bronx,,212-346-6000,441 East 148 Street,10455,1,,,1007281,236132,emattey@publicprep.org,http://publicprep.org,3,6,84X487,info,,,,0,0,0,0,,
 07X491,CHARTER,X,Academic Leadership Charter School,,718-585-4215,677 East 141st Street,10454,1,54,,1008409,233423,lvarghese07@gmail.com,http://alcsbronx.org,2,7,84X491,info,,,,0,0,0,0,,
 07X554,CHARTER,X,NYC Montessori Charter School,,347-226-9094,423 East 138th Street,10454,1,52,,1005874,233916,andujar@nycmcs.org,http://nycmcs.org,3,3,84X554,info,,,,0,0,0,0,,
-07XADZ,NYCEEC,X,St. Luke School,,718-585-0380,608 East 139th Street,10454,1,18,18,1007753,233114,b247@adnyeducation.org,http://stluke138.org,5,9,07XADZ,info,8:00 a.m,0,0,0,1,0,0,,
-07XAEU,NYCEEC,X,St. Peter and Paul Parochial Elementary School,,718-665-2056,838 Brook Avenue,10451,1,18,18,1008917,238772,Principal@ssppschoolsite.org,http://ssppschoolsite.org,3,9,07XAEU,info,8:00 AM,1,0,0,0,0,0,,
-07XAFP,NYCEEC,X,East Side House,,718-292-5335,201 Saint Anns Avenue,10454,1,15,18,1006786,232909,dheyward@eastsidehouse.org,http://eastsidehouse.org,3,3,07XAFP,info,,0,1,209,0,0,1,,1
+07XADZ,NYCEEC,X,St. Luke School,,718-585-0380,608 East 139th Street,10454,1,18,,1007753,233114,b247@adnyeducation.org,http://stluke138.org,5,9,07XADZ,info,8:00 a.m,0,0,0,1,0,0,,
+07XAEU,NYCEEC,X,St. Peter and Paul Parochial Elementary School,,718-665-2056,838 Brook Avenue,10451,1,18,45,1008917,238772,Principal@ssppschoolsite.org,http://ssppschoolsite.org,3,9,07XAEU,info,8:00 AM,1,0,0,0,0,0,,
+07XAFP,NYCEEC,X,East Side House,,718-292-5335,201 Saint Anns Avenue,10454,1,15,,1006786,232909,dheyward@eastsidehouse.org,http://eastsidehouse.org,3,3,07XAFP,info,,0,1,209,0,0,1,,1
 07XAHR,NYCEEC,X,Concord Head Start/Early Learn Center,,718-292-8566,560 Concord Avenue,10455,2,18,,1009806,235709,ltaylor@cmcs.org,http://cmcs.org,3,3,07XAHR,info,8:30 a.m,0,,0,0,0,1,,1
-07XAHW,NYCEEC,X,Betances Early Childhood Center (NYCHA),,718-555-1100,528 East 146th Street,10455,1,22,18,1007717,235292,qbrown@shelteringarmsny.org,http://shelteringarmsny.org,3,3,07XAHW,info,8:00 AM,0,0,209,0,0,1,,1
-07XAKO,NYCEEC,X,Episcopal Social Services Head Start (Paul's House),,718-401-5192,500 Bergen Avenue,10455,1,14,18,1006992,236189,jruiz@shelteringarmsny.org,http://shelteringarmsny.org,3,3,07XAKO,info,8:00 AM,0,0,209,0,0,1,,
+07XAHW,NYCEEC,X,Betances Early Childhood Center (NYCHA),,718-555-1100,528 East 146th Street,10455,1,22,,1007717,235292,qbrown@shelteringarmsny.org,http://shelteringarmsny.org,3,3,07XAHW,info,8:00 AM,0,0,209,0,0,1,,1
+07XAKO,NYCEEC,X,Episcopal Social Services Head Start (Paul's House),,718-401-5192,500 Bergen Avenue,10455,1,14,,1006992,236189,jruiz@shelteringarmsny.org,http://shelteringarmsny.org,3,3,07XAKO,info,8:00 AM,0,0,209,0,0,1,,
 07XAMR,NYCEEC,X,Iola Jordan Day Care,,718-402-4166,421 East 161st Street,10451,1,18,,1008327,239560,vjw1332fultondcc@outlook.com,http://nycmcs.org,3,7,07XAMR,info,8:30 a.m,1,1,0,1,0,1,,1
-07XAMT,NYCEEC,X,East Side House,,718-292-5335,375 East 143rd Street,10454,1,42,18,1006041,235409,dheyward@eastsidehouse.org,http://eastsidehouse.org,3,3,07XAMT,info,8:30 a.m,0,1,0,0,0,1,,1
-07XAMV,NYCEEC,X,Children's Pride,,718-292-5335,414 Morris Avenue,10451,1,29,18,1005446,236393,dheyward@eastsidehouse.org,http://eastsidehouse.org,3,3,07XAMV,info,,0,0,209,0,0,1,,1
+07XAMT,NYCEEC,X,East Side House,,718-292-5335,375 East 143rd Street,10454,1,42,,1006041,235409,dheyward@eastsidehouse.org,http://eastsidehouse.org,3,3,07XAMT,info,8:30 a.m,0,1,0,0,0,1,,1
+07XAMV,NYCEEC,X,Children's Pride,,718-292-5335,414 Morris Avenue,10451,1,29,,1005446,236393,dheyward@eastsidehouse.org,http://eastsidehouse.org,3,3,07XAMV,info,,0,0,209,0,0,1,,1
 07XAMW,NYCEEC,X,East Side House,,718-292-5335,200 Alexander Avenue,10454,1,18,,1004851,234005,dheyward@eastsidehouse.org,http://eastsidehouse.org,3,3,07XAMW,info,,0,1,209,0,0,1,,1
-07XANA,NYCEEC,X,South Bronx Head Start I,,718-292-7250,490 East 143rd Street,10454,1,29,18,1006976,234773,southbronxhs@aol.com,http://southbronxheadstart.com,3,7,07XANA,info,8:00 a.m,0,0,209,0,0,1,,1
+07XANA,NYCEEC,X,South Bronx Head Start I,,718-292-7250,490 East 143rd Street,10454,1,29,,1006976,234773,southbronxhs@aol.com,http://southbronxheadstart.com,3,7,07XANA,info,8:00 a.m,0,0,209,0,0,1,,1
 07XANC,NYCEEC,X,Salvation Army - Bronx Citadel,,212-352-5575,425 E 159th Street,10451,1,20,,1008222,239041,novie.walker@use.salvationarmy.org,,7,3,07XANC,info,9:30 a.m,,,0,0,0,1,,1
-07XANX,NYCEEC,X,Highbridge Advisory Council Marshall England ELC,,718-992-1321,800 Concourse Village East,10451,1,18,18,1006652,239509,WCarter@hacfs.com,http://HACFS.org,5,9,07XANX,info,,0,0,0,0,0,1,,
-07XARA,NYCEEC,X,"H.C.C. Children's Center, Inc.",,718-518-4209,475 Grand Concourse,10451,3,36,18,1004188,237336,pmartinez@hostos.cuny.edu,http://hostos.cuny.edu/childrenscenter,3,7,07XARA,info,9:00 a.m,1,1,0,1,0,0,,
-07XATI,NYCEEC,X,Sunshine Day Care,,718-989-9804,416 Willis Avenue,10454,1,72,18,1006478,235518,elizabeth@sunshinenewyork.com,http://sunshinenewyork.com,3,6,07XATI,info,8:00 AM,1,1,0,0,0,1,,1
+07XANX,NYCEEC,X,Highbridge Advisory Council Marshall England ELC,,718-992-1321,800 Concourse Village East,10451,1,18,,1006652,239509,WCarter@hacfs.com,http://HACFS.org,5,9,07XANX,info,,0,0,0,0,0,1,,
+07XARA,NYCEEC,X,"H.C.C. Children's Center, Inc.",,718-518-4209,475 Grand Concourse,10451,3,36,,1004188,237336,pmartinez@hostos.cuny.edu,http://hostos.cuny.edu/childrenscenter,3,7,07XARA,info,9:00 a.m,1,1,0,1,0,0,,
+07XATI,NYCEEC,X,Sunshine Day Care,,718-989-9804,416 Willis Avenue,10454,1,72,15,1006478,235518,elizabeth@sunshinenewyork.com,http://sunshinenewyork.com,3,6,07XATI,info,8:00 AM,1,1,0,0,0,1,,1
 07XATO,NYCEEC,X,Saint Anselm School,,718-993-9464,685 Tinton Avenue,10455,1,18,,1010413,236667,b223@adnyeducation.org,http://stanselmbx.org,3,3,07XATO,info,8:15 AM,1,0,0,0,0,1,,1
-07XAYP,NYCEEC,X,Tender Tot's East 137th Street,,732-987-5252,531 East 137th Street,10454,1,54,18,1006715,233209,chaim@sterlingeg.com,http://tendertotsny.com,5,9,07XAYP,info,8:20 AM,1,1,209,0,0,0,,1
-07XAZD,NYCEEC,X,A House on Beekman Preschool,,917-801-3884,390 Jackson Avenue,10454,1,14,18,1009045,233984,sloan@ahouseonbeekman.org,,5,9,07XAZD,info,8:00 AM,0,0,0,0,0,0,,
-07Z028,PKC,X,Learning through Play Pre-K Center at 105 Willis Avenue,,718-401-0510,105 Willis Avenue,10454,1,,,1004715,232921,crahyne2@schools.nyc.gov,http://schools.nyc.gov/Academics/EarlyChildhood/District7PKC,2,1,07Z028,info,8:10 AM,0,1,0,0,0,0,,1
-07Z029,PKC,X,Learning through Play Pre-K Center at 535 Union Avenue,,718-292-4120,535 Union Avenue,10455,1,162,,1010311,235124,crahyne2@schools.nyc.gov,http://schools.nyc.gov/Academics/EarlyChildhood/District7PKC,2,3,07Z029,info,8:10 AM,0,1,0,0,0,0,,1
+07XAYP,NYCEEC,X,Tender Tot's East 137th Street,,732-987-5252,531 East 137th Street,10454,1,54,,1006715,233209,chaim@sterlingeg.com,http://tendertotsny.com,5,9,07XAYP,info,8:20 AM,1,1,209,0,0,0,,1
+07XAZD,NYCEEC,X,A House on Beekman Preschool,,917-801-3884,390 Jackson Avenue,10454,1,14,,1009045,233984,sloan@ahouseonbeekman.org,,5,9,07XAZD,info,8:00 AM,0,0,0,0,0,0,,
+07Z028,PKC,X,Learning through Play Pre-K Center at 105 Willis Avenue,,718-401-0510,105 Willis Avenue,10454,1,,30,1004715,232921,crahyne2@schools.nyc.gov,http://schools.nyc.gov/Academics/EarlyChildhood/District7PKC,2,1,07Z028,info,8:10 AM,0,1,0,0,0,0,,1
+07Z029,PKC,X,Learning through Play Pre-K Center at 535 Union Avenue,,718-292-4120,535 Union Avenue,10455,1,162,45,1010311,235124,crahyne2@schools.nyc.gov,http://schools.nyc.gov/Academics/EarlyChildhood/District7PKC,2,3,07Z029,info,8:10 AM,0,1,0,0,0,0,,1
 08X036,DOE,X,P.S. 36 Unionport,,718-822-5345,1070 Castle Hill Avenue,10472,1,54,,1025718,241505,emaresca@schools.nyc.gov,http://schools.nyc.gov/schoolportals/08/x036,2,7,08X036,info,8:15 AM,0,0,0,0,0,0,,
 08X048,DOE,X,P.S. 48 Joseph R. Drake,,718-589-4312,1290 Spofford Avenue,10474,1,,,1015563,235913,ddavilar@schools.nyc.gov,http://schools.nyc.gov/schoolportals/08/x048,3,3,08X048,info,8:00 AM,0,0,0,0,0,0,,1
 08X062,DOE,X,P.S. 62 Inocensio Casanova,,718-585-1617,660 Fox Street,10455,1,54,,1011862,235824,lmanfre2@schools.nyc.gov,http://schools.nyc.gov/schoolportals/08/x062,2,3,08X062,info,8:20 AM,0,0,0,0,0,0,,1
@@ -458,7 +457,6 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 10XAPI,NYCEEC,X,Saint Dominic's TORCH,,718-365-7238,2340 Andrews Avenue,10468,1,26,,1010129,253401,erosally@sdomhome.org,http://stdominicshome.org,2,2,10XAPI,info,8:15 AM,0,0,0,0,0,0,,1
 10XAPK,NYCEEC,X,Salvation Army - Tremont,,718-563-1530,2121 Washington Avenue,10457,1,,,1013186,249763,cecil.hodge@use.salvationarmy.org,http://salvationarmy.org,3,3,10XAPK,info,,0,0,0,0,0,1,,1
 10XAPN,NYCEEC,X,1199 Future of America Learning Center,,718-562-2915,2500 Creston Avenue,10468,1,60,,1012478,253691,bonnie.mallonga@1199ccc.org,http://childcarecorp.org/falc,1,6,10XAPN,info,9:30 a.m,1,1,0,0,0,1,,
-10XARG,NYCEEC,X,Monsignor Boyle,,718-405-7824,3044 Hull Avenue,10467,1,56,,1017576,256812,rgershenlowy@cmcs.org,http://cmcs.org,3,3,10XARG,info,8:30 a.m,0,0,0,0,0,1,,
 10XARI,NYCEEC,X,Lehman College Childcare Center,,718-960-8746,250 Bedford Park Boulevard West ,10468,1,,,1013778,258009,jaci@imagineelc.com,http://imagineelc.com,7,9,10XARI,info,9:30 a.m,1,1,0,0,0,1,,
 10XARV,NYCEEC,X,Bronx Day Care Center Inc.,,646-384-4222,559 East Tremont Avenue,10457,1,18,,1013316,247703,asad4222@gmail.com,,3,2,10XARV,info,8:30 AM,1,1,0,0,0,0,,1
 10XASA,NYCEEC,X,Saint Dominic's TORCH,,347-270-9219,2195 Valentine Avenue,10457,1,60,,1012155,250830,msuarez@sdomhome.org,http://stdominicshome.org,3,7,10XASA,info,8:00 AM,0,0,0,0,0,0,,1
@@ -819,7 +817,6 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 18K279,DOE,K,P.S. 279 Herman Schreiber,,718-444-4316,1070 East 104th Street,11236,1,,,1014049,173991,lchambers@schools.nyc.gov,http://schools.nyc.gov/schoolportals/18/k279,2,3,18K279,info,8:00 AM,0,0,0,0,0,0,,1
 18KABP,NYCEEC,K,Battalion Christian Academy,,718-913-0100,661 Linden Boulevard,11203,1,36,,1002555,177407,alcockfield@gmail.com,,3,3,18KABP,info,8:30 a.m,1,1,0,1,0,0,,1
 18KAKU,NYCEEC,K,St. Catherine of Genoa St. Therese of Lisieux,,718-629-9330,4410 Avenue D,11203,1,36,,1002310,173103,eemilsen@scgstl.org,http://scgstl.org,3,3,18KAKU,info,8:00 AM,1,1,0,0,0,0,,1
-18KARQ,NYCEEC,K,Parkway School,,718-346-0369,5566 Kings Highway,11203,1,,,1005130,175370,gkgrant@aol.com,http://parkwayschool.org,5,9,18KARQ,info,8:00 AM,1,1,0,0,0,0,,1
 18KAVQ,NYCEEC,K,Hebrew Educational Society,,718-241-3000,9502 Seaview Avenue,11236,1,61,,1014511,169772,alessandra@thehes.org,http://thehes.org,3,3,18KAVQ,info,8:30 a.m,1,1,0,0,0,1,,1
 18KBBO,NYCEEC,K,"Khyle Brenaj Kiddie Daycare, Inc.",,718-345-3636,9718 Flatlands Avenue,11236,1,20,,1011886,173850,kbkdaycare@yahoo.com,http://kbkdaycare.com,7,6,18KBBO,info,7:30 AM,1,1,0,0,0,0,,
 18KBBY,NYCEEC,K,Be Above 27,,718-451-1126,779 East 49th Street,11203,1,,,1003563,173415,beaboveeast49street@yahoo.com,,3,3,18KBBY,info,8:00 a.m,,,0,0,0,1,,1
@@ -830,7 +827,6 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 18KBOW,NYCEEC,K,Friends of Crown Heights,,718-284-2184,141 East 40th Street,11203,1,36,,1000942,176919,saddler@foch.biz,http://fochdaycare.com,3,7,18KBOW,info,8:00 a.m,1,1,0,0,0,1,,1
 18KBPB,NYCEEC,K,Breukelen Early Childhood Development Center,,718-649-1463,717 East 105th Street,11236,1,,,1013270,175635,breukelendcc@verizon.net,http://Breukelenecdc.com,8,3,18KBPB,info,8:30 a.m,1,1,0,1,0,1,,1
 18KBPI,NYCEEC,K,Breukelen Head Start,,718-649-2960,715 East 105th Street,11236,1,20,,1013260,175749,nboodhram.recrooms@gmail.com,,3,3,18KBPI,info,8:30 a.m,1,1,0,0,0,1,,1
-18KBQW,NYCEEC,K,Get Set Kindergarten School - Linden,,718-774-2325,623 Linden Boulevard,11203,1,36,,1002127,177457,getsetkaye@hotmail.com,,2,7,18KBQW,info,9:00 AM,1,1,0,0,0,0,,1
 18KBXV,NYCEEC,K,Yeled V'Yalda 6012,,718-209-1122,6002 Farragut Road,11236,3,,,1006715,171552,bcunin@yeled.org,,5,9,18KBXV,info,,0,0,0,0,0,0,,
 18KCGP,NYCEEC,K,Birch Family Services,,212-616-1851,475 East 57th Street,11203,1,14,,1005765,173846,marjory.antoine@birchfamilyservices.org,http://birchfamilyservices.org,5,9,18KCGP,info,,0,0,0,1,0,1,,
 18KCIC,NYCEEC,K,"Little Einsteins of Canarsie, LLC",,718-251-5000,8413 Avenue K,11236,1,90,,1010231,170493,admin@learningcenter.cc,http://learningcenter.cc,2,3,18KCIC,info,8:00 AM,1,1,0,0,0,0,,1
@@ -951,7 +947,6 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 20KCOL,NYCEEC,K,"Happy Scholars, Inc.",,718-256-0050,7806 New Utrecht Avenue,11214,1,,,983999,162711,happyscholars2013@gmail.com,,3,3,20KCOL,info,8:30 AM,0,0,0,0,0,0,,
 20KCOU,NYCEEC,K,"My Sunshine Kids, Inc.",,347-350-9562,928 55th Street,11219,1,54,,983195,171140,mysunshinekids.ecc@gmail.com,http://littlesunshinecdc.com,3,6,20KCOU,info,8:30 AM,1,1,0,0,0,0,,1
 20KCOX,NYCEEC,K,Little Hands and Feet School,,718-680-5437,1270 Bay Ridge Parkway,11228,1,13,,982011,165313,soos016@aol.com,http://littlehandsandfeetdaycare.com,5,9,20KCOX,info,8:30 AM,1,1,0,0,0,0,,
-20KCPD,NYCEEC,K,Little Sunshine Child Development,,347-673-7239,2102 70th Street,11204,1,,,987976,162301,littlesunshine.cd@gmail.com,http://littlesunshinecdc.com,5,7,20KCPD,info,8:20 AM,1,1,0,0,0,0,,
 20KCPO,NYCEEC,K,Redeemer St. John's Nursery School,,718-833-7700,939 83rd Street,11228,1,18,,978800,165280,rsjnursery@gmail.com,,5,3,20KCPO,info,8:10 AM,0,1,0,0,0,0,,
 20KCRB,NYCEEC,K,Dreamland Day Care,,917-696-6988,1379 West 7 Street,11204,1,18,,989388,162341,dreamlanddc@gmail.com,,5,9,20KCRB,info,8:20 AM,1,1,0,0,0,0,,
 20KCRG,NYCEEC,K,Wise Kidz,,718-871-9888,5814 Fort Hamilton Parkway,11219,1,,,983058,170240,wisekidzinc@gmail.com,,5,9,20KCRG,info,8:30 AM,1,1,209,0,0,0,,1
@@ -1109,30 +1104,30 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 22Z012,PKC,K,The Joan Snow Pre-K Center at 1139 Coney Island Avenue,,718-724-1730,1139 Coney Island Avenue,11230,1,144,,993784,168763,22K853@schools.nyc.gov,http://schools.nyc.gov/Academics/EarlyChildhood/District22PKC,2,3,22Z012,info,8:20 AM,0,0,0,0,0,0,,1
 22Z063,PKC,K,The Joan Snow Pre-K Center at 1340 East 29 Street,,718-758-8970,1340 East 29th Street,11210,1,,,999074,164551,22K853@schools.nyc.gov,http://schools.nyc.gov/Academics/EarlyChildhood/District22PKC,2,3,22Z063,info,8:20 AM,0,0,0,0,0,0,,1
 22Z064,PKC,K,The Joan Snow Pre-K Center at 3610 Glenwood Road,,718-434-7090,3610 Glenwood Road,11218,1,144,,1000492,170333,22K853@schools.nyc.gov,http://schools.nyc.gov/Academics/EarlyChildhood/District22PKC,2,3,22Z064,info,8:20 AM,0,0,0,0,0,0,,1
-23K137,DOE,K,P.S./I.S. 137 Rachel Jean Mitchell,,718-453-2926,121 Saratoga Avenue,11233,1,18,18,1007348,187847,srose8@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k137,3,3,23K137,info,8:20 AM,1,0,0,0,0,0,,
-23K155,DOE,K,P.S./I.S. 155 Nicholas Herkimer,,718-240-4340,1355 Herkimer Street,11233,1,18,18,1009570,186160,ncortes3@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k155,3,7,23K155,info,8:00 AM,0,0,0,0,0,0,,1
-23K156,DOE,K,P.S. 156 Waverly,,718-498-2811,104 Sutter Avenue,11212,1,36,18,1006944,181831,23k156@schools.nyc.gov,http://156k.org,2,3,23K156,info,8:00 AM,0,0,0,0,0,0,,
-23K165,DOE,K,P.S. 165 Ida Posner,,718-495-7759,76 Lott Avenue,11212,1,36,,1008949,178732,jrivers3@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k165,2,3,23K165,info,8:00 AM,0,0,0,0,0,0,,1
-23K178,DOE,K,P.S. 178 Saint Clair Mckelway,,718-495-7768,2163 Dean Street,11233,1,18,18,1007728,185292,jhenry1@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k178,5,3,23K178,info,8:00 AM,0,0,0,0,0,0,,1
+23K137,DOE,K,P.S./I.S. 137 Rachel Jean Mitchell,,718-453-2926,121 Saratoga Avenue,11233,1,18,15,1007348,187847,srose8@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k137,3,3,23K137,info,8:20 AM,1,0,0,0,0,0,,
+23K155,DOE,K,P.S./I.S. 155 Nicholas Herkimer,,718-240-4340,1355 Herkimer Street,11233,1,18,,1009570,186160,ncortes3@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k155,3,7,23K155,info,8:00 AM,0,0,0,0,0,0,,1
+23K156,DOE,K,P.S. 156 Waverly,,718-498-2811,104 Sutter Avenue,11212,1,36,,1006944,181831,23k156@schools.nyc.gov,http://156k.org,2,3,23K156,info,8:00 AM,0,0,0,0,0,0,,
+23K165,DOE,K,P.S. 165 Ida Posner,,718-495-7759,76 Lott Avenue,11212,1,36,30,1008949,178732,jrivers3@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k165,2,3,23K165,info,8:00 AM,0,0,0,0,0,0,,1
+23K178,DOE,K,P.S. 178 Saint Clair Mckelway,,718-495-7768,2163 Dean Street,11233,1,18,30,1007728,185292,jhenry1@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k178,5,3,23K178,info,8:00 AM,0,0,0,0,0,0,,1
 23K184,DOE,K,P.S. 184 Newport,,718-495-7775,273 Newport Street,11212,1,36,,1010622,179822,llinder@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k184,2,3,23K184,info,,0,0,0,0,0,0,,1
-23K284,DOE,K,P.S. 284 Lew Wallace,,718-495-7791,213 Osborn Street,11212,1,18,18,1009894,182254,smunlin@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k284,3,3,23K284,info,,0,0,0,0,0,0,,
-23K298,DOE,K,P.S. 298 Dr. Betty Shabazz,,718-495-7793,85 Watkins Street,11212,1,18,18,1009797,183759,jdill2@schools.nyc.gov,http://ps298.connectwithkids.com,3,3,23K298,info,8:20 AM,0,0,0,0,0,0,,1
+23K284,DOE,K,P.S. 284 Lew Wallace,,718-495-7791,213 Osborn Street,11212,1,18,,1009894,182254,smunlin@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k284,3,3,23K284,info,,0,0,0,0,0,0,,
+23K298,DOE,K,P.S. 298 Dr. Betty Shabazz,,718-495-7793,85 Watkins Street,11212,1,18,15,1009797,183759,jdill2@schools.nyc.gov,http://ps298.connectwithkids.com,3,3,23K298,info,8:20 AM,0,0,0,0,0,0,,1
 23K323,DOE,K,P.S./I.S. 323,,718-495-7781,210 Chester Street,11212,1,36,,1008890,182134,lharris7@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k323,2,3,23K323,info,8:20 AM,1,0,0,0,0,0,,1
-23K327,DOE,K,P.S. 327 Dr. Rose B. English,,718-495-7801,111 Bristol Street,11212,1,36,18,1008639,182807,kchance@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k327,2,3,23K327,info,8:15 AM,0,0,0,0,0,0,,1
-23K401,DOE,K,Christopher Avenue Community School,,718-495-5761,51 Christopher Avenue,11212,1,18,18,1010248,184196,dmitche5@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k401,2,3,23K401,info,8:15 AM,0,0,0,0,0,0,,1
+23K327,DOE,K,P.S. 327 Dr. Rose B. English,,718-495-7801,111 Bristol Street,11212,1,36,,1008639,182807,kchance@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k327,2,3,23K327,info,8:15 AM,0,0,0,0,0,0,,1
+23K401,DOE,K,Christopher Avenue Community School,,718-495-5761,51 Christopher Avenue,11212,1,18,30,1010248,184196,dmitche5@schools.nyc.gov,http://schools.nyc.gov/schoolportals/23/k401,2,3,23K401,info,8:15 AM,0,0,0,0,0,0,,1
 23K446,DOE,K,Riverdale Avenue Community School,,718-485-1679,76 Riverdale Avenue,11212,1,36,,1008226,179691,info@riverdaleavenuebrooklyn.org,http://riverdaleavenuebrooklyn.org,3,3,23K446,info,8:30 AM,1,1,0,0,0,0,,1
-23K599,DOE,K,Brooklyn Landmark Elementary School,,718-443-2747,251 Mcdougal Street,11233,1,36,18,1009065,187213,bklandmark@gmail.com,http://schools.nyc.gov/schoolportals/23/k599,2,3,23K599,info,8:20 AM,0,0,0,0,0,0,,1
-23KAWX,NYCEEC,K,PAL World of Creative Experiences Head Start,,718-345-5219,280 Livonia Avenue,11212,1,18,18,1010003,180674,dwhite@palnyc.org,http://palnyc.org,3,7,23KAWX,info,8:15 a.m,0,0,0,0,0,1,,1
+23K599,DOE,K,Brooklyn Landmark Elementary School,,718-443-2747,251 Mcdougal Street,11233,1,36,,1009065,187213,bklandmark@gmail.com,http://schools.nyc.gov/schoolportals/23/k599,2,3,23K599,info,8:20 AM,0,0,0,0,0,0,,1
+23KAWX,NYCEEC,K,PAL World of Creative Experiences Head Start,,718-345-5219,280 Livonia Avenue,11212,1,18,,1010003,180674,dwhite@palnyc.org,http://palnyc.org,3,7,23KAWX,info,8:15 a.m,0,0,0,0,0,1,,1
 23KBAZ,NYCEEC,K,Nat Azarow Children's Center,,718-346-0924,232 Powell Street,11212,1,40,,1010873,182961,jcroskey@bksny.org,http://bksny.org,3,7,23KBAZ,info,8:00 a.m,1,1,0,0,0,1,,1
-23KBFC,NYCEEC,K,Shirley Chisholm Child Care Center Site 4 Somers,,718-498-6200,33 Somers Street,11233,1,50,18,1008674,186600,shirleychisholmdcc4@live.com,,3,7,23KBFC,info,8:00 a.m,0,0,0,0,0,1,,
-23KBJL,NYCEEC,K,Saratoga - Morris Koppelman Center,,718-345-6666,774 Saratoga Avenue,11212,1,18,18,1007616,180367,sandrews@sco.org,http://sco.org,3,3,23KBJL,info,8:00 a.m,0,0,0,1,0,1,,1
-23KBJU,NYCEEC,K,Shirley Chisholm Day Care Center Site 5 Advent Center,,718-452-1200,265 Sumpter Street,11233,1,29,18,1007906,187363,advent265@aol.com,,3,3,23KBJU,info,8:00 a.m,0,0,0,0,0,1,,
-23KBJW,NYCEEC,K,YWCA-NYC Brownsville Early Learning Center,,718-342-2905,1592 East New York Avenue,11212,1,11,18,1009505,184191,sQuallo@ywcanyc.org,http://ywcanyc.org,3,7,23KBJW,info,8:00 a.m,1,1,0,0,0,1,,1
+23KBFC,NYCEEC,K,Shirley Chisholm Child Care Center Site 4 Somers,,718-498-6200,33 Somers Street,11233,1,50,,1008674,186600,shirleychisholmdcc4@live.com,,3,7,23KBFC,info,8:00 a.m,0,0,0,0,0,1,,
+23KBJL,NYCEEC,K,Saratoga - Morris Koppelman Center,,718-345-6666,774 Saratoga Avenue,11212,1,18,45,1007616,180367,sandrews@sco.org,http://sco.org,3,3,23KBJL,info,8:00 a.m,0,0,0,1,0,1,,1
+23KBJU,NYCEEC,K,Shirley Chisholm Day Care Center Site 5 Advent Center,,718-452-1200,265 Sumpter Street,11233,1,29,,1007906,187363,advent265@aol.com,,3,3,23KBJU,info,8:00 a.m,0,0,0,0,0,1,,
+23KBJW,NYCEEC,K,YWCA-NYC Brownsville Early Learning Center,,718-342-2905,1592 East New York Avenue,11212,1,11,,1009505,184191,sQuallo@ywcanyc.org,http://ywcanyc.org,3,7,23KBJW,info,8:00 a.m,1,1,0,0,0,1,,1
 23KBJZ,NYCEEC,K,Saratoga II - Shirley Chisholm Center,,718-443-4100,69 Saratoga Avenue,11233,1,18,,1007192,188674,ddavidson@sco.org,http://sco.org,3,7,23KBJZ,info,8:30 a.m,0,1,209,0,0,1,,1
-23KBRT,NYCEEC,K,Salvation Army - Brownsville Day Care Center,,718-345-2488,280 Riverdale Avenue 1,11212,1,21,18,1010265,180170,kathryn.meyer@use.salvationarmy.org,,7,3,23KBRT,info,9:00 a.m,0,0,0,0,0,1,,1
-23KBYM,NYCEEC,K,Friends of Crown Heights 26,,718-467-4270,20 Sutter Avenue,11212,1,38,18,1005874,181647,emerita.murrell1@gmail.com,http://fochdaycare.org,3,3,23KBYM,info,8:00 a.m,0,0,0,0,0,1,,1
+23KBRT,NYCEEC,K,Salvation Army - Brownsville Day Care Center,,718-345-2488,280 Riverdale Avenue 1,11212,1,21,,1010265,180170,kathryn.meyer@use.salvationarmy.org,,7,3,23KBRT,info,9:00 a.m,0,0,0,0,0,1,,1
+23KBYM,NYCEEC,K,Friends of Crown Heights 26,,718-467-4270,20 Sutter Avenue,11212,1,38,,1005874,181647,emerita.murrell1@gmail.com,http://fochdaycare.org,3,3,23KBYM,info,8:00 a.m,0,0,0,0,0,1,,1
 23KCFA,NYCEEC,K,SCO Family of Services,,929-234-6870,225 Newport Street,11212,1,18,,1010105,179731,jpettinicchi@sco.org,http://sco.org/firststepnyc/,3,3,23KCFA,info,,0,0,0,0,0,1,,1
-23KCGN,NYCEEC,K,SCO Family of Services,,718-935-9466,774 Saratoga Avenue,11212,1,36,18,1007553,180354,aroszkowski@sco.org,http://sco.org,3,3,23KCGN,info,8:00 AM,0,0,0,0,0,0,,1
+23KCGN,NYCEEC,K,SCO Family of Services,,718-935-9466,774 Saratoga Avenue,11212,1,36,30,1007553,180354,aroszkowski@sco.org,http://sco.org,3,3,23KCGN,info,8:00 AM,0,0,0,0,0,0,,1
 23KCOE,NYCEEC,K,"Step By Step Early Childhood Education, Inc.",,718-922-6366,1163 Lenox Road,11212,1,36,,1007094,179708,stepbystepecc@gmail.com,http://stepbystepecc.com,3,7,23KCOE,info,8:00 AM,1,1,0,0,0,0,,1
 24Q007,DOE,Q,P.S. 007 Louis F. Simeone,,718-446-2726,80-55 Cornish Avenue,11373,1,,,1016815,208578,STucci@schools.nyc.gov,,5,9,24Q007,info,,0,0,0,0,0,0,,
 24Q028,DOE,Q,P.S. 28 - The Thomas Emanuel Early Childhood Center,,718-271-4971,109-10 47th Avenue,11368,1,12,,1024571,211469,lpessut@schools.nyc.gov,http://schools.nyc.gov/schoolportals/24/q028,5,9,24Q028,info,8:20 AM,0,0,0,0,1,0,,
@@ -1460,7 +1455,6 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 28QAWG,NYCEEC,Q,Bright Beginnings Pre-School,,718-297-6767,8625 162nd Street,11432,1,58,,1039416,198013,brightbeginningsjamaica@gmail.com,http://brightbeginningschildcenter.com,3,4,28QAWG,info,8:00 AM,1,1,0,0,0,0,,1
 28QAWH,NYCEEC,Q,Central Queens YM & YWHA,,718-268-5011,67-09 108th Street,11375,1,,,1026604,204822,ssomeck@cqy.org,http://cqy.org,7,3,28QAWH,info,8:20 AM,1,1,0,0,0,0,,
 28QAWK,NYCEEC,Q,"Sholom Sholom, Inc.",,718-850-2934,11666 Park Lane South,11415,1,56,,1029486,197404,sholomdaycare@aol.com,,3,7,28QAWK,info,8:40 AM,1,1,109,0,0,0,,1
-28QAWM,NYCEEC,Q,Rego Park Day School,,718-897-0693,6344 Wetherole Street,11374,1,54,,1021810,204581,mjoseph481@aol.com,http://foresthillsandregoparkschool.com,7,7,28QAWM,info,8:00 AM,1,1,0,0,0,0,,
 28QAWO,NYCEEC,Q,ICCD,,718-263-1587,98-02 62nd Drive,11374,1,,,1023153,206307,rkontner@iccd.com,http://iccd.com,5,2,28QAWO,info,8:25 AM,1,1,0,0,0,0,,
 28QAWS,NYCEEC,Q,It's My Turn,,718-845-4973,131-15 Liberty Avenue,11419,1,20,,1035656,190782,playmatesnurseryinc@gmail.com,,2,3,28QAWS,info,8:00 AM,1,1,0,0,0,0,,
 28QAWT,NYCEEC,Q,Afro-American Parents Educational Center Site 2,,718-322-9080,11206 Sutphin Boulevard,11435,5,53,,1041167,189650,bev11435@yahoo.com,,3,3,28QAWT,info,8:00 a.m,1,0,0,0,0,1,,
@@ -1756,7 +1750,6 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 32KBRA,NYCEEC,K,Bushwick United HDFC 7,,347-695-1562,600 Hart Street,11221,1,66,,1004161,193357,sandrat@bushwickunited.org,http://bushwickunited.org,3,3,32KBRA,info,7:30 a.m,1,1,209,1,0,1,,1
 32KBRZ,NYCEEC,K,Bushwick United HDFC 3,,718-453-9040,331 Central Avenue,11221,1,20,,1006609,192524,maryangelc@bushwickunited.org,http://bushwickunited.org,5,9,32KBRZ,info,8:30 a.m,,,209,0,0,1,,1
 32KBSA,NYCEEC,K,Bushwick United HDFC 2,,718-821-2345,77 Wilson Avenue,11237,1,,,1004288,195057,rosannas@bushwickunited.org,http://bushwickunited.org,3,3,32KBSA,info,8:00 a.m,0,1,209,0,0,1,,1
-32KBSB,NYCEEC,K,"HCHC, Inc.",,718-443-3917,1419 Broadway,11221,1,10,,1006406,190170,vera.gregory@aceintegration.org,,3,3,32KBSB,info,8:00 a.m,0,0,209,1,0,0,,1
 32KBSC,NYCEEC,K,New Life Child Development Center 3,,718-417-4206,408 Grove Street,11237,1,43,,1008501,194797,dbrown.newlife@gmail.com,,3,7,32KBSC,info,8:00 a.m,0,0,209,0,0,1,,1
 32KBSD,NYCEEC,K,Salvation Army - Bushwick,,718-455-0100,1151 Bushwick Avenue,11221,1,,,1007190,190417,Marie.Thelemaque@usa.salvationarmy.org,,3,3,32KBSD,info,,0,0,0,0,0,1,,
 32KBVB,NYCEEC,K,New Life Child Development Center 2,,718-381-8968,406 Grove Street,11237,1,100,,1008455,194743,senasantos@aol.com,,3,2,32KBVB,info,8:00 a.m,0,0,209,0,0,1,,1
@@ -1775,7 +1768,6 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 25QBLZ,NYCEEC,Q,"Ulmer Associates, LLC",,718-661-4700,25-56 Ulmer Street,11354,3,36,,1029153,221382,foreveryoungcclc@gmail.com,http://foreveryoungchildcarecenter.com,1,3,25QBLZ,info,,1,1,0,0,0,0,,
 26Q376,DOE,Q,P.S. 376,,Not available,210-07 48th Avenue,11364,1,,,1047885,214410,Not available,,5,9,26Q376,info,,0,0,0,0,0,0,,1
 27Q377,DOE,Q,P.S. 377,,Not available,9840 Albert Road,11417,1,36,,1029546,182892,Not available,,5,9,27Q377,info,,0,0,0,0,0,0,,1
-29QBOJ,NYCEEC,Q,"Center Of Excellence Queens Village, Inc.",,718-523-3600,96-11 Springfield Boulevard,11429,3,36,,1057622,201088,ChildCareNYC@aol.com,http://AoeSchool.com,3,4,29QBOJ,info,,1,1,0,1,0,0,,
 31R068,DOE,R,Port Richmond School for Visionary Learning,,718-816-3377,1625 Forest Avenue,10302,1,,,944686,166930,Not available,http://www.ps68.org,5,9,31R068,info,,0,0,0,0,0,0,,1
 02Z089,PKC,M,District 2 Pre-K Center at 2 Lafayette Street,,212-422-6310,2 Lafayette Street,10007,1,36,,983256,199305,Ajacko@schools.nyc.gov,http://schools.nyc.gov/Academics/EarlyChildhood/District2PKC,5,9,02Z089,info,,0,0,0,0,0,0,,1
 10Z107,PKC,X,Rose Hill Pre-K Center at 2490-2500 Webster Avenue,,718-920-0680,2490-2500 Webster Avenue,10458,1,198,,1014062,252926,MCroft@schools.nyc.gov,http://schools.nyc.gov/Academics/EarlyChildhood/District10PKC,5,9,10Z107,info,,0,0,0,0,0,0,,1
@@ -1786,12 +1778,11 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 25Z118,PKC,Q,District 25 Pre-K Center at 123-07 22nd Ave,,718-357-2840,123-07 22nd Ave,11356,1,144,,1027196,223548,BLevy1@schools.nyc.gov,http://schools.nyc.gov/Academics/EarlyChildhood/District25PKC,5,9,25Z118,info,,0,0,0,0,0,0,,1
 30Z119,PKC,Q,District 30 Pre-K Center at 27-35 Jackson Avenue,,929-424-4756,27-35 Jackson Avenue,11101,1,180,,1000862,211785,MCerff@schools.nyc.gov,,5,9,30Z119,info,,0,0,0,0,0,0,,1
 02MBMK,NYCEEC,M,Vanderbilt Ymca,,212-630-9645,224 East 47 Street,10017,1,,,992169,213847,jmata@ymcanyc.org,,5,9,02MBMK,info,,0,0,0,0,0,0,,
-07XBAS,NYCEEC,X,Sunshine Lc Of Morris Ave Llc,,732-927-7080,253 EAST 142 STREET,10451,2,54,18,1004970,236145,jeff@sunshinenewyork.com,,5,9,07XBAS,info,,0,0,0,0,0,0,,1
+07XBAS,NYCEEC,X,Sunshine Lc Of Morris Ave Llc,,732-927-7080,253 EAST 142 STREET,10451,2,54,15,1004970,236145,jeff@sunshinenewyork.com,,5,9,07XBAS,info,,0,0,0,0,0,0,,1
 10XBAH,NYCEEC,X,The Learning Experience,,718-708-5884,3210 Riverdale Avenue,10463,2,18,,1009840,260953,riverdale@tlechildcare.com,,5,9,10XBAH,info,,0,0,0,0,0,0,,
 15KCPP,NYCEEC,K,Kings By Y At Windsor Terrace,,718-648-7703,1224 Prospect Avenue,11218,1,,,990856,177275,lora@kingsbayy.org,,5,9,15KCPP,info,,0,0,0,0,0,0,,1
 15KBVG,NYCEEC,K,Upk @ 5002,,718-438-0008,5002 8 Avenue,11220,1,54,,983191,172820,future@bca.net,,5,9,15KBVG,info,,0,0,0,0,0,0,,
 17KAQX,NYCEEC,K,Precious Memories Daycare,,718-287-0037,3124 Church Avenue,11226,1,18,,998599,176407,pettrinaclarke@yahoo.com,,5,9,17KAQX,info,8:30 AM,1,1,0,0,0,0,,1
-18KCRH,NYCEEC,K,Scholartech Daycare Inc,,917-344-9774,9402 Avenue L,11236,1,,,1012710,171466,scholartechacademy@gmail.com,,5,9,18KCRH,info,,0,0,0,0,0,0,,1
 20KCRV,NYCEEC,K,Upk @ 757,,718-438-0008,757 60 Street,11220,2,108,,981324,171025,future@bca.net,,5,9,20KCRV,info,,0,0,0,0,0,0,,1
 20KCSO,NYCEEC,K,Step Ahead Llc,,718-680-2221,7100 Ridge Boulevard,11209,1,28,,976088,170529,stepaheadbayridge@gmail.com,,5,9,20KCSO,info,,0,0,0,0,0,0,,
 21KBCJ,NYCEEC,K,Mazel Day School,,718-368-4490,2901 Brighton 6 Street,11235,1,,,994587,151048,mazeloffice@gmail.com,,5,9,21KBCJ,info,,0,0,0,0,0,0,,
@@ -1808,23 +1799,19 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 26Q098,DOE,Q,P.S. 098 The Douglaston School,,718-423-8535,40-20 235th Street,11363,1,18,,1053499,219509,LKim@schools.nyc.gov,,5,9,26Q098,info,,0,0,0,0,0,0,,
 15KBVR,NYCEEC,K,Sunset Park Health Council Inc.,,718-435-6540,4419 7th Avenue,11220,1,,,983537,174502,Katrina.Crum@nyumc.org,,5,9,15KBVR,info,,0,0,0,0,0,0,,
 15KAAO,NYCEEC,K,Al Noor School,,718-768-7181,675 4 AVENUE,11232,1,36,,985471,180744,arwa.alukam@alnoornyc.org,,5,9,15KAAO,info,,0,0,0,0,0,0,,
-11XATU,NYCEEC,X,21st Street Associates LLC,,718-301-1212,934 EAST GUNHILL ROAD,10469,3,32,,1023045,258180,accel2@healthychoice.net,,5,9,11XATU,info,,0,0,0,0,0,0,,
 25QBOL,NYCEEC,Q,Leading Kids Preschool,,516-426-9220,124-15 14 AVENUE,11356,3,,,1027535,225436,leadingkidspreschool@gmail.com,,5,9,25QBOL,info,,0,0,0,0,0,0,,
 25QBDU,NYCEEC,Q,Morning Star Preschool II,,718-229-0206,75-43 Parson Blvd FL2,11367,3,36,,1036726,203682,311.morningstar@gmail.com,,5,9,25QBDU,info,,0,0,0,0,0,0,,
 18KCQG,NYCEEC,K,Battalion Christian Academy 2,,718-913-0100,661 Linden Boulevard,11203,3,18,,1002555,177407,alcockfield@gmail.com,,5,9,18KCQG,info,,0,0,0,0,0,0,,
 13KBNK,NYCEEC,K,Bedford Stuyvesant ECDC 262,,718-453-0760,262 Lexington Avenue,11216,3,,,997680,189790,Lubellmorriss@bsecdc.org,,5,9,13KBNK,info,,0,0,0,0,0,0,,
 22KAMW,NYCEEC,K,"YESHIVA & MESIVTA TORAH TEMIMAH, INC.",,718-853-8500,555 Ocean Parkway    ,11218,3,36,,991887,170579,morahleahp@gmail.com,,5,9,22KAMW,info,,0,0,0,0,0,0,,
 01MBAA,NYCEEC,M,St. Brigid Early Childhood Academy,,212-677-0105,185 Avenue D,10009,1,90,,991422,203897,Steve.Hernon@archny.org,,5,9,01MBAA,info,,0,0,0,0,0,0,,1
-25QBON,NYCEEC,Q,"Kissena Cherry Daycare, Inc",,718-886-2889,47-49 162 Street,11358,3,,,1038202,212879,flora888c@yahoo.com,,5,9,25QBON,info,,0,0,0,0,0,0,,
 28QAIW,NYCEEC,Q,Yeshivath Ohr Haiim,,718-658-7066,86-06 135 Street,11418,3,18,,1034011,196422,ohrhaiim@yahoo.com,,5,9,28QAIW,info,,0,0,0,0,0,0,,
 30QBDX,NYCEEC,Q,Milton's Daycare,,718-424-0663,34-47 88 Street,11372,1,10,,1017714,213663,miltondiaz88@hotmail.com,,5,9,30QBDX,info,,0,0,0,0,0,0,,1
 17KBSP,NYCEEC,K,All My Children Daycare 14,,Not available,771 Crown Street,11213,1,,,1003074,181662,,,5,9,17KBSP,info,,,,0,0,0,1,,1
 27QAZI,NYCEEC,Q,Sheldon R. Weaver Child Care Center,,718-327-4078,72-05 Beach Channel Drive,11692,1,1,,1039582,154694,sheldonweaverdcc@gmail.com,,5,9,27QAZI,info,,,,0,0,0,1,,1
-02MBKT,NYCEEC,M,Tribeca Early Childhood Learning Center,,212-343-6930,1 York Street,10013,1,18,,982655,201987,,,5,9,02MBKT,info,,,,0,0,0,1,,1
 12XAJT,NYCEEC,X,East Tremont Child Care and Development Center,,718-731-4166,1811 Crotona Avenue,10457,1,,,1013729,246384,etccdc@aol.com,www.etccdc.com,5,9,12XAJT,info,,,,0,0,0,1,,
 19KBRP,NYCEEC,K,Friends of Crown Heights Educational Center #5,,347-435-0990,374 Pine Street,11208,1,40,,1019967,185755,nichols@foch.biz,http://www.fochdaycare.org/,5,9,22KBRP,info,,,,0,0,0,1,,
 04MAPP,NYCEEC,M,Therapeutic Early Childhood Center,,Not available,1301 Fifth Avenue,10029,1,10,,998381,229730,aparedes@northsidecenter.org,,5,9,04MAPP,info,,,,0,0,0,1,,1
-15KAWC,NYCEEC,K,"HANOVER PLACE CHILD CARE CENTER, LLC",,(347) 916-0324,15 Hanover Place,11201,1,,,989158,190182,hanoverchildcare@aol.com,,5,9,15KAWC,info,,,,0,0,0,0,,1
 03M452,DOE,M,P.S. 452,"<i><b>Please note:</b> This program will be re-sited to this location for the 2017-18 school year and added to the Pre-K for All application. If you have already submitted an application, and are interested in P.S. 452, please update your application accordingly before Feb. 24.</i>",212-496-1050,210 West 61 Street,10023,1,54,,987708,220393,DParker12@schools.nyc.gov,,5,9,03M452,info,,,,0,0,0,0,,
 10XALT,NYCEEC,X,Riverdale Nursery School And Family Center,,(718) 884-3950,3816 Waldo Avenue,10463,1,20,,1010899,262721,info@rnsfc.org,,5,9,10XALT,info,,,,0,0,0,0,,
 21KCBR,NYCEEC,K,Yeshivat Darche Eres,,(718) 645-1256,49 Avenue T,11223,3,,,988852,157205,info@rnsfc.org,,5,9,21KCBR,info,,,,0,0,0,0,,1
@@ -1852,7 +1839,6 @@ LOCCODE,TYPE,BOROUGH,NAME,NOTE,PHONE,ADDRESS,ZIP,DAY_LENGTH,PREK_SEATS,3K_SEATS,
 13KBVZ,NYCEEC,K,Little Sun People,,718-789-7330,1360 Fulton Street,11216,1,18,,999090,187012,faye@littlesunpeople.com,www.littlesunpeople.com,5,9,13KBVZ,info,8:40 a.m,1,1,0,0,0,0,,1
 30QAYG,NYCEEC,Q,All Children's Child Care (31st Avenue),,718-777-2011,32-04 31st Avenue,11106,1,40,,1005693,217526,nycdaycare24@aol.com,www.allchildrenschildcare.org,5,9,30QAYG,info,8:00 a.m,1,1,0,0,0,0,,1
 31RAEW,NYCEEC,R,"4 Angels Day Care, Inc.",,718-876-6498,245 Simonson Avenue,10303,1,,,942018,169003,my4angelsdaycareinc@msn.com,www.4angelsdaycareinc.com,5,9,31RAEW,info,8:15 a.m,1,1,0,0,0,0,,1
-19KCJX,NYCEEC,K,MOHDC- Smart Start,,718-485-8500,533 Blake Avenue,11207,1,108,,1012214,182425,rayed@mohdc.com,www.mohdcsmartstart.com,5,9,19KCJX,info,8:00 a.m,1,1,0,0,0,0,,1
 24QATB,NYCEEC,Q,Johnson's Academy LLC,,718-592-7289,9904 57th Avenue,11368,1,20,,1023253,208338,aleimj@gmail.com,n/a,5,9,24QATB,info,8:00 a.m,0,1,0,0,0,0,,1
 03MBMI,NYCEEC,M,All My Children Daycare Uws,,7187302370,101 West 85 Street,10024,1,,,991701,225636,dasbinah@yahoo.com,,5,9,03MBMI,info,,,,0,0,0,0,,1
 08XBAY,NYCEEC,X,Tender Tots Close Ave. Llc,,7329875252,1090 Close Avenue,10472,1,54,,1016862,239902,chaim@tendertotsny.com,,5,9,08XBAY,info,,,,0,0,0,0,,1

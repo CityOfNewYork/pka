@@ -35,7 +35,7 @@ pka.ApplicationPeriod.prototype = {
 	 * @return {boolean}
 	 */
 	isActive: function(){
-		var today = this.localeDate();
+		var today = new Date();
 		return today >= this.applyStart && today < this.applyEnd;		
 	},
 	/** 
