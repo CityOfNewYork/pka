@@ -101,8 +101,9 @@ function csvContentLoaded(csvContent){
 				title: 'age group',
 				expanded: true,
 				choices: [
-					{name: 'prek3k', value: '3,b', label: '3-K (' + (schoolContent.message('start_year') - 3) + ' birth year)', checked: true},
-					{name: 'prek3k', value: 'p,b', label: 'Pre-K (' + (schoolContent.message('start_year') - 4) + ' birth year)', checked: true}
+					{name: 'prek3', value: 'el,el-3k,el-3k-pk,el-pk', label: 'early learn 3s <span class="birth">(born ' + (schoolContent.message('start_year') - 3) + ')</span>', checked: true},
+					{name: 'prek3', value: 'el-3k,el-3k-pk,3k,3k-pk', label: '3-K <span class="birth">(born ' + (schoolContent.message('start_year') - 3) + ')</span>', checked: true},
+					{name: 'prek3', value: 'el-3k-pk,el-pk,pk,3k-pk', label: 'Pre-K <span class="birth">(born ' + (schoolContent.message('start_year') - 4) + ')</span>', checked: true}
 		        ]
 			}),
 			new nyc.Check({

@@ -140,9 +140,21 @@ pka.htmlRenderer = {
 			.append(this.specialHtml(props))
 			.append(this.incomeHtml(props))
 			.append(this.getLangContent('info'))
-			.append(this.get('3K_SEATS') > 0 ? this.message('info_3k_seats', props) : '')
-			.append(this.message('info_prek_seats', props))
+			.append(this.seatsHtml(props))			
 			.append(this.contactHtml(props));
+	},
+	/**
+	 * @private 
+	 * @static
+	 * @method
+	 * @param {Object<string, Object>} props
+	 * @return {string} 
+	 */
+	seatsHtml: function(props){
+		var seats = (this.get('EL_SEATS') > 0 ? this.message('info_el_seats', props) : '');
+		seats += (this.get('3K_SEATS') > 0 ? this.message('info_3k_seats', props) : '');
+		seats += (this.message('info_prek_seats', props));
+		return this.message('info_seats', props) + '<ul>' + seats + '</ul>';
 	},
 	/**
 	 * @private 

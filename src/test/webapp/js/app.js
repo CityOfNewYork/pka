@@ -24,7 +24,7 @@ QUnit.test('constructor', function(assert){
 
 	var filterDisplay = nyc.App.prototype.filterDisplay;
 	var ready = nyc.App.prototype.ready;
-	var checkUrl = nyc.App.prototype.checkUrl;
+	var checkEntryPoint = nyc.App.prototype.checkEntryPoint;
 	
 	nyc.App.prototype.filterDisplay = function(applPeriod){
 		assert.deepEqual(applPeriod, applicationPeriod);
@@ -36,15 +36,15 @@ QUnit.test('constructor', function(assert){
 		done();
 	};
 
-	nyc.App.prototype.checkUrl = function(){
-		assert.ok(true);
+	nyc.App.prototype.checkEntryPoint = function(event){
+		assert.notOk(event);
 	};
 
 	app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	
 	nyc.App.prototype.filterDisplay = filterDisplay;
 	nyc.App.prototype.ready = ready;
-	nyc.App.prototype.checkUrl = checkUrl;
+	nyc.App.prototype.checkEntryPoint = checkEntryPoint;
 
 });
 
@@ -428,16 +428,212 @@ QUnit.test('zoomChange', function(assert){
 	
 });
 
-QUnit.test('filter3k', function(assert){
+QUnit.test('autoFilter el', function(assert){
+	assert.expect(2);
+
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
+	
+	var first = true;
+	ageFilters.on('change', function(){
+		if (first){
+			first = false;
+			assert.deepEqual(ageFilters.val(), [
+               {name: 'prek3', value: 'el,el-3k,el-3k-pk,el-pk', label: 'early learn 3s', checked: true},
+               {name: 'prek3', value: 'el-3k-pk,el-pk,pk,3k-pk', label: 'Pre-K', checked: true}]
+			);
+		}else{
+			assert.deepEqual(ageFilters.val(), [{name: 'prek3', value: 'el,el-3k,el-3k-pk,el-pk', label: 'early learn 3s', checked: true}]);
+		}
+	});
+	
+	app.autoFilter([ageFilters.inputs[1], ageFilters.inputs[2]]);
+	
+	delete app;		
+});
+
+QUnit.test('autoFilter 3k', function(assert){
+	assert.expect(2);
+
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
+	
+	var first = true;
+	ageFilters.on('change', function(){
+		if (first){
+			first = false;
+			assert.deepEqual(ageFilters.val(), [
+               {name: 'prek3', value: 'el-3k,el-3k-pk,3k,3k-pk', label: '3-K', checked: true},
+               {name: 'prek3', value: 'el-3k-pk,el-pk,pk,3k-pk', label: 'Pre-K', checked: true}]
+			);
+		}else{
+			assert.deepEqual(ageFilters.val(), [{name: 'prek3', value: 'el-3k,el-3k-pk,3k,3k-pk', label: '3-K', checked: true}]);
+		}
+	});
+	
+	app.autoFilter([ageFilters.inputs[0], ageFilters.inputs[2]]);
+	
+	delete app;		
+});
+
+QUnit.test('checkEntryPoint 3k button', function(assert){
 	assert.expect(1);
 
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
+	
+	app.autoFilter = function(checks){
+		assert.deepEqual(checks, [ageFilters.inputs[0], ageFilters.inputs[2]]);
+	};
+	
+	app.checkEntryPoint({target: $('<button class="3k"></button>').get(0)});
+	
+	delete app;		
+});
 
-	app.filterControls[0].on('change', function(){
-		assert.deepEqual(app.filterControls[0].val(), [{checked: true, label: '3-K (3 year olds)', name: 'prek3k', value: '3,b'}]);
-	});
+QUnit.test('checkEntryPoint 3k span', function(assert){
+	assert.expect(1);
+
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
 	
-	app.filter3k();
+	app.autoFilter = function(checks){
+		assert.deepEqual(checks, [ageFilters.inputs[0], ageFilters.inputs[2]]);
+	};
 	
+	var button = $('<button class="3k"><span></span></button>')
+	
+	app.checkEntryPoint({target: button.children().get(0)});
+	
+	delete app;		
+});
+
+QUnit.test('checkEntryPoint el button', function(assert){
+	assert.expect(1);
+
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
+	
+	app.autoFilter = function(checks){
+		assert.deepEqual(checks, [ageFilters.inputs[1], ageFilters.inputs[2]]);
+	};
+	
+	app.checkEntryPoint({target: $('<button class="el"></button>').get(0)});
+	
+	delete app;		
+});
+
+QUnit.test('checkEntryPoint 3k span', function(assert){
+	assert.expect(1);
+
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
+	
+	app.autoFilter = function(checks){
+		assert.deepEqual(checks, [ageFilters.inputs[1], ageFilters.inputs[2]]);
+	};
+	
+	var button = $('<button class="el"><span></span></button>')
+	
+	app.checkEntryPoint({target: button.children().get(0)});
+	
+	delete app;		
+});
+
+QUnit.test('checkEntryPoint prek button', function(assert){
+	assert.expect(1);
+
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
+	
+	app.autoFilter = function(checks){
+		assert.deepEqual(checks, [ageFilters.inputs[0], ageFilters.inputs[1]]);
+	};
+	
+	app.checkEntryPoint({target: $('<button class="prek"></button>').get(0)});
+	
+	delete app;		
+});
+
+QUnit.test('checkEntryPoint prek span', function(assert){
+	assert.expect(1);
+
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
+	
+	app.autoFilter = function(checks){
+		assert.deepEqual(checks, [ageFilters.inputs[0], ageFilters.inputs[1]]);
+	};
+	
+	var button = $('<button class="prek"><span></span></button>')
+	
+	app.checkEntryPoint({target: button.children().get(0)});
+	
+	delete app;		
+});
+
+QUnit.test('bannerHtml el', function(assert){
+	assert.expect(6);
+
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
+
+	var banner = $('<div class="banner"><h1>text</h1><img alt="alt">');
+	$('body').append(banner);
+
+	app.bannerHtml(ageFilters.choices[0].value.split(','));
+	
+	assert.equal($('.banner h1').html(), 'Early Learn 3s Finder');
+	assert.equal($('.banner h1').attr('title'), 'NYC Early Learn 3s Finder');
+	assert.equal($('.banner h1').attr('onclick'), 'document.location="../el";');
+	assert.equal($('.banner img').attr('alt'), 'NYC Early Learn 3s Finder');
+	assert.equal($('.banner img').attr('title'), 'NYC Early Learn 3s Finder');
+	assert.equal($('.banner img').attr('onclick'), 'document.location="../el";');
+	
+	banner.remove();
+	delete app;		
+});
+
+QUnit.test('bannerHtml 3k', function(assert){
+	assert.expect(6);
+
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
+
+	var banner = $('<div class="banner"><h1>text</h1><img alt="alt">');
+	$('body').append(banner);
+
+	app.bannerHtml(ageFilters.choices[1].value.split(','));
+	
+	assert.equal($('.banner h1').html(), '3-K Finder');
+	assert.equal($('.banner h1').attr('title'), 'NYC 3-K Finder');
+	assert.equal($('.banner h1').attr('onclick'), 'document.location="../3k";');
+	assert.equal($('.banner img').attr('alt'), 'NYC 3-K Finder');
+	assert.equal($('.banner img').attr('title'), 'NYC 3-K Finder');
+	assert.equal($('.banner img').attr('onclick'), 'document.location="../3k";');
+	
+	banner.remove();
+	delete app;		
+});
+
+QUnit.test('bannerHtml prek', function(assert){
+	assert.expect(6);
+
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
+
+	var banner = $('<div class="banner"><h1>text</h1><img alt="alt">');
+	$('body').append(banner);
+
+	app.bannerHtml(ageFilters.choices[2].value.split(','));
+	
+	assert.equal($('.banner h1').html(), 'Pre-K Finder');
+	assert.equal($('.banner h1').attr('title'), 'NYC Pre-K Finder');
+	assert.equal($('.banner h1').attr('onclick'), 'document.location="../upk";');
+	assert.equal($('.banner img').attr('alt'), 'NYC Pre-K Finder');
+	assert.equal($('.banner img').attr('title'), 'NYC Pre-K Finder');
+	assert.equal($('.banner img').attr('onclick'), 'document.location="../upk";');
+	
+	banner.remove();
 	delete app;		
 });

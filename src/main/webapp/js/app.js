@@ -69,17 +69,12 @@ nyc.App = function(applicationPeriod, map, layers, filterControls, lookup, conte
 	$('#map').append($('#btn-call'));
 	$('#btn-call').click($.proxy(me.hotline, me));
 	
-	me.checkUrl();
+	me.checkEntryPoint();
 	
 	$(window).resize($.proxy(me.resize, me));
 };
 
 nyc.App.prototype = {
-	/**
-	 * @public
-	 * @member {boolean}
-	 */
-	is3k: false,
 	/**
 	 * @private
 	 * @member {pka.ApplicationPeriod}
@@ -257,15 +252,17 @@ nyc.App.prototype = {
 		}
 	},
 	/** 
-	 * @desc Show only 3-K sites
+	 * @desc Show only 3-K or EL sites
 	 * @public 
+	 * @param {Array<JQuery>}
 	 * @method
 	 */
-	filter3k: function(){
-		var prek = this.filterControls[0].inputs[1];
-		if (prek.prop('checked')){
-			prek.click();
-		}
+	autoFilter: function(checks){
+		$.each(checks, function(){
+			if (this.prop('checked')){
+				this.click();
+			}
+		});
 	},
 	/** 
 	 * @desc Show only 3-K sites
@@ -367,7 +364,7 @@ nyc.App.prototype = {
 	/** 
 	 * @private 
 	 * @method
-	 * @param {Object} event
+	 * @param {JQuery.Event} event
 	 */
 	tabs: function(event){
 		var target = $(event.currentTarget);
@@ -428,13 +425,22 @@ nyc.App.prototype = {
 		this.listSchools();
 	},
 	/** 
-	 * @private 
+	 * @desc Check URL or splash page button for entry point
+	 * @public 
 	 * @method
+	 * @param {JQuery.Event|undefined} event
 	 */
-	checkUrl: function(){
-		if (document.location.href.indexOf('3k') > -1){
-			this.filter3k();
-			this.is3k = true;
+	checkEntryPoint: function(event){
+		var ageFilters = this.filterControls[0], target = event ? event.target : {};
+		if (target.nodeName == 'SPAN'){
+			target = target.parentNode;
+		}
+		if ($(target).hasClass('el') || document.location.href.indexOf('el') > -1){
+			this.autoFilter([ageFilters.inputs[1], ageFilters.inputs[2]]);
+		}else if ($(target).hasClass('3k') || document.location.href.indexOf('3k') > -1){
+			this.autoFilter([ageFilters.inputs[0], ageFilters.inputs[2]]);
+		}else if ($(target).hasClass('prek')){
+			this.autoFilter([ageFilters.inputs[0], ageFilters.inputs[1]]);
 		}
 	},
 	/** 
@@ -444,12 +450,17 @@ nyc.App.prototype = {
 	 */
 	bannerHtml: function(values){
 		var title, click;
-		if (values && values.indexOf('p') == -1) {
+		values = values || [];
+		if (values.indexOf('el') > -1){
+			title = 'Early Learn 3s Finder';
+			click = 'document.location="../el";';
+		}else if (values.indexOf('3k') > -1){
 			title = '3-K Finder';
-			click = 'document.location="../3k"';
-		}else{
+			click = 'document.location="../3k";';
+		}
+		if (!title){
 			title = 'Pre-K Finder';
-			click = 'document.location="../upk"';
+			click = 'document.location="../upk";';
 		}
 		$('.banner h1, .banner img').html(title).attr('title', 'NYC ' + title).attr('onclick', click).attr('alt', 'NYC ' + title);
 	},
@@ -470,7 +481,7 @@ nyc.App.prototype = {
 			filters.push({property: name, values: namedFilters[name]});
 		}
 
-		me.bannerHtml(namedFilters.prek3k);
+		me.bannerHtml(namedFilters.prek3);
 		
 		//provide time for checkbox display to update
 		setTimeout(function(){
@@ -507,6 +518,10 @@ nyc.App.prototype = {
 		}
 		this.clearPopup();
 	},
+	/** 
+	 * @private 
+	 * @method
+	 */
 	pageChanged: function(){
 		if ($('#panel').width() == $(window).width()){
 			$('#map-tab-btn a').trigger('click');
@@ -523,18 +538,25 @@ nyc.App.prototype = {
 		this.map.setSize([div.width(), div.height()]);
 		this.map.render();
 		this.form.reset();
-	},
-	page: function(event){
-		var target = $(event.currentTarget);
-		if (!this.mapLoaded){
-			$('#first-load').fadeIn();
-		}
-		$('body').pagecontainer('change', target.data('page'), {transition: 'slideup'});
+		$('.banner h1')[$('body').pagecontainer('getActivePage').attr('id') == 'dir-page' ? 'addClass' : 'removeClass']('dir');
 	},
 	/** 
 	 * @private 
 	 * @method
-	 * @param {Object} event
+	 * @param {JQuery.Event} event
+	 */
+	page: function(event){
+		var target = $(event.currentTarget), page = target.data('page');
+		if (!this.mapLoaded){
+			$('#first-load').fadeIn();
+		}
+		$('body').pagecontainer('change', page, {transition: 'slideup'});
+
+	},
+	/** 
+	 * @private 
+	 * @method
+	 * @param {JQuery.Event} event
 	 */
 	tap: function(event){
 		this.mapClick({pixel: [event.offsetX, event.offsetY]});

@@ -153,14 +153,15 @@ function setup(assert, hooks){
 	$('body').append('<div id="filters"><div id="chk-prek-3k"></div><div id="chk-dynamic"></div><div id="chk-apply"></div><div id="chk-sch-type"></div><div id="chk-day-len"></div><div id="chk-prog-feat"></div></div>');
 
 	var filterControls = [
-		new nyc.Check({
+	new nyc.Check({
 		target: '#chk-prek-3k',
-		title: '',
+		title: 'age group',
 		expanded: true,
 		choices: [
-			{name: 'prek3k', value: '3,b', label: '3-K (3 year olds)', checked: true},
-			{name: 'prek3k', value: 'p,b', label: 'Pre-K (4 year olds)', checked: true}
-	    ]
+			{name: 'prek3', value: 'el,el-3k,el-3k-pk,el-pk', label: 'early learn 3s', checked: true},
+			{name: 'prek3', value: 'el-3k,el-3k-pk,3k,3k-pk', label: '3-K', checked: true},
+			{name: 'prek3', value: 'el-3k-pk,el-pk,pk,3k-pk', label: 'Pre-K', checked: true}
+        ]
 	}),
 	new nyc.Check({
 		target: '#chk-dynamic',

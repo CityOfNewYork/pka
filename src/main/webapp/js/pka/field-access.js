@@ -24,12 +24,20 @@ pka.fieldAccess = {
 		this.setId(this.getId());
 		props.fid = this.getId();
 		
-		if (props.PREK_SEATS > 0 && props['3K_SEATS'] > 0){
-			props.prek3k = 'b';
-		}else if (props.PREK_SEATS > 0){
-			props.prek3k = 'p';
-		}else if (props['3K_SEATS'] > 0){
-			props.prek3k = '3';
+		if (props['EL_SEATS'] > 0 && !props['3K_SEATS'] && !props.PREK_SEATS){
+			props.prek3 = 'el';
+		}else if (props['EL_SEATS'] > 0 && props['3K_SEATS'] > 0 && !props.PREK_SEATS){
+			props.prek3 = 'el-3k';
+		}else if (props['EL_SEATS'] > 0 && props['3K_SEATS'] > 0 && props.PREK_SEATS > 0){
+			props.prek3 = 'el-3k-pk';
+		}else if (props['EL_SEATS'] > 0 && !props['3K_SEATS'] && props.PREK_SEATS > 0){
+			props.prek3 = 'el-pk';
+		}else if (!props['EL_SEATS'] && props['3K_SEATS'] > 0 && !props.PREK_SEATS){
+			props.prek3 = '3k';
+		}else if (!props['EL_SEATS'] && !props['3K_SEATS'] && props.PREK_SEATS > 0){
+			props.prek3 = 'pk';
+		}else if (!props['EL_SEATS'] && props['3K_SEATS'] > 0 && props.PREK_SEATS > 0){
+			props.prek3 = '3k-pk';
 		}
 		
 		props.loccode4 = props.fid.substr(props.fid.length - 4);

@@ -34,7 +34,7 @@ pka.Style.prototype = {
 	school: function(feature, resolution){
 		var zoom = this.zoom(resolution),
 			type = feature.getType(),
-			prek3k = feature.get('3K_SEATS') > 0 ? '3k' : 'prek',
+			prek3k = feature.get('3K_SEATS') > 0 || feature.get('EL_SEATS') ? '3k' : 'prek',
 			radius = [8, 8, 16, 16, 16, 24, 24, 32, 32, 48, 48][zoom],
 			image = 'img/' + type + this.imgExt();
 		this.schoolCache[zoom] = this.schoolCache[zoom] || {};

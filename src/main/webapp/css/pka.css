@@ -267,7 +267,8 @@ span.current-value {
 /* ===================== begin header buttons ==================== */
 
 .ui-btn.hdr-btn {
-	top: -4px;
+	top: -5px;
+	right: 3px;
 	padding: 8px 8px 8px 35px;
 }
 .ui-btn:after {
@@ -457,7 +458,9 @@ div#schools-tab, div#filters-tab {
 #chk-prek-3k .ui-collapsible-content label.ui-btn, #chk-prek-3k.ctl-collapse a.ui-collapsible-heading-toggle:hover:after {
 	background-color: #f8993a;
 }
-
+span.birth {
+	font-size: 95%;
+}
 /* ========================== end filter ========================= */
 
 /* ========================== begin list ========================= */
@@ -679,9 +682,7 @@ div#copyright {
 @media only screen and (max-width : 605px) {
 	.ui-page-theme-a .banner h1 {
 		font-size: 14px;
-		white-space: normal;
 		top: 16px;
-		max-width: 200px;
 		right: 3px;
 	}
 	#tabs div[role='tabpanel'] {
@@ -710,7 +711,9 @@ div#copyright {
 	.banner h1 {
 		right: 0;
 		top: 18px;
-		max-width: 300px;
+	}
+	.banner h1.dir {
+		max-width: calc(100% - 245px);
 	}
 	#tabs .ui-navbar a[href='#filters-tab'].filter-on span {
 		padding-left: 25px;
