@@ -25,7 +25,7 @@ pka.htmlRenderer = {
 			$(this.message('info_container', props))
 				.append(this.distanceHtml())
 				.append(this.message('info_name', props))
-				.append(this.message('info_note', props))
+				.append(this.noteHtml(props))
 				.append(this.message('info_address', props))
 				.append(this.pdfBtnHtml(props))
 				.append(this.applyBtnHtml(props))
@@ -33,7 +33,7 @@ pka.htmlRenderer = {
 				.append(this.detailHtml(props))
 				.append(this.actionHtml(props))
 		);
-	},		
+	},
 	/**
 	 * @private 
 	 * @static
@@ -43,6 +43,16 @@ pka.htmlRenderer = {
 	distanceHtml: function(){
 		var dist = this.getDistance();
 		return dist === undefined ? '' : this.message('info_distance', {distance: (dist/5280).toFixed(2)});
+	},
+	/**
+	 * @private 
+	 * @static
+	 * @method
+	 * @param {Object<string, Object>} props
+	 * @return {JQuery} 
+	 */
+	noteHtml: function(props){
+		return props.NOTE ? this.message('info_note', props) : '';
 	},
 	/**
 	 * @private 
