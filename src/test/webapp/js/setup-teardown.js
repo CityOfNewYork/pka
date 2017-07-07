@@ -158,8 +158,8 @@ function setup(assert, hooks){
 		title: 'age group',
 		expanded: true,
 		choices: [
+					{name: 'prek3', value: 'el-3k,el-3k-pk,3k,3k-pk', label: '3-K', checked: true},
 			{name: 'prek3', value: 'el,el-3k,el-3k-pk,el-pk', label: 'early learn 3s', checked: true},
-			{name: 'prek3', value: 'el-3k,el-3k-pk,3k,3k-pk', label: '3-K', checked: true},
 			{name: 'prek3', value: 'el-3k-pk,el-pk,pk,3k-pk', label: 'Pre-K', checked: true}
         ]
 	}),
