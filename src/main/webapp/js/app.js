@@ -69,7 +69,7 @@ nyc.App = function(applicationPeriod, map, layers, filterControls, lookup, conte
 	$('#map').append($('#btn-call'));
 	$('#btn-call').click($.proxy(me.hotline, me));
 	
-	me.checkEntryPoint();
+	me.checkEntryUrl();
 	
 	$(window).resize($.proxy(me.resize, me));
 };
@@ -204,7 +204,7 @@ nyc.App.prototype = {
 			if (feature){
 				var coordinates = feature.getCoordinates();
 				me.map.once('moveend', function(){
-					me.showPopup(feature.getCoordinates(), feature.html('inf-pop'))
+					me.showPopup(feature.getCoordinates(), feature.html('inf-pop'), fid)
 				});
 				if ($('#panel').width() == $(window).width()){
 					$('#map-tab-btn a').trigger('click');
@@ -220,14 +220,21 @@ nyc.App.prototype = {
 	 * @param {string} infoId The id of the HTML container for the  school's info 
 	 */
 	schoolDetail: function(infoId){
-		var popup = this.popup, end;
+		var detail = $('#' + infoId + ' .inf-detail');
 		if (infoId.indexOf('inf-pop') == 0){
-			if (this.isFullScreen()){
-				return this.fullScreenDetail(infoId);
-			}
-			end = function(){popup.pan();};
+			var me = this;
+			detail.slideToggle(function(){
+				if ($('.popup').height() > $('#map').height()){
+					me.fullScreenDetail(infoId);
+					detail.hide();
+				}else{
+					me.popup.pan();
+				}
+			});
+		}else{
+			detail.slideToggle();			
 		}
-		$('#' + infoId + ' .inf-detail').slideToggle(end);
+
 	},
 	/** 
 	 * @desc Show directions to a school
@@ -254,26 +261,18 @@ nyc.App.prototype = {
 	/** 
 	 * @desc Show only 3-K or EL sites
 	 * @public 
-	 * @param {Array<JQuery>}
+	 * @param {JQuery} check
 	 * @method
 	 */
-	autoFilter: function(checks){
-		$.each(checks, function(){
-			if (this.prop('checked')){
-				this.click();
-			}
+	autoFilter: function(check){
+		var ageFilters = this.filterControls[0];
+		$.each(ageFilters.inputs, function(){
+			this.prop('checked', false);
+			this.checkboxradio('refresh');
 		});
-	},
-	/** 
-	 * @desc Show only 3-K sites
-	 * @public 
-	 * @method
-	 */
-	filterPreK: function(){
-		var prek = this.filterControls[0].inputs[1];
-		if (!prek.prop('checked')){
-			prek.click();
-		}
+		check.prop('checked', true);
+		check.checkboxradio('refresh');
+		ageFilters.changed();
 	},
 	/** 
 	 * @private 
@@ -425,22 +424,36 @@ nyc.App.prototype = {
 		this.listSchools();
 	},
 	/** 
-	 * @desc Check URL or splash page button for entry point
+	 * @private 
+	 * @method
+	 */
+	checkEntryUrl: function(){
+		var ageFilters = this.filterControls[0];
+		if (document.location.href.indexOf('el') > -1){
+			this.autoFilter(ageFilters.inputs[1]);
+		}else if (document.location.href.indexOf('3k') > -1){
+			this.autoFilter(ageFilters.inputs[0]);
+		}else{
+			this.autoFilter(ageFilters.inputs[2]);
+		}
+	},
+	/** 
+	 * @desc Check splash page button for entry point
 	 * @public 
 	 * @method
-	 * @param {JQuery.Event|undefined} event
+	 * @param {JQuery.Event} event
 	 */
-	checkEntryPoint: function(event){
+	checkEntryButton: function(event){
 		var ageFilters = this.filterControls[0], target = event ? event.target : {};
 		if (target.nodeName == 'SPAN'){
 			target = target.parentNode;
 		}
-		if ($(target).hasClass('el') || document.location.href.indexOf('el') > -1){
-			this.autoFilter([ageFilters.inputs[1], ageFilters.inputs[2]]);
-		}else if ($(target).hasClass('3k') || document.location.href.indexOf('3k') > -1){
-			this.autoFilter([ageFilters.inputs[0], ageFilters.inputs[2]]);
+		if ($(target).hasClass('el')){
+			this.autoFilter(ageFilters.inputs[1]);
+		}else if ($(target).hasClass('3k')){
+			this.autoFilter(ageFilters.inputs[0]);
 		}else if ($(target).hasClass('prek')){
-			this.autoFilter([ageFilters.inputs[0], ageFilters.inputs[1]]);
+			this.autoFilter(ageFilters.inputs[2]);
 		}
 	},
 	/** 
@@ -451,10 +464,10 @@ nyc.App.prototype = {
 	bannerHtml: function(values){
 		var title, click;
 		values = values || [];
-		if (values.indexOf('el') > -1){
+		if (values.indexOf('el') > -1 && values.indexOf('3k') == -1 && values.indexOf('pk') == -1){
 			title = 'Early Learn 3s Finder';
 			click = 'document.location="../el";';
-		}else if (values.indexOf('3k') > -1){
+		}else if (values.indexOf('3k') > -1 && values.indexOf('pk') == -1){
 			title = '3-K Finder';
 			click = 'document.location="../3k";';
 		}
@@ -575,7 +588,7 @@ nyc.App.prototype = {
 				html = feature.html('inf-pop');
 			}
 			if (coords){
-				me.showPopup(coords, html);
+				me.showPopup(coords, html, feature.getId());
 				return true;
 			}
 		});
@@ -585,14 +598,19 @@ nyc.App.prototype = {
 	 * @method
 	 * @param {ol.Coordinate} coordinates
 	 * @param {string} html
+	 * @param {string} fid
 	 */
-	showPopup: function(coordinates, html){
+	showPopup: function(coordinates, html, fid){
 		this.hideTips();
 		this.popup.setOffset([0, -10]);
 		this.popup.show({
 			coordinates: coordinates,
 			html: html
 		});
+		if ($('.popup').height() > $('#map').height()){
+			this.popup.hide();
+			this.fullScreenDetail(fid);
+		}
 	},
 	/** 
 	 * @private 
