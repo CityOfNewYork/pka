@@ -34,7 +34,7 @@ pka.Style.prototype = {
 	school: function(feature, resolution){
 		var zoom = this.zoom(resolution),
 			type = feature.getType(),
-			prek3k = feature.get('3K_SEATS') > 0 || feature.get('EL_SEATS') ? '3k' : 'prek',
+			prek3k = feature.get('3K_SEATS') > 0 ? '3k' : 'prek',
 			radius = [8, 8, 16, 16, 16, 24, 24, 32, 32, 48, 48][zoom],
 			image = 'img/' + type + this.imgExt();
 		this.schoolCache[zoom] = this.schoolCache[zoom] || {};
@@ -72,7 +72,7 @@ pka.Style.prototype = {
 	 */
 	district: function(feature, resolution){
 		var zoom = this.zoom(resolution),
-			width = [2, 2, 2, 3, 3, 5, 5, 8, 8, 12, 16][zoom],
+			width = [2, 2, 2, 3, 3, 5, 5, 8, 8, 12, 16, 18, 20, 22][zoom],
 			geom = feature.getGeometry(),
 			uid = JSON.stringify(geom.getCoordinates()),
 			dist = feature.get('NAME') + '';
