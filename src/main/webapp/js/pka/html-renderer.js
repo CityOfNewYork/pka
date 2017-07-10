@@ -163,7 +163,7 @@ pka.htmlRenderer = {
 	seatsHtml: function(props){
 		var seats = (this.get('EL_SEATS') > 0 ? this.message('info_el_seats', props) : '');
 		seats += (this.get('3K_SEATS') > 0 ? this.message('info_3k_seats', props) : '');
-		seats += (this.message('info_prek_seats', props));
+		seats += (this.get('PREK_SEATS') > 0 ? this.message('info_prek_seats', props) : '');
 		return this.message('info_seats', props) + '<ul>' + seats + '</ul>';
 	},
 	/**
