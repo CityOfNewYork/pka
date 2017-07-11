@@ -18,12 +18,12 @@ QUnit.test('getCoordinates', function(assert){
 	var schoolSrc = this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		assert.equal(schoolSrc.getFeatureById('code1').getCoordinates()[0].toFixed(0), "-8238952");
-		assert.equal(schoolSrc.getFeatureById('code1').getCoordinates()[1].toFixed(0), "4960729");
-		assert.equal(schoolSrc.getFeatureById('code2').getCoordinates()[0].toFixed(0), "-8232684");
-		assert.equal(schoolSrc.getFeatureById('code2').getCoordinates()[1].toFixed(0), "4965611");
-		assert.equal(schoolSrc.getFeatureById('code3').getCoordinates()[0].toFixed(0), "-8229003");
-		assert.equal(schoolSrc.getFeatureById('code3').getCoordinates()[1].toFixed(0), "4966063");
+		assert.equal(schoolSrc.getFeatureById('15K001').getCoordinates()[0].toFixed(0), "-8238952");
+		assert.equal(schoolSrc.getFeatureById('15K001').getCoordinates()[1].toFixed(0), "4960729");
+		assert.equal(schoolSrc.getFeatureById('13K003').getCoordinates()[0].toFixed(0), "-8232684");
+		assert.equal(schoolSrc.getFeatureById('13K003').getCoordinates()[1].toFixed(0), "4965611");
+		assert.equal(schoolSrc.getFeatureById('16K005').getCoordinates()[0].toFixed(0), "-8229003");
+		assert.equal(schoolSrc.getFeatureById('16K005').getCoordinates()[1].toFixed(0), "4966063");
 		delete app;
 		done();
 	});	
@@ -38,9 +38,10 @@ QUnit.test('getName', function(assert){
 	var schoolSrc = this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		assert.equal(schoolSrc.getFeatureById('code1').getName(), 'P.S. 1 The Bergen');
-		assert.equal(schoolSrc.getFeatureById('code2').getName(), 'P.S. 3 The Bedford Village');
-		assert.equal(schoolSrc.getFeatureById('code3').getName(), 'P.S. 5 Dr. Ronald Mcnair');
+		assert.equal(schoolSrc.getFeatureById('15K001').getName(), 'P.S. 1 The Bergen');
+		assert.equal(schoolSrc.getFeatureById('13K003').getName(), 'P.S. 3 The Bedford Village');
+		assert.equal(schoolSrc.getFeatureById('16K005').getName(), 'P.S. 5 Dr. Ronald Mcnair');
 		done();
 	});	
 });
+

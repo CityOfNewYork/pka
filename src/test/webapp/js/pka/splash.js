@@ -11,7 +11,7 @@ QUnit.module('pka.Splash', {
 			page: function(event){
 				this.lastPageRequested = $(event.target).data('page');
 			},
-			checkEntryPoint: function(event){
+			checkEntryButton: function(event){
 				this.buttonsClicked.push(event.target);
 			}
 		};

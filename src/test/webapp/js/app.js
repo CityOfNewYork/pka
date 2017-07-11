@@ -24,7 +24,8 @@ QUnit.test('constructor', function(assert){
 
 	var filterDisplay = nyc.App.prototype.filterDisplay;
 	var ready = nyc.App.prototype.ready;
-	var checkEntryPoint = nyc.App.prototype.checkEntryPoint;
+	var checkEntryButton = nyc.App.prototype.checkEntryButton;
+	var checkEntryUrl = nyc.App.prototype.checkEntryUrl;
 	
 	nyc.App.prototype.filterDisplay = function(applPeriod){
 		assert.deepEqual(applPeriod, applicationPeriod);
@@ -36,15 +37,20 @@ QUnit.test('constructor', function(assert){
 		done();
 	};
 
-	nyc.App.prototype.checkEntryPoint = function(event){
-		assert.notOk(event);
+	nyc.App.prototype.checkEntryUrl = function(){
+		assert.ok(true);
+	};
+
+	nyc.App.prototype.checkEntryButton = function(event){
+		assert.ok(false);
 	};
 
 	app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	
 	nyc.App.prototype.filterDisplay = filterDisplay;
 	nyc.App.prototype.ready = ready;
-	nyc.App.prototype.checkEntryPoint = checkEntryPoint;
+	nyc.App.prototype.checkEntryButton = checkEntryButton;
+	nyc.App.prototype.checkEntryUrl = checkEntryUrl;
 
 });
 
@@ -63,11 +69,11 @@ QUnit.test('schoolVcard', function(assert){
 	};
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		var feature = schoolSrc.getFeatureById('code1');
+		var feature = schoolSrc.getFeatureById('15K001');
 		feature.getJcardJson = function(){
 			return 'jcard json';
 		};
-		app.schoolVcard('code1');
+		app.schoolVcard('15K001');
 	});
 	
 });
@@ -93,6 +99,13 @@ QUnit.test('goToSchool (not fullscreen, has good fid, panel not full width)', fu
 	
 	var done = assert.async();
 	
+	var mapDiv = $('<div id="map" style="position=fixed"></div>');
+	var popDiv = $('<div class="popup" style="position=fixed"></div>');
+	
+	popDiv.append('<div id="inf-pop-1"><div class="inf-detail" style="display:none"></div></div>');
+	$('body').append(mapDiv);
+	$('body').append(popDiv);
+
 	var expectedCoordinates, expectedHtml;
 	
 	var app;
@@ -103,6 +116,8 @@ QUnit.test('goToSchool (not fullscreen, has good fid, panel not full width)', fu
 		assert.deepEqual(coordinates, expectedCoordinates);
 		assert.equal(div.html(), expectedHtml);
 		delete app;
+		mapDiv.remove();
+		popDiv.remove();
 		done();
 	};
 	
@@ -114,13 +129,16 @@ QUnit.test('goToSchool (not fullscreen, has good fid, panel not full width)', fu
 		assert.deepEqual(args.center, expectedCoordinates);
 	};
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		var feature = schoolSrc.getFeatureById('code1'), div = $('<div></div>');
+		var feature = schoolSrc.getFeatureById('15K001'), div = $('<div></div>');
 		
 		div.append(feature.html('inf-pop'));
 		expectedCoordinates = feature.getCoordinates();
 		expectedHtml = div.html();
 		
-		app.goToSchool('code1');
+		popDiv.height(100);
+		mapDiv.height(200);
+
+		app.goToSchool('15K001');
 	});	
 });
 
@@ -129,6 +147,13 @@ QUnit.test('goToSchool (not fullscreen, has good fid, panel is full width)', fun
 	
 	var done = assert.async();
 	
+	var mapDiv = $('<div id="map" style="position=fixed"></div>');
+	var popDiv = $('<div class="popup" style="position=fixed"></div>');
+	
+	popDiv.append('<div id="inf-pop-1"><div class="inf-detail" style="display:none"></div></div>');
+	$('body').append(mapDiv);
+	$('body').append(popDiv);
+
 	$('body').append('<div id="panel"><div id="map-tab-btn"><a></a></div></div>');
 	$('#panel').width($(window).width());
 	
@@ -146,6 +171,8 @@ QUnit.test('goToSchool (not fullscreen, has good fid, panel is full width)', fun
 		assert.deepEqual(coordinates, expectedCoordinates);
 		assert.equal(div.html(), expectedHtml);
 		done();
+		mapDiv.remove();
+		popDiv.remove();
 		delete app;		
 		$('#panel').remove();
 	};
@@ -159,13 +186,16 @@ QUnit.test('goToSchool (not fullscreen, has good fid, panel is full width)', fun
 	};
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		var feature = schoolSrc.getFeatureById('code1'), div = $('<div></div>');
+		var feature = schoolSrc.getFeatureById('15K001'), div = $('<div></div>');
 		
 		div.append(feature.html('inf-pop'));
 		expectedCoordinates = feature.getCoordinates();
 		expectedHtml = div.html();
 		
-		app.goToSchool('code1');
+		popDiv.height(100);
+		mapDiv.height(200);
+		
+		app.goToSchool('15K001');
 	});	
 });
 
@@ -174,6 +204,13 @@ QUnit.test('goToSchool (not fullscreen, has no fid)', function(assert){
 	
 	var done = assert.async();
 		
+	var mapDiv = $('<div id="map" style="position=fixed"></div>');
+	var popDiv = $('<div class="popup" style="position=fixed"></div>');
+	
+	popDiv.append('<div id="inf-pop-1"><div class="inf-detail" style="display:none"></div></div>');
+	$('body').append(mapDiv);
+	$('body').append(popDiv);
+
 	nyc.App.prototype.showPopup = function(coordinates, html){
 		assert.notOk(true);
 	};
@@ -185,12 +222,17 @@ QUnit.test('goToSchool (not fullscreen, has no fid)', function(assert){
 		var center = app.view.getCenter();
 		var zoom = app.view.getZoom(); 
 		
+		popDiv.height(100);
+		mapDiv.height(200);
+
 		app.goToSchool();
 
 		setTimeout(function(){
 			assert.equal(app.view.getZoom(), zoom);
 			assert.deepEqual(app.view.getCenter(), center);
 			delete app;		
+			mapDiv.remove();
+			popDiv.remove();
 			done();
 		}, 1000);
 	});	
@@ -201,6 +243,13 @@ QUnit.test('goToSchool (not fullscreen, has bad fid)', function(assert){
 	
 	var done = assert.async();
 		
+	var mapDiv = $('<div id="map" style="position=fixed"></div>');
+	var popDiv = $('<div class="popup" style="position=fixed"></div>');
+	
+	popDiv.append('<div id="inf-pop-1"><div class="inf-detail" style="display:none"></div></div>');
+	$('body').append(mapDiv);
+	$('body').append(popDiv);
+
 	nyc.App.prototype.showPopup = function(coordinates, html){
 		assert.notOk(true);
 	};
@@ -212,12 +261,17 @@ QUnit.test('goToSchool (not fullscreen, has bad fid)', function(assert){
 		var center = app.view.getCenter();
 		var zoom = app.view.getZoom(); 
 		
+		popDiv.height(100);
+		mapDiv.height(200);
+
 		app.goToSchool('bad');
 
 		setTimeout(function(){
 			assert.equal(app.view.getZoom(), zoom);
 			assert.deepEqual(app.view.getCenter(), center);
 			delete app;		
+			mapDiv.remove();
+			popDiv.remove();
 			done();
 		}, 1000);
 	});	
@@ -228,6 +282,13 @@ QUnit.test('goToSchool (is fullscreen)', function(assert){
 	
 	var done = assert.async();
 		
+	var mapDiv = $('<div id="map" style="position=fixed"></div>');
+	var popDiv = $('<div class="popup" style="position=fixed"></div>');
+	
+	popDiv.append('<div id="inf-pop-1"><div class="inf-detail" style="display:none"></div></div>');
+	$('body').append(mapDiv);
+	$('body').append(popDiv);
+
 	$('body').append('<div id="inf-full-screen"></div>');
 
 	nyc.App.prototype.showPopup = function(coordinates, html){
@@ -241,6 +302,9 @@ QUnit.test('goToSchool (is fullscreen)', function(assert){
 		var center = app.view.getCenter();
 		var zoom = app.view.getZoom(); 
 		
+		popDiv.height(100);
+		mapDiv.height(200);
+
 		app.goToSchool('bad');
 
 		setTimeout(function(){
@@ -248,6 +312,8 @@ QUnit.test('goToSchool (is fullscreen)', function(assert){
 			assert.deepEqual(app.view.getCenter(), center);
 			assert.equal($('#inf-full-screen').css('display'), 'none');
 			delete app;		
+			mapDiv.remove();
+			popDiv.remove();
 			done();
 			$('#inf-full-screen').remove();
 		}, 1000);
@@ -258,8 +324,14 @@ QUnit.test('schoolDetail (popup, is fullscreen)', function(assert){
 	assert.expect(2);
 	
 	var done = assert.async();
-		
-	$('body').append('<div id="inf-pop-1"><div class="inf-detail" style="display:none"></div></div>');
+
+	var mapDiv = $('<div id="map" style="position=fixed"></div>');
+	var popDiv = $('<div class="popup" style="position=fixed"></div>');
+	
+	popDiv.append('<div id="inf-pop-1"><div class="inf-detail" style="display:none"></div></div>');
+	$('body').append(mapDiv);
+	$('body').append(popDiv);
+
 	$(this.TEST_MAP.getTarget()).width($(window).width());
 	
 	var fullScreenDetail = nyc.App.prototype.fullScreenDetail;
@@ -269,7 +341,9 @@ QUnit.test('schoolDetail (popup, is fullscreen)', function(assert){
 	};
 	
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
-	app.isFullScreen = function(){return true;};
+
+	popDiv.height(200);
+	mapDiv.height(100);
 	
 	app.schoolDetail('inf-pop-1');
 
@@ -277,7 +351,8 @@ QUnit.test('schoolDetail (popup, is fullscreen)', function(assert){
 		assert.equal($('#inf-pop-1 .inf-detail').css('display'), 'none');
 		delete app;		
 		done();
-		$('#inf-pop-1').remove();
+		mapDiv.remove();
+		popDiv.remove();
 		nyc.App.prototype.fullScreenDetail = fullScreenDetail;
 	}, 1000);
 });
@@ -322,7 +397,7 @@ QUnit.test('direct', function(assert){
 	app.directions = {
 		directions: function(args){
 			assert.equal(args.from, 'user location');
-			assert.equal(args.to, '309 47th St, Brooklyn, NY 11220');
+			assert.equal(args.to, '309 47th Street, Brooklyn, NY 11220');
 			assert.equal(args.facility, 'P.S. 1 The Bergen');
 		}
 	};
@@ -331,8 +406,8 @@ QUnit.test('direct', function(assert){
 		if (app.schoolSrc.getFeatures() == 0){
 			setTimeout(test, 500);
 		}else{
-			app.direct('code1'); //first time directions are generated (assertins are made above)
-			app.direct('code1'); //second time no need to regenerated directions (assertins are not made)
+			app.direct('15K001'); //first time directions are generated (assertins are made above)
+			app.direct('15K001'); //second time no need to regenerated directions (assertins are not made)
 			delete app;		
 			done();
 		}
@@ -349,15 +424,17 @@ QUnit.test('fullScreenDetail', function(assert){
 
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	app.schoolSrc = {
+		allFeatures: [],
 		getFeatureById: function(id){
-			assert.equal(id, 'code1');
+			assert.equal(id, '15K001');
 			return {html: function(){return 'TEST_HTML';}}
 		},
+		filter: function(){return [];},
 		sort: function(){return [];},
 		getFeatures: function(){return [];}
 	};
 	
-	app.fullScreenDetail('inf-popcode1');
+	app.fullScreenDetail('inf-pop15K001');
 	assert.equal($('#inf-full-screen div').html(), 'TEST_HTML');
 	assert.equal($('#inf-full-screen').css('display'), 'block');
 
@@ -429,145 +506,147 @@ QUnit.test('zoomChange', function(assert){
 });
 
 QUnit.test('autoFilter el', function(assert){
-	assert.expect(2);
+	assert.expect(1);
 
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var ageFilters = app.filterControls[0];
 	
-	var first = true;
 	ageFilters.on('change', function(){
-		if (first){
-			first = false;
-			assert.deepEqual(ageFilters.val(), [
-               {name: 'prek3', value: 'el,el-3k,el-3k-pk,el-pk', label: 'early learn 3s', checked: true},
-               {name: 'prek3', value: 'el-3k-pk,el-pk,pk,3k-pk', label: 'Pre-K', checked: true}]
-			);
-		}else{
-			assert.deepEqual(ageFilters.val(), [{name: 'prek3', value: 'el,el-3k,el-3k-pk,el-pk', label: 'early learn 3s', checked: true}]);
-		}
+		assert.deepEqual(ageFilters.val(), [
+           {name: 'prek3', value: 'el,el-3k,el-3k-pk,el-pk', label: 'early learn 3s', checked: true}
+		]);
 	});
 	
-	app.autoFilter([ageFilters.inputs[1], ageFilters.inputs[2]]);
+	app.autoFilter(ageFilters.inputs[1]);
 	
 	delete app;		
 });
 
 QUnit.test('autoFilter 3k', function(assert){
-	assert.expect(2);
+	assert.expect(1);
 
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var ageFilters = app.filterControls[0];
 	
-	var first = true;
 	ageFilters.on('change', function(){
-		if (first){
-			first = false;
 			assert.deepEqual(ageFilters.val(), [
                {name: 'prek3', value: 'el-3k,el-3k-pk,3k,3k-pk', label: '3-K', checked: true},
-               {name: 'prek3', value: 'el-3k-pk,el-pk,pk,3k-pk', label: 'Pre-K', checked: true}]
-			);
-		}else{
-			assert.deepEqual(ageFilters.val(), [{name: 'prek3', value: 'el-3k,el-3k-pk,3k,3k-pk', label: '3-K', checked: true}]);
-		}
+			]);
 	});
 	
-	app.autoFilter([ageFilters.inputs[0], ageFilters.inputs[2]]);
+	app.autoFilter(ageFilters.inputs[0]);
 	
 	delete app;		
 });
 
-QUnit.test('checkEntryPoint 3k button', function(assert){
+QUnit.test('autoFilter prek', function(assert){
+	assert.expect(1);
+
+	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
+	var ageFilters = app.filterControls[0];
+	
+	ageFilters.on('change', function(){
+		assert.deepEqual(ageFilters.val(), [{name: 'prek3', value: 'el-3k-pk,el-pk,pk,3k-pk', label: 'Pre-K', checked: true}]);
+	});
+	
+	app.autoFilter(ageFilters.inputs[2]);
+	
+	delete app;		
+});
+
+QUnit.test('checkEntryButton 3k button', function(assert){
 	assert.expect(1);
 
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var ageFilters = app.filterControls[0];
 	
 	app.autoFilter = function(checks){
-		assert.deepEqual(checks, [ageFilters.inputs[0], ageFilters.inputs[2]]);
+		assert.deepEqual(checks, ageFilters.inputs[0]);
 	};
 	
-	app.checkEntryPoint({target: $('<button class="3k"></button>').get(0)});
+	app.checkEntryButton({target: $('<button class="3k"></button>').get(0)});
 	
 	delete app;		
 });
 
-QUnit.test('checkEntryPoint 3k span', function(assert){
+QUnit.test('checkEntryButton 3k span', function(assert){
 	assert.expect(1);
 
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var ageFilters = app.filterControls[0];
 	
 	app.autoFilter = function(checks){
-		assert.deepEqual(checks, [ageFilters.inputs[0], ageFilters.inputs[2]]);
+		assert.deepEqual(checks, ageFilters.inputs[0]);
 	};
 	
 	var button = $('<button class="3k"><span></span></button>')
 	
-	app.checkEntryPoint({target: button.children().get(0)});
+	app.checkEntryButton({target: button.children().get(0)});
 	
 	delete app;		
 });
 
-QUnit.test('checkEntryPoint el button', function(assert){
+
+QUnit.test('checkEntryButton el button', function(assert){
 	assert.expect(1);
 
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var ageFilters = app.filterControls[0];
 	
 	app.autoFilter = function(checks){
-		assert.deepEqual(checks, [ageFilters.inputs[1], ageFilters.inputs[2]]);
+		assert.deepEqual(checks, ageFilters.inputs[1]);
 	};
 	
-	app.checkEntryPoint({target: $('<button class="el"></button>').get(0)});
+	app.checkEntryButton({target: $('<button class="el"></button>').get(0)});
 	
 	delete app;		
 });
 
-QUnit.test('checkEntryPoint 3k span', function(assert){
+QUnit.test('checkEntryButton el span', function(assert){
 	assert.expect(1);
 
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var ageFilters = app.filterControls[0];
 	
 	app.autoFilter = function(checks){
-		assert.deepEqual(checks, [ageFilters.inputs[1], ageFilters.inputs[2]]);
+		assert.deepEqual(checks, ageFilters.inputs[1]);
 	};
 	
 	var button = $('<button class="el"><span></span></button>')
 	
-	app.checkEntryPoint({target: button.children().get(0)});
+	app.checkEntryButton({target: button.children().get(0)});
 	
 	delete app;		
 });
 
-QUnit.test('checkEntryPoint prek button', function(assert){
+QUnit.test('checkEntryButton prek button', function(assert){
 	assert.expect(1);
 
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var ageFilters = app.filterControls[0];
 	
 	app.autoFilter = function(checks){
-		assert.deepEqual(checks, [ageFilters.inputs[0], ageFilters.inputs[1]]);
+		assert.deepEqual(checks, ageFilters.inputs[2]);
 	};
 	
-	app.checkEntryPoint({target: $('<button class="prek"></button>').get(0)});
+	app.checkEntryButton({target: $('<button class="prek"></button>').get(0)});
 	
 	delete app;		
 });
 
-QUnit.test('checkEntryPoint prek span', function(assert){
+QUnit.test('checkEntryButton prek span', function(assert){
 	assert.expect(1);
 
 	var app = this.TEST_APP_ACTTIVE_APPLICATION_PERIOD();
 	var ageFilters = app.filterControls[0];
 	
 	app.autoFilter = function(checks){
-		assert.deepEqual(checks, [ageFilters.inputs[0], ageFilters.inputs[1]]);
+		assert.deepEqual(checks, ageFilters.inputs[2]);
 	};
 	
 	var button = $('<button class="prek"><span></span></button>')
 	
-	app.checkEntryPoint({target: button.children().get(0)});
+	app.checkEntryButton({target: button.children().get(0)});
 	
 	delete app;		
 });
@@ -581,7 +660,7 @@ QUnit.test('bannerHtml el', function(assert){
 	var banner = $('<div class="banner"><h1>text</h1><img alt="alt">');
 	$('body').append(banner);
 
-	app.bannerHtml(ageFilters.choices[0].value.split(','));
+	app.bannerHtml(ageFilters.choices[1].value.split(','));
 	
 	assert.equal($('.banner h1').html(), 'Early Learn 3s Finder');
 	assert.equal($('.banner h1').attr('title'), 'NYC Early Learn 3s Finder');
@@ -603,7 +682,7 @@ QUnit.test('bannerHtml 3k', function(assert){
 	var banner = $('<div class="banner"><h1>text</h1><img alt="alt">');
 	$('body').append(banner);
 
-	app.bannerHtml(ageFilters.choices[1].value.split(','));
+	app.bannerHtml(ageFilters.choices[0].value.split(','));
 	
 	assert.equal($('.banner h1').html(), '3-K Finder');
 	assert.equal($('.banner h1').attr('title'), 'NYC 3-K Finder');

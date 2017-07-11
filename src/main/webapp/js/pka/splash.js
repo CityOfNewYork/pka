@@ -20,6 +20,6 @@ pka.Splash = function(applicationPeriod, lookup, content, app){
 		$('.splash-msg').html(content.message('splash_msg_no_apply'));
 		$('.splash-apply').hide();
 	}
-	$('button.el, button.3k, button.prek').click($.proxy(app.checkEntryButton, app));
+	$('button.splash-map').click($.proxy(app.checkEntryButton, app));
 	$('.splash-call, .splash-map').click($.proxy(app.page, app));
 };

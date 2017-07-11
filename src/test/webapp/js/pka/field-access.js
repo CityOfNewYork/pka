@@ -44,6 +44,23 @@ QUnit.module('pka.fieldAccess', {
 				assert.equal(props.search_label, feature.message('search_label', props)); 	
 				assert.equal(props.btn_pdf, feature.message('btn_pdf'));	
 				assert.equal(props.pdf_url, feature.message('quality_pdf', props));	
+				
+				if (props['EL_SEATS'] > 0 && !props['3K_SEATS'] && !props.PREK_SEATS){
+					assert.equal(props.prek3, 'el');
+				}else if (props['EL_SEATS'] > 0 && props['3K_SEATS'] > 0 && !props.PREK_SEATS){
+					assert.equal(props.prek3, 'el-3k');
+				}else if (props['EL_SEATS'] > 0 && props['3K_SEATS'] > 0 && props.PREK_SEATS > 0){
+					assert.equal(props.prek3, 'el-3k-pk');
+				}else if (props['EL_SEATS'] > 0 && !props['3K_SEATS'] && props.PREK_SEATS > 0){
+					assert.equal(props.prek3, 'el-pk');
+				}else if (!props['EL_SEATS'] && props['3K_SEATS'] > 0 && !props.PREK_SEATS){
+					assert.equal(props.prek3, '3k');
+				}else if (!props['EL_SEATS'] && !props['3K_SEATS'] && props.PREK_SEATS > 0){
+					assert.equal(props.prek3, 'pk');
+				}else if (!props['EL_SEATS'] && props['3K_SEATS'] > 0 && props.PREK_SEATS > 0){
+					assert.equal(props.prek3, '3k-pk');
+				}
+				
 			});
 			done();
 		};
@@ -54,7 +71,7 @@ QUnit.module('pka.fieldAccess', {
 });
 
 QUnit.test('nyc.ol.source.Decorating.AUTO_EXEC (active application period)', function(assert){
-	assert.expect(81);
+	assert.expect(112);
 
 	var done = assert.async();
 	var validateFeatureProperties = this.validateFeatureProperties;
@@ -67,7 +84,7 @@ QUnit.test('nyc.ol.source.Decorating.AUTO_EXEC (active application period)', fun
 });
 
 QUnit.test('nyc.ol.source.Decorating.AUTO_EXEC (no active application period)', function(assert){
-	assert.expect(81);
+	assert.expect(112);
 
 	var done = assert.async();
 	var validateFeatureProperties = this.validateFeatureProperties;
@@ -80,35 +97,38 @@ QUnit.test('nyc.ol.source.Decorating.AUTO_EXEC (no active application period)', 
 });
 
 QUnit.test('getId', function(assert){
-	assert.expect(6);
+	assert.expect(8);
 	
 	var done = assert.async();
 
 	var schoolSrc = this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		assert.equal(schoolSrc.getFeatures()[0].getId(), 'code1');
-		assert.equal(schoolSrc.getFeatures()[1].getId(), 'code2');
-		assert.equal(schoolSrc.getFeatures()[2].getId(), 'code3');
-		assert.equal(schoolSrc.getFeatureById('code1').getId(), 'code1');
-		assert.equal(schoolSrc.getFeatureById('code2').getId(), 'code2');
-		assert.equal(schoolSrc.getFeatureById('code3').getId(), 'code3');
+		assert.equal(schoolSrc.getFeatures()[0].getId(), '15K001');
+		assert.equal(schoolSrc.getFeatures()[1].getId(), '13K003');
+		assert.equal(schoolSrc.getFeatures()[2].getId(), '16K005');
+		assert.equal(schoolSrc.getFeatures()[3].getId(), '07XBBK');
+		assert.equal(schoolSrc.getFeatureById('15K001').getId(), '15K001');
+		assert.equal(schoolSrc.getFeatureById('13K003').getId(), '13K003');
+		assert.equal(schoolSrc.getFeatureById('16K005').getId(), '16K005');
+		assert.equal(schoolSrc.getFeatureById('07XBBK').getId(), '07XBBK');
 		done();
 	});	
 	
 });
 
 QUnit.test('getType', function(assert){
-	assert.expect(3);
+	assert.expect(4);
 	
 	var done = assert.async();
 
-	var schoolSrc = this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
-
+	var schoolSrc = this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;	
+	
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		assert.equal(schoolSrc.getFeatureById('code1').getType(), 'DOE');
-		assert.equal(schoolSrc.getFeatureById('code2').getType(), 'CHARTER');
-		assert.equal(schoolSrc.getFeatureById('code3').getType(), 'NYCEEC');
+		assert.equal(schoolSrc.getFeatureById('15K001').getType(), 'DOE');
+		assert.equal(schoolSrc.getFeatureById('13K003').getType(), 'DOE');
+		assert.equal(schoolSrc.getFeatureById('16K005').getType(), 'DOE');
+		assert.equal(schoolSrc.getFeatureById('07XBBK').getType(), 'NYCEEC');
 		done();
 	});	
 	
@@ -122,7 +142,7 @@ QUnit.test('setDistance/getDistance', function(assert){
 	var schoolSrc =this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		var feature = schoolSrc.getFeatureById('code1');
+		var feature = schoolSrc.getFeatureById('15K001');
 		assert.notOk(feature.getDistance());
 		feature.setDistance(100);
 		assert.equal(feature.getDistance(), 100);
@@ -139,17 +159,21 @@ QUnit.test('getLangContent', function(assert){
 	var schoolSrc = this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		var feature1 = schoolSrc.getFeatureById('code1');
-		var feature2 = schoolSrc.getFeatureById('code2');
-		var feature3 = schoolSrc.getFeatureById('code3');
+		var feature1 = schoolSrc.getFeatureById('15K001');
+		var feature2 = schoolSrc.getFeatureById('13K003');
+		var feature3 = schoolSrc.getFeatureById('16K005');
 		
-		assert.equal(feature1.getLangContent('info'), '<div><b>Dual Language:</b> Spanish</div><div><b>Dual Language:</b> Greek</div><div><b>Dual Language:</b> Vietnamese</div><div><b>Enhanced Language Support:</b> Arabic</div><div><b>Enhanced Language Support:</b> Bengali</div><div><b>Enhanced Language Support:</b> French</div>');
+		feature1.set('ENHANCED_LANG', '100;101;123');
+		feature2.set('ENHANCED_LANG', '');
+		feature3.set('ENHANCED_LANG', '102;202;209');		
+		
+		assert.equal(feature1.getLangContent('info'), '<div><b>Dual Language:</b> Arabic</div><div><b>Dual Language:</b> Bengali</div><div><b>Dual Language:</b> Vietnamese</div>');
 		assert.equal(feature2.getLangContent('info'), '');
-		assert.equal(feature3.getLangContent('info'), '<div><b>Dual Language:</b> Urdu</div>');
+		assert.equal(feature3.getLangContent('info'), '<div><b>Dual Language:</b> Chinese</div><div><b>Enhanced Language Support:</b> Chinese</div><div><b>Enhanced Language Support:</b> Spanish</div>');
 		
-		assert.equal(feature1.getLangContent('vcard'), 'Dual Language: Spanish\n\nDual Language: Greek\n\nDual Language: Vietnamese\n\nEnhanced Language Support: Arabic\n\nEnhanced Language Support: Bengali\n\nEnhanced Language Support: French\n\n');
+		assert.equal(feature1.getLangContent('vcard'), 'Dual Language: Arabic\n\nDual Language: Bengali\n\nDual Language: Vietnamese\n\n');
 		assert.equal(feature2.getLangContent('vcard'), '');
-		assert.equal(feature3.getLangContent('vcard'), 'Dual Language: Urdu\n\n');
+		assert.equal(feature3.getLangContent('vcard'), 'Dual Language: Chinese\n\nEnhanced Language Support: Chinese\n\nEnhanced Language Support: Spanish\n\n');
 		done();
 	});	
 	
@@ -163,7 +187,7 @@ QUnit.test('getJcardJson', function(assert){
 	var schoolSrc = this.SCHOOL_SRC_NOT_ACTTIVE_APPLICATION_PERIOD;
 
 	schoolSrc.on(nyc.ol.source.Decorating.LoaderEventType.FEATURESLOADED, function(){
-		assert.equal(schoolSrc.getFeatureById('code1').getJcardJson(), '["vcard",[["version",{},"text","4.0"],["org",{},"text","P.S. 1 The Bergen"],["adr",{"type":"work","label":"309 47th St\\nBrooklyn, NY 11220\\nU.S.A."},"text",["309 47th St","Brooklyn","","NY","11220","U.S.A."]],["email",{"type":"work"},"text","aramos4@schools.nyc.gov"],["tel",{},"uri","+1-718-567-7661"],["url",{"type":"work"},"uri","http://schools.nyc.gov/schoolportals/15/k001"],["tz",{},"utc-offset","-5:00"],["geo",{},"uri","geo:40.64915151241655,-74.01176609170993"],["note",{},"text","\\nProgram Code: code1\\n\\nProgram Features:\\n\\n\\tBreakfast\\n\\tIndoor playspace\\n\\tDaily Start Time: 9:00 AM\\n\\tEarly Drop Off Available: Contact program about extended hours\\n\\tLate Pick Up Available: Contact program about extended hours\\n\\n2015-16 Pre-K Seats: 125 Full day\\n\\nDual Language: Spanish\\n\\nDual Language: Greek\\n\\nDual Language: Vietnamese\\n\\nEnhanced Language Support: Arabic\\n\\nEnhanced Language Support: Bengali\\n\\nEnhanced Language Support: French\\n\\n\\n\\nhttp://maps.nyc.gov/pka/?fid=code1#map-page"],["fn",{},"text","P.S. 1 The Bergen"]]]');
+		assert.equal(schoolSrc.getFeatureById('15K001').getJcardJson(), '["vcard",[["version",{},"text","4.0"],["org",{},"text","P.S. 1 The Bergen"],["adr",{"type":"work","label":"309 47th Street\\nBrooklyn, NY 11220\\nU.S.A."},"text",["309 47th Street","Brooklyn","","NY","11220","U.S.A."]],["email",{"type":"work"},"text","aramos4@schools.nyc.gov"],["tel",{},"uri","+1-718-567-7661"],["url",{"type":"work"},"uri","http://schools.nyc.gov/schoolportals/15/k001"],["tz",{},"utc-offset","-5:00"],["geo",{},"uri","geo:40.64915151241655,-74.01176609170993"],["note",{},"text","\\nProgram Code: 15K001\\n\\nProgram Features:\\n\\n\\tBreakfast/Lunch\\n\\tIndoor/Outdoor (onsite) playspace\\n\\tDaily Start Time: Contact program about start time\\n\\tEarly Drop Off Available: No\\n\\tLate Pick Up Available: No\\n\\n2015-16 Pre-K Seats: 138 Full day\\n\\nDual Language: Spanish\\n\\n\\n\\nhttp://maps.nyc.gov/pka/?fid=15K001#map-page"],["fn",{},"text","P.S. 1 The Bergen"]]]');
 		done();
 	});	
 	

@@ -522,7 +522,7 @@ nyc.App.prototype = {
 	 * @method
 	 */
 	clearLocation: function(){
-		var id = this.location ? this.location.data.LOCCODE : '';
+		var location = this.location || {}, id = location.data ? location.data.LOCCODE : '';
 		if (id) {
 			var feature = this.schoolSrc.getFeatureById(id);
 			if (!feature){
