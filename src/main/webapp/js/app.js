@@ -280,7 +280,7 @@ nyc.App.prototype = {
 	 * @return {boolean}
 	 */
 	isFullScreen: function(){
-		return $(window).width() <= 495 || $(window).height() <= 495;
+		return $(window).width() <= 495 || $(window).height() <= 495 || $('#inf-full-screen').css('display') == 'block';
 	},
 	/** 
 	 * @private 

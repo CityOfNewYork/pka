@@ -27,7 +27,7 @@ dependencies {
 
 ext {
 	appName = 'pka'
-	ver = 'v3.1.1-SNAPSHOT'
+	ver = 'v3.1.1'
 	default_env = 'local'
 	
 	local_nyclib = 'https://maps.nyc.gov/nyc-lib/'
@@ -116,7 +116,7 @@ task replaceTokens(dependsOn: [setEnv, copyFiles]) << {
 
 	ant.replace(file: "${pkgDir}/index.html", token: 'css/form.css', value: '')
 	ant.replace(file: "${pkgDir}/index.html", token: 'css/ta.css', value: '')
-	ant.replace(file: "${pkgDir}/index.html", token: 'pka.css', value: "${appName}-min.css")
+	ant.replace(file: "${pkgDir}/index.html", token: 'pka.css', value: "${appName}-min.css?${ver}")
 
 	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/style.js"></script>', value: '')
 	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/field-access.js"></script>', value: '')
@@ -137,7 +137,7 @@ task replaceTokens(dependsOn: [setEnv, copyFiles]) << {
 	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/ta/field-access.js"></script>', value: '')
 	ant.replace(file: "${pkgDir}/index.html", token: '<script src="js/ta/html-renderer.js"></script>', value: '')
 
-	ant.replace(file: "${pkgDir}/index.html", token: 'js/init.js', value: "js/${appName}-min.js")
+	ant.replace(file: "${pkgDir}/index.html", token: 'js/init.js', value: "js/${appName}-min.js?${ver}")
 	ant.replace(file: "${pkgDir}/index.html", token: local_nyclib, value: project.ext["${env}_nyclib"])
 
 }
