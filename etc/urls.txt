@@ -1,4 +1,3 @@
-https://maps.nyc.gov/3-K/index.html
 https://maps.nyc.gov/upk/
 https://maps.nyc.gov/UPK/
 https://maps.nyc.gov/preK/
@@ -13,3 +12,8 @@ https://maps.nyc.gov/3k/
 https://maps.nyc.gov/3K/
 https://maps.nyc.gov/3-k/
 https://maps.nyc.gov/3-K/
+https://maps.nyc.gov/el/
+https://maps.nyc.gov/EL/
+https://maps.nyc.gov/earlylearn/
+https://maps.nyc.gov/EarlyLearn/
+

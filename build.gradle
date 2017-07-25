@@ -2,7 +2,6 @@ import gov.nyc.doitt.nyc.gis.gradle.*
 
 plugins {
     id 'base'
-    id 'jetty'
     id 'org.hidetake.ssh' version '1.1.2'
     id 'groovy'
 }

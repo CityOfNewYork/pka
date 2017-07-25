@@ -11,6 +11,3 @@ In production the Pre-K facilities data may change without notice and is cached 
 * Use ```gradle -Penv=dev buildApp``` to build for gis dev environment
 * Use ```gradle -Penv=stg buildApp``` to build for gis stg environment
 * Use ```gradle -Penv=prd buildApp``` to build for gis prd environment
-* Use ```gradle jettRun``` to run from project root on local Jetty web server
-	* Allows for viewing live edits of src/main/webapp
-	* Allows for viewing a build from build/webapp
