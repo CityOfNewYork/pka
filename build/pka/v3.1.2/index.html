@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta prefix="og: http://ogp.me/ns#" property="og:title" content="NYC Pre-K Finder">
+	<meta prefix="og: http://ogp.me/ns#" property="og:type" content="website">
+	<meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://maps.nyc.gov/upk">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://maps.nyc.gov/upk/img/og.png">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image:width" content="1200">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image:height" content="626">
+	<meta prefix="og: http://ogp.me/ns#" property="og:description" content="NYC Pre-K Finder - Locate a NYC Pre-Kindergarten Program near you">
+	<meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="maps.nyc.gov">	
+	<meta name="google-translate-customization" content="4707bd7f535893a0-45bca7b6a97e5a2d-g609df9381571b349-c"> 	
+ 	
+ 	<title>NYC Pre-K Finder</title>
+
+	<link rel="manifest" href="manifest.webmanifest">
+	<link rel="apple-touch-startup-image" href="img/icon-512.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="img/icon-60.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/icon-76.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/icon-120.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/icon-152.png">	
+	<link rel="apple-touch-icon" sizes="167x167" href="img/icon-167.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/icon-180.png">
+
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.2.0/ol.css">
+	<link rel="stylesheet" href="/nyc-lib/v0.2.9/css/nyc-ol-lib.css">
+	<link rel="stylesheet" href="css/pka-min.css?v3.1.2"> 
+	<link rel="stylesheet" href=""> 
+	<link rel="stylesheet" href=""> 
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.2.0/ol.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+</head>
+<body>
+
+	<table id="first-load">
+		<tbody><tr><td>
+			<img src="img/first-load.gif" alt="maps.nyc.gov"><p>maps.nyc.gov</p>
+		</td></tr></tbody>
+	</table>
+
+	<div id="splash-page" data-role="page" data-title="NYC Pre-K Finder">
+		<div class="banner">
+			<img class="banner-logo nyc" src="img/nyc.png" onclick="document.location='./';" alt="NYC Pre-K Finder" title="NYC Pre-K Finder">
+			<h1 class="notranslate" translate="no" onclick="document.location='./';" title="NYC Pre-K Finder">Pre-K Finder</h1>
+			<div class="banner-school-yr">for School Year <span class="school-yr"></span></div>
+		</div>
+		<div data-role="content">
+			<div class="splash-btns">
+				<div id="lang" data-role="button"></div>
+			</div>
+			<div class="splash-msg"></div>
+			<div class="splash-btns">
+				<a class="splash-call capitalize" data-role="button" data-page="#form-page"></a>
+				<a class="splash-apply capitalize" data-role="button" target="_blank" rel="noopener noreferer"></a>
+				<button class="splash-map capitalize 3k" data-role="button" data-page="#map-page">
+					go to&nbsp;<span class="notranslate" translate="no">3-K Finder</span>&nbsp;map
+				</button>
+				<button class="splash-map capitalize el" data-role="button" data-page="#map-page">
+					go to&nbsp;<span class="notranslate" translate="no">Early Learn 3s Finder</span>&nbsp;map
+				</button>
+				<button class="splash-map capitalize prek" data-role="button" data-page="#map-page">
+					go to&nbsp;<span class="notranslate" translate="no">Pre-K Finder</span>&nbsp;map
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="map-page" data-role="page" data-title="NYC Pre-K Finder">
+		<div class="banner">
+			<img class="banner-logo nyc" src="img/nyc.png" onclick="document.location='./';" alt="NYC Pre-K Finder" title="NYC Pre-K Finder">
+			<h1 class="notranslate" translate="no" onclick="document.location='./';" title="NYC Pre-K Finder">Pre-K Finder</h1>
+			<div class="banner-school-yr">for School Year <span class="school-yr"></span></div>
+			<div id="btn-toggle" class="btn-panel"><a><span class="noshow">Map</span></a></div>
+		</div>
+		<div id="main" data-role="main" class="ui-content">
+			<div id="map"></div>
+			<a id="btn-call" class="ctl ctl-btn" data-role="button" data-icon="none" data-iconpos="notext"></a>
+		</div>
+		<div id="panel">	
+			<div id="panel-content">
+				<div id="tabs" data-role="tabs">
+					<div data-role="navbar">
+						<ul>
+							<li id="map-tab-btn">
+								<a class="capitalize" href="#map-tab">map</a>
+							</li>
+							<li id="schools-tab-btn">
+								<a class="capitalize ui-btn-active" href="#schools-tab">schools</a>
+							</li>
+							<li>
+								<a href="#filters-tab"><span class="capitalize">filters</span><div></div></a>
+							</li>
+						</ul>
+					</div>
+					<div id="map-tab"></div>
+					<div id="schools-tab">
+						<div id="school-list"></div>
+						<div id="btn-more"><a data-role="button">More...</a></div>
+					</div>
+					<div id="filters-tab">
+						<div id="filters">
+							<div id="chk-prek-3k"></div>
+							<div id="chk-dynamic"></div>
+							<div id="chk-apply"></div>
+							<div id="chk-sch-type"></div>
+							<div id="chk-day-len"></div>
+							<div id="chk-prog-feat"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="dir-page" data-role="page">
+		<div class="banner">
+			<img class="banner-logo nyc" src="img/nyc.png" onclick="document.location='./';" alt="NYC Pre-K Finder" title="NYC Pre-K Finder">
+			<h1 class="notranslate" translate="no" onclick="document.location='./';" title="NYC Pre-K Finder">Pre-K Finder</h1>
+			<div class="banner-school-yr">for School Year <span class="school-yr"></span></div>
+			<a data-role="button" data-icon="arrow-l" class="hdr-btn back-btn ui-btn-right" onclick="history.back();">
+				Back to Finder
+			</a>
+		</div>
+		<div data-role="content">
+			<div id="dir-panel">
+				<div id="dir-content">
+					<div class="fld-lbl">From my location:</div>
+					<div id="fld-from"><input placeholder="Enter an address..."></div>
+					<div class="fld-lbl">To <span id="fld-facility"></span>:</div>
+					<div id="fld-to"></div>
+					<table id="dir-mode">
+						<tbody><tr>
+							<td><a id="mode-transit" class="dir-mode-btn active-mode" data-role="button" data-mode="TRANSIT" title="Get transit directions">
+								<span class="noshow">Get transit directions</span>
+							</a></td>
+							<td><a id="mode-bike" class="dir-mode-btn" data-role="button" data-mode="BICYCLING" title="Get bicycling directions">
+								<span class="noshow">Get bicycling directions</span>
+							</a></td>
+							<td><a id="mode-walk" class="dir-mode-btn" data-role="button" data-mode="WALKING" title="Get walking directions">
+								<span class="noshow">Get walking directions</span>
+							</a></td>
+							<td><a id="mode-car" class="dir-mode-btn" data-role="button" data-mode="DRIVING" title="Get driving directions">
+								<span class="noshow">Get driving directions</span>
+							</a></td>
+						</tr></tbody>
+					</table>
+				</div>
+				<div id="directions"></div>
+			</div>
+			<div id="dir-main">
+				<div id="dir-map"></div>
+			</div>
+			<div id="dir-toggle" data-role="controlgroup" data-type="horizontal">
+				<a class="toggle-map capitalize" data-role="button">map</a>
+				<a class="ui-btn-active capitalize" data-role="button">directions</a>
+			</div>
+		</div>
+	</div>
+	
+	<div id="form-page" data-role="page">
+		<div class="banner">
+			<img class="banner-logo nyc" src="img/nyc.png" onclick="document.location='./';" alt="NYC Pre-K Finder" title="NYC Pre-K Finder">
+			<h1 class="notranslate" translate="no" onclick="document.location='./';" title="NYC Pre-K Finder">Pre-K Finder</h1>
+			<div class="banner-school-yr">for School Year <span class="school-yr"></span></div>
+			<a data-role="button" data-icon="arrow-l" class="hdr-btn back-btn ui-btn-right" onclick="history.back();">
+				Back to Finder
+			</a>
+		</div>
+		<div data-role="content">
+			<form autocomplete="on" novalidate>
+				<div id="form-note" class="form-sect"></div>
+				<div class="form-sect">
+					<h2>student information</h2>
+					<div class="optional">
+					<table class="fields child">
+						<tbody>
+							<tr>
+								<td>
+									<label for="student-first-name">First name:</label>
+									<input id="student-first-name" name="studentFirstName" type="text">
+								</td>
+								<td>
+									<label for="student-last-name">Last name:</label>
+									<input id="student-last-name" name="studentLastName" type="text">
+								</td>
+							</tr>
+							<tr><td class="optional" colspan="2">(optional)</td></tr>
+						</tbody>
+					</table>
+					</div>
+					<label for="student-dob">Date of birth:</label>
+					<div id="student-dob"></div>
+					<span id="student-dob-note"></span>
+					<h3>current address</h3>
+					<table class="fields">
+						<tbody>
+							<tr>
+								<td id="house-cell">
+									<label for="house-number">House no:</label>
+									<input id="house-number" name="houseNumber" type="text" maxlength="10" required placeholder="52">
+								</td>
+								<td id="street-cell">
+									<label for="street-name">Street name:</label>
+									<input id="street-name" name="streetName" type="text" required placeholder="Chambers St">
+								</td>
+								<td id="apt-cell">
+									<label for="apt">Apt:</label>
+									<input id="apt" name="apt" type="text" placeholder="1A">					
+								</td>
+							</tr>
+						</tbody>
+					</table>	
+					<table class="fields">
+						<tbody>
+							<tr>
+								<td id="borough-cell">
+									<label for="borough">Borough:</label>
+									<select id="borough" name="borough" class="notranslate" translate="no" required data-pattern="^((?!Choose).)*$">
+										<option value="" class="capitalize">choose...</option>
+										<option value="Bronx">Bronx</option>
+										<option value="Brooklyn">Brooklyn</option>
+										<option value="Manhattan">Manhattan</option>
+										<option value="Queens">Queens</option>
+										<option value="Staten Island">Staten Island</option>
+									</select>
+								</td>
+								<td id="zip-cell">		
+									<label for="zip-code">ZIP Code:</label>
+									<input id="zip-code" name="zipCode" type="text" maxlength="5" required pattern="^\d{5}$" placeholder="10007">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>					
+				<div class="form-sect">
+					<h2>parent / guardian information</h2>
+					<table class="fields">
+						<tbody>
+							<tr>
+								<td>
+									<label for="parent-first-name">First name:</label>
+									<input id="parent-first-name" name="parentFirstName" type="text" required>
+								</td>
+								<td>
+									<label for="parent-last-name">Last name:</label>
+									<input id="parent-last-name" name="parentLastName" type="text" required>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<label for="relationship">Relationship:</label>
+					<select id="relationship" name="relationship" class="capitalize" required data-pattern="^((?!Choose).)*$">
+						<option value="">choose...</option>
+						<option value="Mother">mother</option>
+						<option value="Father">father</option>
+						<option value="Grandparent">grandparent</option>
+						<option value="Sister/Brother">sister / brother</option>
+						<option value="Other Relative">other relative</option>
+						<option value="Step Parent">step parent</option>
+						<option value="Foster Parent">foster parent</option>
+						<option value="Agency">agency</option>
+						<option value="Ward Of State">ward of state</option>
+						<option value="Other Legal Guardian">other legal guardian</option>
+						<option value="Non-Relative">non-relative</option>
+					</select>
+					<h3>contact information</h3>
+					<label for="day-telephone">Day phone:</label>
+					<input id="day-telephone" name="dayPhone" type="text" maxlength="10" required pattern="[0-9]{10}" placeholder="2125555555">
+					<div class="optional">
+						<table class="fields">
+							<tbody>
+								<tr>
+									<td>
+										<label for="evening-telephone">Evening phone:</label>
+										<input id="evening-telephone" name="eveningPhone" maxlength="10" type="text" pattern="[0-9]{10}" placeholder="2125555555">
+									</td>
+									<td>	
+										<label for="email">Email address:</label>
+										<input id="email" name="email" type="text" pattern="[\w-]+@([\w-]+\.)+[\w-]+">
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<label for="language">Preferred language:</label>
+										<select id="language" name="language" class="capitalize"></select>
+										<input id="language-code" name="languageCode" type="hidden" value="en">
+									</td>
+								</tr>
+								<tr><td class="optional" colspan="2">(optional)</td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<button id="form-submit" class="capitalize">submit request</button>
+				<input id="birth-year" name="birthYear" type="hidden">
+				<input id="start-year" name="startYear" type="hidden">
+			</form>
+			<div id="form-review">		
+				<h3>Please review your submission:</h3>
+				<div>
+					<span class="inf-name">Child name:</span><br>
+					<span id="review-studentFirstName"></span>
+					<span id="review-studentMiddleName"></span>
+					<span id="review-studentLastName"></span>
+				</div>
+				<div>
+					<span class="inf-name">Date of birth:</span><br>
+					<span id="review-studentDob"></span>
+				</div>
+				<div>
+					<span class="inf-name">Current address:</span><br>
+					<span id="review-houseNumber"></span> 
+					<span id="review-streetName"></span> 
+					<span id="review-apt"></span><br>
+					<span id="review-borough"></span>, NY <span id="review-zip-code"></span>
+				</div>
+				<div>
+					<span class="inf-name">Parent/Guardian name:</span><br>
+					<span id="review-parentFirstName"></span>
+					<span id="review-parentLastName"></span>
+				</div>
+				<div>
+					<span class="inf-name">Relationship:</span>
+					<span id="review-relationship"></span>
+				</div>
+				<div>
+					<span class="inf-name">Day Telephone:</span>
+					<span id="review-dayPhone"></span>
+				</div>
+				<div>
+					<span class="inf-name">Evening Telephone:</span>
+					<span id="review-eveningPhone"></span>
+				</div>
+				<div>
+					<span class="inf-name">Email address:</span>
+					<span id="review-email"></span>
+				</div>
+				<div>
+					<span class="inf-name">Preferred language:</span>
+					<span id="review-language"></span>
+				</div>
+				<div id="review-btns">
+					<button onclick="$('#form-review').fadeOut();">Cancel</button>
+					<button id="review-submit">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="form-processing"></div>
+	
+	<div id="inf-full-screen" class="ui-page-theme-a">
+		<a class="full-screen-close" onclick="$('#inf-full-screen').fadeOut();"></a>
+		<div></div>
+	</div>
+	<div id="copyright"></div>
+	
+	<script src="/nyc-lib/v0.2.9/js/nyc-ol-lib.js"></script>
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+
+	
+	
+	
+	
+
+	
+	<script src="js/pka-min.js?v3.1.2"></script>
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-41281554-9', 'auto');ga('send', 'pageview');
+	</script>	
+</body>
+</html>
