@@ -1,3 +1,5 @@
+'use strict';
+
 var timeOffset = 1000 * 60 * 15;
 var cacheBust = Math.round(new Date().getTime() / timeOffset) * timeOffset;
 
