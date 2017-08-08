@@ -11,8 +11,8 @@ function csvContentLoaded(csvContent){
 		var GEOCLIENT_URL = '//maps.nyc.gov/geoclient/v1/search.json?app_key=YOUR_APP_KEY&app_id=YOUR_APP_ID';
 		var GOOGLE_URL = 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization';
 		
-		var lang = new nyc.Lang({target: '#lang', languages: pka.lookup.languages})
-		lang.on(nyc.Lang.EventType.READY, function(){
+		var lang = new nyc.lang.Goog({target: '#lang', languages: pka.lookup.languages})
+		lang.on(nyc.lang.Translate.EventType.READY, function(){
 			$('#first-load').fadeOut();			
 		});
 		
