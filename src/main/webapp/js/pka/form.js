@@ -1,8 +1,8 @@
 var pka = pka || {};
 
-/** 
+/**
  * @desc Class for managing interaction with the form for requesting a call from DOE
- * @public 
+ * @public
  * @class
  * @constructor
  * @param {pka.ApplicationPeriod} applicationPeriod The application period
@@ -45,7 +45,7 @@ pka.Form = function(applicationPeriod, content, languages){
 				$('#language-code').val(code);
 				break;
 			}
-		}		
+		}
 	});
 };
 
@@ -70,16 +70,16 @@ pka.Form.prototype = {
 	 * @member {boolean}
 	 */
 	submitting: false,
-	/** 
+	/**
 	 * @desc Reset the form
 	 * @public
 	 * @method
 	 */
 	reset: function(){
 		$('#form-page form').get(0).reset();
-		$('#language').selectmenu()	
-			.val(this.languages[nyc.lang.lang() || 'en'].val)
-			.selectmenu('refresh');	
+		$('#language').selectmenu()
+			.val(this.languages[nyc.lang.translate.lang() || 'en'].val) 
+			.selectmenu('refresh');
 	},
 	/**
 	 * @desc Form validation
@@ -92,7 +92,7 @@ pka.Form.prototype = {
 		$('#form-page label, #form-page span').removeClass('err');
 		if (!this.dob.val()){
 			err.push(this.dob.selectMonth[0]);
-			$('label[for="student-dob"]').addClass('err');												
+			$('label[for="student-dob"]').addClass('err');
 		}
 		$.each($('#form-page input, #form-page select'), function(_, n){
 			var val = $(n).val(), pattern = $(n).attr('pattern') || $(n).data('pattern'), valid = true;
@@ -110,21 +110,21 @@ pka.Form.prototype = {
 			}
 			if (!valid){
 				err.push(n);
-				$('label[for="' + n.id + '"]').addClass('err');												
+				$('label[for="' + n.id + '"]').addClass('err');
 			}
 		});
 		if (err.length){
 			$(err[0]).focus();
 			this.dialog.ok({
 				message: this.content.message('form_invalid')
-			});				
+			});
 		}else{
 			this.review();
 		}
 		return false;
 	},
-	/** 
-	 * @private 
+	/**
+	 * @private
 	 * @method
 	 * @param {boolean} yes
 	 * @param {boolean} noreset
@@ -139,15 +139,15 @@ pka.Form.prototype = {
 			}
 		}
 	},
-	/** 
-	 * @private 
+	/**
+	 * @private
 	 * @method
 	 */
 	retry: function(){
 		this.again(true, true);
 	},
-	/** 
-	 * @private 
+	/**
+	 * @private
 	 * @method
 	 */
 	review: function(){
@@ -158,8 +158,8 @@ pka.Form.prototype = {
 		$('#form-review').fadeIn();
 		if ($('#form-review').height() > 320) $('#review-submit').focus(200);
 	},
-	/** 
-	 * @private 
+	/**
+	 * @private
 	 * @method
 	 * @return {Object<string, string>}
 	 */
@@ -170,15 +170,15 @@ pka.Form.prototype = {
 		});
 		return result;
 	},
-	/** 
-	 * @private 
+	/**
+	 * @private
 	 * @method
 	 */
 	post: function(){
 		var me = this;
 		$('#form-processing').fadeIn(function(){
-			$('#form-review').fadeOut();					
-		});		
+			$('#form-review').fadeOut();
+		});
 		$.ajax({
 			url: '/pka-form/',
 			data: this.formData(),
@@ -186,7 +186,7 @@ pka.Form.prototype = {
 			success: function(){
 				$('#form-processing').fadeOut(function(){
 					me.dialog.yesNo({
-						message: me.content.message('form_another'), 
+						message: me.content.message('form_another'),
 						callback: $.proxy(me.again, me)
 					});
 				});
@@ -194,11 +194,11 @@ pka.Form.prototype = {
 			error: function(){
 				$('#form-processing').fadeOut(function(){
 					me.dialog.ok({
-						message: me.content.message('form_error'), 
+						message: me.content.message('form_error'),
 						callback: $.proxy(me.retry, me)
-					});				
+					});
 				});
 			}
 		});
-	}	
+	}
 };
