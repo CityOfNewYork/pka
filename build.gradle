@@ -26,48 +26,48 @@ dependencies {
 
 ext {
 	appName = 'pka'
-	ver = 'v3.1.6'
+	ver = 'v3.1.7'
 	default_env = 'local'
-	
+
 	local_nyclib = 'https://maps.nyc.gov/nyc-lib/'
-	stg_nyclib = '/nyc-lib/'
-	prd_nyclib = '/nyc-lib/'
-	
+	stg_nyclib = '../nyc-lib/'
+	prd_nyclib = '../nyc-lib/'
+
 	pkgDir = "${buildDir}/${appName}/${ver}"
-	
+
 	remoteDir = "${appName}/${ver}"
 	srcDir = "${projectDir}/src/main/webapp"
 	jsSrcDir = "${srcDir}/js"
 	jsTmpDir = "${buildDir}/tmp/js"
 	cssSrcDir = "${srcDir}/css"
-	
+
 	jsFiles = [
 		'field-access.js',
 		'style.js',
-		
+
 		'pka/application-period.js',
 		'pka/form.js',
 		'pka/splash.js',
-		'pka/style.js', 
-		'pka/lookup.js', 
-		'pka/message.js', 
-		'pka/field-access.js', 
-		'pka/html-renderer.js', 
-		
-		'ta/style.js', 
-		'ta/lookup.js', 
-		'ta/message.js', 
-		'ta/field-access.js', 
+		'pka/style.js',
+		'pka/lookup.js',
+		'pka/message.js',
+		'pka/field-access.js',
+		'pka/html-renderer.js',
+
+		'ta/style.js',
+		'ta/lookup.js',
+		'ta/message.js',
+		'ta/field-access.js',
 		'ta/html-renderer.js',
 
 		'app.js',
-		'init.js'		
-		 
+		'init.js'
+
 
 	]
 	cssFiles = [
-		'pka.css', 
-		'ta.css', 
+		'pka.css',
+		'ta.css',
 		'form.css'
 	]
 }
@@ -83,11 +83,11 @@ task npmPackage(type: NpmPackageTask) {
 	gitHubUrl = 'https://github.com/timkeane/pka/'
 	keywords = ['ol3', 'CartoDB', 'LeafletJS', 'ChartJS']
 	dependencies = [
-		ol3: '> 3.11.0', 
-		CartoDB: '> 3.14', 
+		ol3: '> 3.11.0',
+		CartoDB: '> 3.14',
 		ChartJS: '> 1.0.1',
-		proj4js: '> 2.3.10', 
-		JQuery: '> 1.11.0', 
+		proj4js: '> 2.3.10',
+		JQuery: '> 1.11.0',
 		JQueryMobile: '> 1.4.5'
 	]
 }
@@ -103,12 +103,12 @@ task copyFiles(dependsOn: []) << {
 		include 'data/**'
 		include 'img/**'
 		exclude 'img/Thumbs.db'
-		into pkgDir 
+		into pkgDir
 	}
 }
 
 task replaceTokens(dependsOn: [setEnv, copyFiles]) << {
-	ant.taskdef(name: 'replace', classname: 'org.apache.tools.ant.taskdefs.Replace')	
+	ant.taskdef(name: 'replace', classname: 'org.apache.tools.ant.taskdefs.Replace')
 	if (project.hasProperty('pka.analytics')){
 		ant.replace(file: "${pkgDir}/index.html", token: '/* google analytics */', value: project.ext['pka.analytics'])
 	}
@@ -156,7 +156,7 @@ minifyJs.doFirst {
 		include 'ta/**'
 		into jsTmpDir
 	}
-	ant.taskdef(name: 'replace', classname: 'org.apache.tools.ant.taskdefs.Replace')	
+	ant.taskdef(name: 'replace', classname: 'org.apache.tools.ant.taskdefs.Replace')
 	if (project.hasProperty("pka.${env}.geoclient.url")){
 		ant.replace(file: "${jsTmpDir}/init.js", token: project.ext['pka.git.geoclient.url'], value: project.ext["pka.${env}.geoclient.url"])
 	}
@@ -187,11 +187,11 @@ remotes {
 task deploy(dependsOn: [archive]) << {
 	def archiveDir = project.ext['archive.dir']
 	def deployDir = project.ext['pka.deploy.dir']
-	
+
 	remotes.deployTarget.host = project.ext["${env}.host"]
-    remotes.deployTarget.user = project.ext["${env}.user"]	
+    remotes.deployTarget.user = project.ext["${env}.user"]
     remotes.deployTarget.identity = file("${System.properties['user.home']}/.ssh/id_rsa")
-	
+
 	println ""
 	println "mkdir -p ${archiveDir}"
 	println "mkdir -p ${deployDir}"
@@ -201,7 +201,7 @@ task deploy(dependsOn: [archive]) << {
     println "unzip ${archiveDir}/${archive.archiveName} -d ${deployDir}"
     println "rm -rf ${deployDir}.bak"
 	println ""
-	
+
 	ssh.run {
         session(remotes.deployTarget) {
         	execute "mkdir -p ${archiveDir}"
