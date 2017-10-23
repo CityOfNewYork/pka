@@ -46,7 +46,7 @@
 			<label for="street-name">Street name:</label>
 			<input id="street-name" name="streetName" type="text" required placeholder="Chambers St">
 			<label for="apt">Apt:</label>
-			<input id="apt" name="apt" type="text" placeholder="1A">					
+			<input id="apt" name="apt" type="text" placeholder="1A">
 			<label for="borough">Borough:</label>
 			<select id="borough" name="borough" class="notranslate" translate="no" required data-pattern="^((?!Choose).)*$">
 				<option value="" class="capitalize">choose...</option>
@@ -83,16 +83,16 @@
 			<input id="evening-telephone" name="eveningPhone" maxlength="10" type="text" required pattern="[0-9]{10}" placeholder="2125555555">
 			<label for="email">Email address:</label>
 			<input id="email" name="email" type="text" required pattern="[\w-]+@([\w-]+\.)+[\w-]+">
-			<select id="language" name="language"></select>			
+			<select id="language" name="language"></select>
 			<input id="language-code" name="languageCode" type="hidden" value="en">
 			<button id="form-submit" class="capitalize">submit request</button>
 		</form>
-		<div id="form-review">		
+		<div id="form-review">
 			<span id="review-studentFirstName"></span>
 			<span id="review-studentLastName"></span>
 			<span id="review-studentDob"></span>
-			<span id="review-houseNumber"></span> 
-			<span id="review-streetName"></span> 
+			<span id="review-houseNumber"></span>
+			<span id="review-streetName"></span>
 			<span id="review-apt"></span>
 			<span id="review-borough"></span>
 			<span id="review-zipCode"></span>
@@ -115,9 +115,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
 	<script src="https://code.jquery.com/qunit/qunit-1.23.0.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.14/proj4.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.0.1/ol.js"></script>    
-	<script src="https://maps.nyc.gov/nyc-lib/v0.3.7/js/nyc-ol-lib.js"></script>
-	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.0.1/ol.js"></script>
+	<script src="https://maps.nyc.gov/nyc-lib/v0.5.3/js/nyc-ol-lib.js"></script>
+
 	<!-- sources -->
 	<script src="../../main/webapp/js/field-access.js"></script>
 
@@ -139,7 +139,7 @@
 	<script src="../../main/webapp/js/ta/style.js"></script>
 
 	<script src="../../main/webapp/js/app.js"></script>
-	
+
 	<!-- tests -->
 	<script src="js/setup-teardown.js"></script>
 

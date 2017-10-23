@@ -1,7 +1,7 @@
 QUnit.module('pka.Form', {
 	beforeEach: function(assert){
 		setup(assert, this);
-		nyc.lang = {code: null, lang: function(){return this.code;}};
+		nyc.lang = {translate: {code: null, lang: function(){return this.code;}}};
 		this.FORM = new pka.Form(this.APPLICATION_PERIOD_ACTIVE, this.SCHOOL_CONTENT, pka.lookup.languages);
 		this.FORM.reset();
 	},
@@ -56,7 +56,7 @@ QUnit.test('valid (all null)', function(assert){
 	assert.ok($('#form-page label[for="student-dob"]').hasClass('err'));
 	$.each($('#form-page input, #form-page select'), function(_, n){
 		if ($(n).prop('required') || $(n).attr('required')){
-			assert.ok($('label[for="' + n.id + '"]').hasClass('err'));												
+			assert.ok($('label[for="' + n.id + '"]').hasClass('err'));
 		}
 	});
 });
@@ -175,7 +175,7 @@ QUnit.test('again (no)', function(assert){
 		beforechange: function(event, ui){
 		  assert.equal(ui.toPage, '#map-page');
 	  }
-	});	
+	});
 	this.FORM.again();
 });
 
@@ -216,7 +216,7 @@ QUnit.test('review', function(assert){
 
 QUnit.test('post (success)', function(assert){
 	assert.expect(7);
-	
+
 	var done = assert.async();
 	var form = this.FORM;
 
@@ -256,7 +256,7 @@ QUnit.test('post (success)', function(assert){
 		assert.equal(args.message, form.content.message('form_another'));
 		assert.equal(args.callback.toString(), $.proxy(form.again).toString());
 	};
-	
+
 	$('input[name="studentDob"]').val('03/03/2016');
 	$('#student-first-name').val('StudentFirst');
 	$('#student-last-name').val('StudentLast');
@@ -273,6 +273,6 @@ QUnit.test('post (success)', function(assert){
 	$('#email').val('me@email.com');
 	$('#language').val('Spanish').trigger('change');
 	form.post();
-	
+
 	$.ajax = ajax;
 });

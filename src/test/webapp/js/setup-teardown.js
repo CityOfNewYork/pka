@@ -99,7 +99,7 @@ function setup(assert, hooks){
 			target: div,
 			view: new ol.View({
 				projection: 'EPSG:2263',
-				resolutions: nyc.ol.layer.BaseLayer.RESOLUTIONS
+				resolutions: nyc.ol.Basemap.RESOLUTIONS
 			})
 		});
 		map.getView().fit(nyc.ol.EXTENT, map.getSize());

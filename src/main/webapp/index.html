@@ -13,9 +13,9 @@
 	<meta prefix="og: http://ogp.me/ns#" property="og:image:width" content="1200">
 	<meta prefix="og: http://ogp.me/ns#" property="og:image:height" content="626">
 	<meta prefix="og: http://ogp.me/ns#" property="og:description" content="NYC Pre-K Finder - Locate a NYC Pre-Kindergarten Program near you">
-	<meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="maps.nyc.gov">	
-	<meta name="google-translate-customization" content="4707bd7f535893a0-45bca7b6a97e5a2d-g609df9381571b349-c"> 	
- 	
+	<meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="maps.nyc.gov">
+	<meta name="google-translate-customization" content="4707bd7f535893a0-45bca7b6a97e5a2d-g609df9381571b349-c">
+
  	<title>NYC Pre-K Finder</title>
 
 	<link rel="manifest" href="manifest.webmanifest">
@@ -23,16 +23,16 @@
 	<link rel="apple-touch-icon" sizes="60x60" href="img/icon-60.png">
 	<link rel="apple-touch-icon" sizes="76x76" href="img/icon-76.png">
 	<link rel="apple-touch-icon" sizes="120x120" href="img/icon-120.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="img/icon-152.png">	
+	<link rel="apple-touch-icon" sizes="152x152" href="img/icon-152.png">
 	<link rel="apple-touch-icon" sizes="167x167" href="img/icon-167.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="img/icon-180.png">
 
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.2.0/ol.css">
-	<link rel="stylesheet" href="https://maps.nyc.gov/nyc-lib/v0.3.7/css/nyc-ol-lib.css">
-	<link rel="stylesheet" href="css/pka.css"> 
-	<link rel="stylesheet" href="css/ta.css"> 
-	<link rel="stylesheet" href="css/form.css"> 
+	<link rel="stylesheet" href="https://maps.nyc.gov/nyc-lib/v0.5.3/css/nyc-ol-lib.css">
+	<link rel="stylesheet" href="css/pka.css">
+	<link rel="stylesheet" href="css/ta.css">
+	<link rel="stylesheet" href="css/form.css">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -86,7 +86,7 @@
 			<div id="map"></div>
 			<a id="btn-call" class="ctl ctl-btn" data-role="button" data-icon="none" data-iconpos="notext"></a>
 		</div>
-		<div id="panel">	
+		<div id="panel">
 			<div id="panel-content">
 				<div id="tabs" data-role="tabs">
 					<div data-role="navbar">
@@ -166,7 +166,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="form-page" data-role="page">
 		<div class="banner">
 			<img class="banner-logo nyc" src="img/nyc.png" onclick="document.location='./';" alt="NYC Pre-K Finder" title="NYC Pre-K Finder">
@@ -215,11 +215,11 @@
 								</td>
 								<td id="apt-cell">
 									<label for="apt">Apt:</label>
-									<input id="apt" name="apt" type="text" placeholder="1A">					
+									<input id="apt" name="apt" type="text" placeholder="1A">
 								</td>
 							</tr>
 						</tbody>
-					</table>	
+					</table>
 					<table class="fields">
 						<tbody>
 							<tr>
@@ -234,14 +234,14 @@
 										<option value="Staten Island">Staten Island</option>
 									</select>
 								</td>
-								<td id="zip-cell">		
+								<td id="zip-cell">
 									<label for="zip-code">ZIP Code:</label>
 									<input id="zip-code" name="zipCode" type="text" maxlength="5" required pattern="^\d{5}$" placeholder="10007">
 								</td>
 							</tr>
 						</tbody>
 					</table>
-				</div>					
+				</div>
 				<div class="form-sect">
 					<h2>parent / guardian information</h2>
 					<table class="fields">
@@ -284,7 +284,7 @@
 										<label for="evening-telephone">Evening phone:</label>
 										<input id="evening-telephone" name="eveningPhone" maxlength="10" type="text" pattern="[0-9]{10}" placeholder="2125555555">
 									</td>
-									<td>	
+									<td>
 										<label for="email">Email address:</label>
 										<input id="email" name="email" type="text" pattern="[\w-]+@([\w-]+\.)+[\w-]+">
 									</td>
@@ -305,7 +305,7 @@
 				<input id="birth-year" name="birthYear" type="hidden">
 				<input id="start-year" name="startYear" type="hidden">
 			</form>
-			<div id="form-review">		
+			<div id="form-review">
 				<h3>Please review your submission:</h3>
 				<div>
 					<span class="inf-name">Child name:</span><br>
@@ -319,8 +319,8 @@
 				</div>
 				<div>
 					<span class="inf-name">Current address:</span><br>
-					<span id="review-houseNumber"></span> 
-					<span id="review-streetName"></span> 
+					<span id="review-houseNumber"></span>
+					<span id="review-streetName"></span>
 					<span id="review-apt"></span><br>
 					<span id="review-borough"></span>, NY <span id="review-zip-code"></span>
 				</div>
@@ -356,16 +356,16 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="form-processing"></div>
-	
+
 	<div id="inf-full-screen" class="ui-page-theme-a">
 		<a class="full-screen-close" onclick="$('#inf-full-screen').fadeOut();"></a>
 		<div></div>
 	</div>
 	<div id="copyright"></div>
-	
-	<script src="https://maps.nyc.gov/nyc-lib/v0.3.7/js/nyc-ol-lib.js"></script>
+
+	<script src="https://maps.nyc.gov/nyc-lib/v0.5.3/js/nyc-ol-lib.js"></script>
 
 	<script src="js/field-access.js"></script>
 
@@ -382,7 +382,7 @@
 	<script src="js/ta/field-access.js"></script>
 	<script src="js/ta/html-renderer.js"></script>
 
-	
+
 	<script src="js/style.js"></script>
 	<script src="js/pka/style.js"></script>
 	<script src="js/ta/style.js"></script>
@@ -392,6 +392,6 @@
 
 	<script>
 		/* google analytics */
-	</script>	
+	</script>
 </body>
 </html>
