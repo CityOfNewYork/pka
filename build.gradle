@@ -72,26 +72,6 @@ ext {
 	]
 }
 
-task npmPackage(type: NpmPackageTask) {
-	packageFile = "${pkgDir}/package.json"
-	libName = appName
-	version = ver
-	license = 'Apache-2.0'
-	desc = 'NYC Pre-K Finder'
-	author = 'Tim Keane'
-	contributors = []
-	gitHubUrl = 'https://github.com/timkeane/pka/'
-	keywords = ['ol3', 'CartoDB', 'LeafletJS', 'ChartJS']
-	dependencies = [
-		ol3: '> 3.11.0',
-		CartoDB: '> 3.14',
-		ChartJS: '> 1.0.1',
-		proj4js: '> 2.3.10',
-		JQuery: '> 1.11.0',
-		JQueryMobile: '> 1.4.5'
-	]
-}
-
 task setEnv << {
 	if (!project.hasProperty('env')) project.ext.env = default_env
 }

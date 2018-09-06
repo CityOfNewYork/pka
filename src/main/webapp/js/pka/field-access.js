@@ -2,7 +2,7 @@ var pka = pka || {};
 
 /**
  * @desc Functions used as decoration args for an instance of nyc.ol.source.FilteringAndSorting
- * @public 
+ * @public
  * @memberof pka
  * @static
  * @type {Object}
@@ -15,7 +15,7 @@ pka.fieldAccess = {
 	jcardBuilder: new nyc.jcard.Builder(),
 	/**
 	 * @desc Automatically extend the properties of an ol.Feature
-	 * @public 
+	 * @public
 	 * @static
 	 * @method
 	 */
@@ -23,23 +23,27 @@ pka.fieldAccess = {
 		var props = this.getProperties();
 		this.setId(this.getId());
 		props.fid = this.getId();
-		
-		if (props['EL_SEATS'] > 0 && !props['3K_SEATS'] && !props.PREK_SEATS){
+
+		if (props.EL_SEATS.trim() === '') props.EL_SEATS = -1;
+		if (props['3K_SEATS'].trim() === '') props['3K_SEATS'] = -1;
+		if (props.PREK_SEATS.trim() === '') props.PREK_SEATS = -1;
+
+		if (props.EL_SEATS >= 0 && props['3K_SEATS'] == -1 && props.PREK_SEATS == -1){
 			props.prek3 = 'el';
-		}else if (props['EL_SEATS'] > 0 && props['3K_SEATS'] > 0 && !props.PREK_SEATS){
+		}else if (props.EL_SEATS >= 0 && props['3K_SEATS'] >= 0 && props.PREK_SEATS == -1){
 			props.prek3 = 'el-3k';
-		}else if (props['EL_SEATS'] > 0 && props['3K_SEATS'] > 0 && props.PREK_SEATS > 0){
+		}else if (props.EL_SEATS >= 0 && props['3K_SEATS'] >= 0 && props.PREK_SEATS >= 0){
 			props.prek3 = 'el-3k-pk';
-		}else if (props['EL_SEATS'] > 0 && !props['3K_SEATS'] && props.PREK_SEATS > 0){
+		}else if (props.EL_SEATS >= 0 && props['3K_SEATS'] == -1 && props.PREK_SEATS >= 0){
 			props.prek3 = 'el-pk';
-		}else if (!props['EL_SEATS'] && props['3K_SEATS'] > 0 && !props.PREK_SEATS){
+		}else if (props.EL_SEATS == -1 && props['3K_SEATS'] >= 0 && props.PREK_SEATS == -1){
 			props.prek3 = '3k';
-		}else if (!props['EL_SEATS'] && !props['3K_SEATS'] && props.PREK_SEATS > 0){
+		}else if (props.EL_SEATS == -1 && props['3K_SEATS'] == -1 && props.PREK_SEATS >= 0){
 			props.prek3 = 'pk';
-		}else if (!props['EL_SEATS'] && props['3K_SEATS'] > 0 && props.PREK_SEATS > 0){
+		}else if (props.EL_SEATS == -1 && props['3K_SEATS'] >= 0 && props.PREK_SEATS >= 0){
 			props.prek3 = '3k-pk';
 		}
-		
+
 		props.loccode4 = props.fid.substr(props.fid.length - 4);
 		props.address_1 = props.ADDRESS;
 		props.city = this.borough[props.BOROUGH];
@@ -52,31 +56,31 @@ pka.fieldAccess = {
 		props.sped = props.SPED_FLG == '1' ? this.message('sped_flg') : '';
 		props.income = props.INCOME_FLG == '1' ? this.message('income_flg') : '';
 		props.lang = props.ENHANCED_LANG != '0' ? '1' : '';
-		
+
 		props.start_time = props.START_TIME ? props.START_TIME : this.message('contact_start');
 		props.start = this.message('start_time', props);
 
 		if (props.EARLY_DROP == '1'){
-			props.early_drop = this.message('yes');			
+			props.early_drop = this.message('yes');
 		}else if (props.EARLY_DROP == '0'){
 			props.early_drop = this.message('no');
 		}else{
-			props.early_drop = this.message('contact_extend');	
+			props.early_drop = this.message('contact_extend');
 		}
 		props.early = this.message('early_drop_off', props);
-		
-		
+
+
 		if (props.LATE_PICKUP == '1'){
-			props.late_pickup = this.message('yes');			
+			props.late_pickup = this.message('yes');
 		}else if (props.LATE_PICKUP == '0'){
 			props.late_pickup = this.message('no');
 		}else{
-			props.late_pickup = this.message('contact_extend');	
+			props.late_pickup = this.message('contact_extend');
 		}
 		props.late = this.message('late_pick_up', props);
-		
+
 		props.extend = props.EARLY_DROP == '1' || props.LATE_PICKUP == '1' ? '1' : '';
-		
+
 		props.school_year = this.message('school_year');
 		props.day_length = this.day_length[props.DAY_LENGTH];
 		props.full_day = $.inArray(props.DAY_LENGTH * 1, this.full_day) > -1;
@@ -84,15 +88,15 @@ pka.fieldAccess = {
 		props.can_apply = this.applicationPeriod.isActive() && props.BUTTON_TYPE.toLowerCase() == 'apply' ? '1' : '';
 		props.btn_apply = this.message('btn_apply');
 		props.search_label = this.message('search_label', props);
-		
+
 		props.btn_pdf = this.message('btn_pdf');
 		props.pdf_url = this.message('quality_pdf', props);
-		
+
 		this.setProperties(props);
 	},
 	/**
-	 * @desc Return the facility LOCCODE as the id 
-	 * @public 
+	 * @desc Return the facility LOCCODE as the id
+	 * @public
 	 * @static
 	 * @method
 	 * @returns {string}
@@ -101,8 +105,8 @@ pka.fieldAccess = {
 		return this.get('LOCCODE');
 	},
 	/**
-	 * @desc Return the facility TYPE 
-	 * @public 
+	 * @desc Return the facility TYPE
+	 * @public
 	 * @static
 	 * @method
 	 * @returns {string}
@@ -111,8 +115,8 @@ pka.fieldAccess = {
 		return this.get('TYPE');
 	},
 	/**
-	 * @desc Return the distance from the user location 
-	 * @public 
+	 * @desc Return the distance from the user location
+	 * @public
 	 * @static
 	 * @method
 	 * @returns {number|undefined}
@@ -121,8 +125,8 @@ pka.fieldAccess = {
 		return this.get('distance');
 	},
 	/**
-	 * @desc Set the distance from the user location 
-	 * @public 
+	 * @desc Set the distance from the user location
+	 * @public
 	 * @static
 	 * @method
 	 * @param {number} distance The distance in map units
@@ -131,8 +135,8 @@ pka.fieldAccess = {
 		this.set('distance', distance);
 	},
 	/**
-	 * @desc Return description of language support at the facility 
-	 * @public 
+	 * @desc Return description of language support at the facility
+	 * @public
 	 * @static
 	 * @method
 	 * @param {string} infoOrVcard Indicates whether to use message content for the web page or the vcard
@@ -149,8 +153,8 @@ pka.fieldAccess = {
 		return msg;
 	},
 	/**
-	 * @desc Return jcard string for vcard download generation 
-	 * @public 
+	 * @desc Return jcard string for vcard download generation
+	 * @public
 	 * @static
 	 * @method
 	 * @returns {string}
@@ -161,7 +165,7 @@ pka.fieldAccess = {
 			coordinates = proj4( 'EPSG:3857', 'EPSG:4326', this.getCoordinates());
 		builder.add(builder.organization({name: props.NAME}));
 		builder.add(builder.address({
-			type: 'work', 
+			type: 'work',
 			line1: props.address_1,
 			city:  props.city,
 			state: 'NY',
@@ -177,10 +181,10 @@ pka.fieldAccess = {
 		return builder.json();
 	},
 	/**
-	 * @private 
+	 * @private
 	 * @static
 	 * @method
-	 * @return {Object<string, Array<string>>} 
+	 * @return {Object<string, Array<string>>}
 	 */
 	getLangs: function(){
 		var me = this, codes = this.get('ENHANCED_LANG') || '', langs = {dual: [], enhanced: []};
@@ -192,10 +196,10 @@ pka.fieldAccess = {
 		return langs;
 	},
 	/**
-	 * @private 
+	 * @private
 	 * @static
 	 * @method
-	 * @return {string} 
+	 * @return {string}
 	 */
 	getJcardNote: function(){
 		var props = this.getProperties(),
@@ -204,11 +208,11 @@ pka.fieldAccess = {
 		if (props.NOTE) note += this.message('vcard_note', props);
 		note += this.message('vcard_program_features', props);
 		note += this.message('vcard_seats', props);
-		note += this.getLangContent('vcard');		
+		note += this.getLangContent('vcard');
 		if (props.flex) note += this.message('vcard_flex', props);
 		if (props.sped) note += this.message('vcard_sped', props);
 		if (props.income) note += this.message('vcard_income', props);
-		note += this.message('vcard_link', props);	
+		note += this.message('vcard_link', props);
 		return note;
 	}
 };
