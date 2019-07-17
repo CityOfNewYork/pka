@@ -1,0 +1,24 @@
+key,value
+birth_year,2014
+start_year,2018
+school_year,2018-19
+apply_start_date,2/5/2018
+apply_end_date,3/30/2018
+splash_msg_no_apply,"<p>Pre-K offer letters have been sent to all families who applied to pre-K by the March 30 deadline.  If you still need to find a pre-K program for fall 2018 for a child born in 2014, click &ldquo;Continue to Pre-K Finder Map&rdquo; below and contact schools directly to ask about empty seats or being added to a waitlist. To see programs that may have seats remaining immediately, please use the <i>May have Pre-K seats remaining</i> filter on the Pre-K Finder Map. Pre-K gives children stronger math and reading skills in elementary school and a better chance at success in life! Studies show that early childhood education improves performance throughout a child's school experience.</p><p> To learn more about pre-K, read the  <a href='https://www.schools.nyc.gov/enrollment/enroll-grade-by-grade/pre-k' target='_blank'>2018-19 Pre-K Directory</a>.<HR> <p> 3-K for All results have been sent to all families who applied by the May 11 deadline. </p><p>3-K will be available in Districts 4, 5, 7, 16, 23, and 27 in fall 2018.</p><p>To find out what school district you live in, please enter your address <a href='http://schools.nyc.gov/SchoolSearch/' target='_blank'>here</a>.</p><p>To see <i>3-K for All</i> programs,  click &ldquo;Continue to 3-K Finder Map&rdquo; below. Make sure to check back, as we are working hard to add 3-K programs for the rest of the summer!</p> <HR><p>"
+splash_msg_yes_apply,"<p>Pre-K offer letters have been sent to all families who applied to pre-K by the March 30 deadline.  If you still need to find a pre-K program for fall 2018 for a child born in 2014, click &ldquo;Continue to Pre-K Finder Map&rdquo; below and contact schools directly to ask about empty seats or being added to a waitlist. To see programs that may have seats remaining immediately, please use the <i>May have Pre-K seats remaining</i> filter on the Pre-K Finder Map. Pre-K gives children stronger math and reading skills in elementary school and a better chance at success in life! Studies show that early childhood education improves performance throughout a child's school experience.</p><p> To learn more about pre-K, read the  <a href='https://www.schools.nyc.gov/enrollment/enroll-grade-by-grade/pre-k' target='_blank'>2018-19 Pre-K Directory</a>.<HR> <p> 3-K for All results have been sent to all families who applied by the May 11 deadline. </p><p>3-K will be available in Districts 4, 5, 7, 16, 23, and 27 in fall 2018.</p><p>To find out what school district you live in, please enter your address <a href='http://schools.nyc.gov/SchoolSearch/' target='_blank'>here</a>.</p><p>To see <i>3-K for All</i> programs,  click &ldquo;Continue to 3-K Finder Map&rdquo; below. Make sure to check back, as we are working hard to add 3-K programs for the rest of the summer!</p> <HR><p>"
+btn_call,Get in Touch
+btn_apply,Apply Now!
+application_filter_btn,
+dynamic_filter_btn,May Have Pre-K Seats Remaining
+form_msg_no_apply,<b><u>This form is only a statement of interest and not an application. </b></u> An Enrollment Specialist will contact you shortly. Please visit <a href='http://nyc.gov/prek' target='_blank'>the pre-K website</a> or <a href='http://schools.nyc.gov/3k' target='_blank'>the 3-K website</a> for more information.
+form_msg_yes_apply,<b><u>This form is only a statement of interest and not an application. </b></u> An Enrollment Specialist will contact you shortly. Please visit <a href='http://nyc.gov/prek' target='_blank'>the pre-K website</a> or <a href='http://schools.nyc.gov/3k' target='_blank'>the 3-K website</a> for more information.
+form_dob_msg,"<b>Note:</b> If your child was born in 2014, they are eligible for pre-K for the 2018-19 school year! If your child was born in 2015, they are eligible for 3-K programs for the 2018-19 school year in Districts 4, 5, 7, 16, 23, and 27."
+form_another,Your submission was successful!<br><br>Do you wish to submit again for another child?
+form_error,"There was an error processing your submission, please try again. Please call 718-935-2009 (Monday-Friday between 8am and 6pm) to speak to a representative."
+form_invalid,"You have entered invalid information.<p>The form only accepts English language characters.</p>Please correct the information in the red fields. If you are having difficulty submitting this form, please call 718-935-2009 (Monday-Friday between 8am and 6pm) to speak to a representative."
+min_dob_year,2012
+max_dob_year,2016
+hotline_number,(212) 637-8000
+hotline_msg,Call (212) 637-8000 to contact an enrollment specialist between 9AM-5PM Monday-Friday
+quality_pdf,http://www.nycenet.edu/OA/SchoolReports/2016-17/School_Quality_Snapshot_PK_2017_${loccode4}.pdf
+btn_pdf,2018 Pre-K Snapshot
