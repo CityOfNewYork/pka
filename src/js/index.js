@@ -2,6 +2,7 @@ import App from './App'
 import Content from 'nyc-lib/nyc/Content'
 import decorations from './decorations'
 import CsvPoint from 'nyc-lib/nyc/ol/format/CsvPoint'
+import messages from './message';
 
 new App({
   title: '<span class="screen-reader-only">NYC Pre-K Finder</span><span>NYC Pre-K Finder</span>',
@@ -21,9 +22,9 @@ new App({
     {
       title: 'Age Group',
       choices: [
-        {name: 'AGE_GROUP', values: ['1'], label: '3-K (Born 2016)'},
-        {name: 'AGE_GROUP', values: ['1'], label: 'Early Learn (born 2016)'},
-        {name: 'AGE_GROUP', values: ['1'], label: 'PRE-K (Born 2015)'}
+        {name: '3K', values: [1], label: '3-K (Born 2016)'},
+        {name: 'EL', values: [1], label: 'Early Learn (born 2016)'},
+        {name: 'PREK', values: [1], label: 'PRE-K (Born 2015)'}
       ]
     },
     {
@@ -57,9 +58,9 @@ new App({
     {
       title: 'Program Features',
       choices: [
-        {name: 'DAY_LENGTH', values: ['1', '2', '5', '7'], label: 'Extended Hours'},
-        {name: 'DAY_LENGTH', values: ['3', '6', '7'], label: 'Income Eligibility'},
-        {name: 'DAY_LENGTH', values: ['4', '5', '6', '7'], label: 'DualEnhanced Language'}
+        {name: 'EXTEND', values: [1], label: 'Extended Hours'},
+        {name: 'INCOME_FLG', values: ['1'], label: 'Income Eligibility'},
+        {name: 'LANG', values: [1], label: 'DualEnhanced Language'}
       ]
     }
   ],

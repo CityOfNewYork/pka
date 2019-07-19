@@ -2,8 +2,30 @@
  * @module pka/decorations
  */
 import lookup from './lookup'
+import messages from './message'
 
 const decorations = {
+  extendFeature() {
+    this.set('3K', (this.get('3K_SEATS')) ? 1 : -1) 
+    this.set('EL', (this.get('EL_SEATS')) ? 1 : -1) 
+    this.set('PREK', (this.get('PREK_SEATS')) ? 1 : -1) 
+    this.set('EXTEND', 
+      this.get('EARLY_DROP').trim() == '' ? 1 : 0
+    )
+    this.set('LANG', 
+      this.containsKey(this.get('ENHANCED_LANG'), lookup.enhanced_lang) || this.containsKey(this.get('ENHANCED_LANG'), lookup.dual_lang) ? 1 : 0
+    )
+  },
+  containsKey(item, list) {
+    let result = false
+    $.each(list, (key, value) => {
+      if(key == item) {
+        result = true
+        return false
+      }
+    })
+    return result
+  },
   html() {
     return $('<div class="facility"></div>')
       .append(this.distanceHtml())
