@@ -3,6 +3,7 @@
  */
 import lookup from './lookup'
 import messages from './message'
+import $ from 'jquery'
 
 const decorations = {
   extendFeature() {
@@ -54,6 +55,9 @@ const decorations = {
   getCityStateZip() {
     return `${this.boroughHtml()}, NY ${this.get('ZIP')}`
   },
+  getDayLength() {
+    return this.get('DAY_LENGTH')
+  },
   getEmail() {
     return this.get('EMAIL')
   },
@@ -63,14 +67,24 @@ const decorations = {
   getMeals() {
     return this.get('MEALS')
   },
+  getPrekSeats() {
+    return this.get('PREK_SEATS')
+  },
+  get3kSeats() {
+    return this.get('3K_SEATS')
+  },
+  getElSeats() {
+    return this.get('EL_SEATS')
+  },
   getProgramCode() {
     return this.get('LOCCODE')
   },
-  getProgramFeatures() {
-    return $(this.mealsHtml())
+  getProgramFeatures(list) {
+    return list
+      .append(this.mealsHtml())
       .append(this.ioHtml())
       .append(this.startTimeHtml())
-  
+
   },
   getStartTime() {
     return this.get('START_TIME')
@@ -81,33 +95,58 @@ const decorations = {
   boroughHtml() {
     return lookup.borough[this.getBorough()] || 'New York'
   },
-  programCodeHtml() {
-    return `<div><b>Program Code: </b>${this.getProgramCode()}</div>`
-  },
   detailsHtml() {
     const div = $('<div class="dtl"></div>')
-    let ul = $('<ul></ul>')
-    
-    ul.append(this.getProgramFeatures())
-    
-    div.append(this.programCodeHtml())
-      .append('<b>Program Features: </b>')
-      .append(ul)
+    let program = []
+    program.push(this.mealsHtml())
+    program.push(this.ioHtml())
+    program.push(this.startTimeHtml())
 
-    //2019-20 Seats
+    let ul = this.makeList(program)
+
+    div.append(this.programCodeHtml())
+      .append(this.emailHtml())
+      .append('<div><b>Program Features: </b></div>')
+      .append(ul)
+      .append('<div><b>2019-20 Seats: </b></div>')
+      .append(this.seatsHtml())
 
     return div
   },
+  emailHtml() {
+    const email = this.getEmail()
+    return `<div class="email-lnk" translate="no"><a href="mailto:${email}">${email}</a></div>`
+  },
   ioHtml() {
-    let io = lookup.indoor_outdoor[this.getIndoorOutdoor()]
-    return `<li>${io}</li>`
+    const io = lookup.indoor_outdoor[this.getIndoorOutdoor()]
+    return `${io}`
   },
   mealsHtml() {
-    let meals = lookup.meals[this.getMeals()]
-    return `<li>${meals}</li>`
+    const meals = lookup.meals[this.getMeals()]
+    return `${meals}`
+  },
+  programCodeHtml() {
+    return `<div><b>Program Code: </b>${this.getProgramCode()}</div>`
+  },
+  seatsHtml() {
+    const pre_k = this.getPrekSeats()
+    const three_k = this.get3kSeats()
+    const el = this.getElSeats()
+    let seats = []
+    if(pre_k)
+      seats.push(`<b>Pre-K:</b> ${pre_k}`)
+    if(three_k)
+      seats.push(`<b>3-K:</b> ${three_k}`)
+    if(el)
+      seats.push(`<b>Early Learn 3s:</b> ${el}`)
+
+    for(let i = 0; i < seats.length; i++) {
+      seats[i] = `${seats[i]} ${lookup.day_length[this.getDayLength()]}`
+    }
+    return this.makeList(seats)
   },
   startTimeHtml() {
-    return `<li>Daily Start Time: ${this.getStartTime()}</li>`
+    return `Daily Start Time: ${this.getStartTime()}`
   },
   snapshotButton() {
     return $('<a class="btn rad-all snapshot" target="_blank"></a>')
@@ -116,7 +155,16 @@ const decorations = {
   },
   getSnapshotLink() {
     return 'http://www.google.com'
+  },
+  makeList(list) {
+    const ul = $('<ul></ul>')
+    list.forEach(item => {
+      const li = $('<li></li>').html(item)
+      ul.append(li)
+    })
+    return ul
   }
 }
+
 
 export default decorations

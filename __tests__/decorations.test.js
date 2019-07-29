@@ -23,6 +23,31 @@ describe('decorations', () => {
     expect(feature.getName()).toBe(`${feature.get('NAME')}`)
     expect(feature.getName()).not.toBeNull()
   })
+  test('getBorough', () => {
+    expect.assertions(2)
+    expect(feature.getBorough()).toBe(`${feature.get('BOROUGH')}`)
+    expect(feature.getBorough()).not.toBeNull()
+  })
+  describe('getCityStateZip', () => {
+    const boroughHtml = feature.boroughHtml
+    beforeEach(() => {
+      feature.boroughHtml = jest.fn().mockImplementation(() => {
+        return 'mockBorough'
+      })
+    })
+    afterEach(() => {
+      feature.boroughHtml = boroughHtml
+    })
+    test('getCityStateZip', () => {
+      expect.assertions(3)
+      
+      expect(feature.getCityStateZip()).toBe(`${'mockBorough'}, NY ${feature.get('ZIP')}`)
+      expect(feature.boroughHtml).toHaveBeenCalledTimes(1)
+      expect(feature.getCityStateZip()).not.toBeNull()
+      
+    })
+  })
+
   test('getEmail', () => {
     expect.assertions(2)
     expect(feature.getEmail()).toBe(`${feature.get('EMAIL')}`)
