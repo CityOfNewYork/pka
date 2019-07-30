@@ -46,9 +46,6 @@ const decorations = {
   getAddress1() {
     return this.get('ADDRESS')
   },
-  getName() {
-    return this.get('NAME')
-  },
   getBorough() {
     return this.get('BOROUGH')
   },
@@ -61,30 +58,27 @@ const decorations = {
   getEmail() {
     return this.get('EMAIL')
   },
+  getElSeats() {
+    return this.get('EL_SEATS')
+  },
   getIndoorOutdoor() {
     return this.get('INDOOR_OUTDOOR')
   },
   getMeals() {
     return this.get('MEALS')
   },
+  getName() {
+    return this.get('NAME')
+  },
   getPrekSeats() {
     return this.get('PREK_SEATS')
-  },
-  get3kSeats() {
-    return this.get('3K_SEATS')
-  },
-  getElSeats() {
-    return this.get('EL_SEATS')
   },
   getProgramCode() {
     return this.get('LOCCODE')
   },
-  getProgramFeatures(list) {
-    return list
-      .append(this.mealsHtml())
-      .append(this.ioHtml())
-      .append(this.startTimeHtml())
-
+  getProgramFeatures() {
+    const program = [this.mealsHtml(), this.ioHtml(), this.startTimeHtml()]
+    return this.makeList(program)
   },
   getStartTime() {
     return this.get('START_TIME')
@@ -92,22 +86,22 @@ const decorations = {
   getWebsite() {
     return this.get('WEBSITE')
   },
+  get3kSeats() {
+    return this.get('3K_SEATS')
+  },
   boroughHtml() {
-    return lookup.borough[this.getBorough()] || 'New York'
+    const boroughKey = this.getBorough() || ''
+    return lookup.borough[boroughKey] || 'New York'
   },
   detailsHtml() {
     const div = $('<div class="dtl"></div>')
-    let program = []
-    program.push(this.mealsHtml())
-    program.push(this.ioHtml())
-    program.push(this.startTimeHtml())
 
-    let ul = this.makeList(program)
+    let programFeatures = this.getProgramFeatures()
 
     div.append(this.programCodeHtml())
       .append(this.emailHtml())
       .append('<div><b>Program Features: </b></div>')
-      .append(ul)
+      .append(programFeatures)
       .append('<div><b>2019-20 Seats: </b></div>')
       .append(this.seatsHtml())
 
@@ -115,18 +109,23 @@ const decorations = {
   },
   emailHtml() {
     const email = this.getEmail()
-    return `<div class="email-lnk" translate="no"><a href="mailto:${email}">${email}</a></div>`
+    if (email)
+      return `<div class="email-lnk" translate="no"><a href="mailto:${email}">${email}</a></div>`
+    return ''
   },
   ioHtml() {
-    const io = lookup.indoor_outdoor[this.getIndoorOutdoor()]
-    return `${io}`
+    const io = this.getIndoorOutdoor() || ''
+    return lookup.indoor_outdoor[io] || ''
   },
   mealsHtml() {
-    const meals = lookup.meals[this.getMeals()]
-    return `${meals}`
+    const meals = this.getMeals() || ''
+    return lookup.meals[meals] || ''
   },
   programCodeHtml() {
-    return `<div><b>Program Code: </b>${this.getProgramCode()}</div>`
+    const programCode = this.getProgramCode()
+    if (programCode)
+      return `<div><b>Program Code: </b>${programCode}</div>`
+    return ''
   },
   seatsHtml() {
     const pre_k = this.getPrekSeats()
@@ -146,7 +145,10 @@ const decorations = {
     return this.makeList(seats)
   },
   startTimeHtml() {
-    return `Daily Start Time: ${this.getStartTime()}`
+    const startTime = this.getStartTime()
+    if (startTime)
+      return `Daily Start Time: ${this.getStartTime()}`
+    return ''
   },
   snapshotButton() {
     return $('<a class="btn rad-all snapshot" target="_blank"></a>')
