@@ -161,7 +161,8 @@ const decorations = {
   makeList(list) {
     const ul = $('<ul></ul>')
     list.forEach(item => {
-      const li = $('<li></li>').html(item)
+      let li
+      if (item != '') li = $('<li></li>').html(item)
       ul.append(li)
     })
     return ul

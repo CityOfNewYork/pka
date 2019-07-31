@@ -2,15 +2,18 @@ import App from './App'
 import Content from 'nyc-lib/nyc/Content'
 import decorations from './decorations'
 import CsvPoint from 'nyc-lib/nyc/ol/format/CsvPoint'
-import messages from './message';
+import messages from './message'
+import facilityStyle from './facility-style'
+
 
 new App({
-  title: '<span class="screen-reader-only">NYC Pre-K Finder</span><span>NYC Pre-K Finder</span>',
+  title: '<span class="screen-reader-only">NYC Pre-K Finder</span><span>Pre-K Finder</span>',
   splashOptions: {
     message: '<div>welcome to the pre-k finder</div>',
     buttonText: ['Continue to map']
   },
   geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example',
+  facilityStyle: facilityStyle.pointStyle,
   facilityTabTitle: 'Schools',
   facilityUrl: 'data/pka.csv',
   facilityFormat: new CsvPoint({

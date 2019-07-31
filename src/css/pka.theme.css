@@ -1,0 +1,7 @@
+:root {
+  --color-medium: rgb(254,252,213);
+  --color-dark: #013364;
+  --color-dark-translucent: #013364;
+
+  --nyc-icon-light: url("../img/nyc.png")
+}
