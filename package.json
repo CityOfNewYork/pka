@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "prebuild": "yarn test && yarn roll-css",
+    "prebuild": "yarn roll-css",
     "roll-css": "./node_modules/nyc-lib/css/roll-css.sh ./src/css/pka.theme.css ./src/css/pka.css",
     "predeploy": "yarn build",
     "deploy": "node deploy"

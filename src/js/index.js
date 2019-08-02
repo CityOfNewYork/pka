@@ -3,7 +3,7 @@ import Content from 'nyc-lib/nyc/Content'
 import decorations from './decorations'
 import CsvPoint from 'nyc-lib/nyc/ol/format/CsvPoint'
 import messages from './message'
-import facilityStyle from './facility-style'
+import styles from './styles'
 
 
 new App({
@@ -13,7 +13,7 @@ new App({
     buttonText: ['Continue to map']
   },
   geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example',
-  facilityStyle: facilityStyle.pointStyle,
+  facilityStyle: styles.facilityStyle,
   facilityTabTitle: 'Schools',
   facilityUrl: 'data/pka.csv',
   facilityFormat: new CsvPoint({
