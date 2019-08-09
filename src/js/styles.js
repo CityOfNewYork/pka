@@ -26,7 +26,7 @@ const styles = {
         scale: 35 / 50
       })
     })]
-    if (zoom > 10) return style
+    if (zoom > 11) return style
   },
   districtStyle: (feature, resolution) => {
     const zoom = nycOl.TILE_GRID.getZForResolution(resolution)
@@ -53,7 +53,7 @@ const styles = {
         color: 'rgba(0, 0, 0, 0)'
       })
     })]
-    if(zoom > 8) return style
+    if(zoom > 10) return style
   },
   transitStyle: (feature, resolution) => {
     const zoom = nycOl.TILE_GRID.getZForResolution(resolution)
@@ -70,8 +70,31 @@ const styles = {
         color: 'rgba(0, 0, 0, 0)'
       })
     })]
-    if(zoom > 8) return style
+    if(zoom > 10) return style
+  },
+  stationStyle: (feature, resolution) => {
+    const zoom = nycOl.TILE_GRID.getZForResolution(resolution)
+    let geom = feature.getGeometry()
+    let line = feature.getLine()
+    let note = feature.getNote()
+    let name = feature.getName()
+    let radius = [2, 2, 4, 4, 4, 6, 8, 10, 12, 16, 24, 24][zoom - 4];
+    
+    const style = new Style({
+      image: new Circle({
+        radius: (radius / 4) || 6,
+        stroke: new Stroke({
+          color: '#000',
+          width: radius > 2 ? 2 : 1
+        }),
+        fill: new Fill({
+          color: 'rgba(255,255,255,0.9)'
+        })
+      })
+    });
+    if(zoom > 11) return style
   }
 }
+
 
 export default styles

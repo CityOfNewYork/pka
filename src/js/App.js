@@ -7,9 +7,12 @@ import GeoJson from 'ol/format/GeoJSON'
 import Layer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import Decorate from 'nyc-lib/nyc/ol/format/Decorate'
+import CsvPoint from 'nyc-lib/nyc/ol/format/CsvPoint'
+import FilterAndSort from 'nyc-lib/nyc/ol/source/FilterAndSort'
 import {Fill, Stroke, Style} from 'ol/style';
 import styles from './styles';
 import FeatureTip from 'nyc-lib/nyc/ol/FeatureTip'
+import Popup from 'nyc-lib/nyc/ol/MultiFeaturePopup'
 
 class App extends FinderApp {
   constructor(options) {
@@ -18,10 +21,46 @@ class App extends FinderApp {
     this.rearrangeLayers()
     this.addDistrictLayer()
     this.addTransitLayer()
+    this.addStationsLayer()
+
   }
   rearrangeLayers() {
     this.map.getBaseLayers().labels.base.setZIndex(0)
-    this.layer.setZIndex(3)
+    this.layer.setZIndex(4)
+  }
+  addStationsLayer() {
+    let stationDecorations = [{
+      getName() {return `${this.get('NAME')}`},
+      getLine() {return `${this.get('LINE')}`},
+      getNote() {return `${this.get('NOTE')}`}
+    }];
+
+    let csv = new CsvPoint({
+      dataProjection: 'EPSG:2263',
+      x: 'X',
+      y: 'Y'
+    })
+    let source = new FilterAndSort({
+      url: '../src/data/subway-station.csv',
+      format: new Decorate({
+        parentFormat: csv,
+        decorations: stationDecorations
+      })
+    })
+    source.autoLoad()
+
+    let layer = new Layer({
+      source: source,
+      style: styles.stationStyle,
+      zIndex: 3
+    });
+
+    this.map.addLayer(layer)
+    this.stationPopup = new Popup({
+      map: this.map,
+      layers: [layer]
+    })
+    this.createTip(layer)
   }
   addTransitLayer() {
     let transitDecorations = [{getName() {return `${this.get('RT_SYMBOL')} Line`}}];
@@ -37,7 +76,7 @@ class App extends FinderApp {
       source: source,
       style: styles.transitStyle,
       zIndex: 2
-    });
+    })
 
     this.map.addLayer(layer)
     this.createTip(layer)
@@ -58,7 +97,7 @@ class App extends FinderApp {
       source: source,
       style: styles.districtStyle,
       zIndex: 1
-    });
+    })
 
     this.map.addLayer(layer)
     this.createTip(layer)
@@ -76,7 +115,7 @@ class App extends FinderApp {
           }
         }
       }]
-    });
+    })
   }
 
 }
