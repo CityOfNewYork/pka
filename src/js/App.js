@@ -30,9 +30,31 @@ class App extends FinderApp {
   }
   addStationsLayer() {
     let stationDecorations = [{
-      getName() {return `${this.get('NAME')}`},
-      getLine() {return `${this.get('LINE')}`},
-      getNote() {return `${this.get('NOTE')}`}
+      getName() {
+        return this.get('NAME')
+      },
+      getLine() {
+        return this.get('LINE')
+      },
+      getNote() {
+        return `<div class="note">${this.get('NOTE')}</div>`
+      },
+      getSubwayIcon(line) {
+        let lines = line.split('-')
+        let lineHtml = ''
+        
+        lines.forEach(line => {
+          lineHtml += `<div class="subway-icon subway-${line}">${line}</div>` 
+        })
+  
+        return lineHtml
+      },
+      html() {
+        return $('<div class="station"></div>')
+      .append(`<h1 class="station-name">${this.getName()}</h1>`)
+      .append(this.getSubwayIcon(this.getLine()))
+      .append(this.getNote()) 
+      }
     }];
 
     let csv = new CsvPoint({
@@ -54,13 +76,13 @@ class App extends FinderApp {
       style: styles.stationStyle,
       zIndex: 3
     });
-
-    this.map.addLayer(layer)
-    this.stationPopup = new Popup({
+    this.popup = new Popup({
       map: this.map,
       layers: [layer]
     })
     this.createTip(layer)
+    this.map.addLayer(layer)
+
   }
   addTransitLayer() {
     let transitDecorations = [{getName() {return `${this.get('RT_SYMBOL')} Line`}}];

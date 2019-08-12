@@ -79,7 +79,10 @@ const styles = {
     let note = feature.getNote()
     let name = feature.getName()
     let radius = [2, 2, 4, 4, 4, 6, 8, 10, 12, 16, 24, 24][zoom - 4];
-    
+    console.warn(line)
+    console.warn(note)
+    console.warn(name)
+
     const style = new Style({
       image: new Circle({
         radius: (radius / 4) || 6,
