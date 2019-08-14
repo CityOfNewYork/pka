@@ -44,16 +44,17 @@ class App extends FinderApp {
         let lineHtml = ''
         
         lines.forEach(line => {
-          lineHtml += `<div class="subway-icon subway-${line}">${line}</div>` 
+          let lineTruncate = line.indexOf('Express') > -1 ? line.replace('Express', '').trim() : line
+          lineHtml += `<div class="subway-icon subway-${line.replace('Express', 'express')}"><div>${lineTruncate}</div></div>` 
         })
   
         return lineHtml
       },
       html() {
         return $('<div class="station"></div>')
-      .append(`<h1 class="station-name">${this.getName()}</h1>`)
-      .append(this.getSubwayIcon(this.getLine()))
-      .append(this.getNote()) 
+          .append(`<h1 class="station-name">${this.getName()}</h1>`)
+          .append(this.getSubwayIcon(this.getLine()))
+          .append(this.getNote()) 
       }
     }];
 
@@ -76,10 +77,7 @@ class App extends FinderApp {
       style: styles.stationStyle,
       zIndex: 3
     });
-    this.popup = new Popup({
-      map: this.map,
-      layers: [layer]
-    })
+    this.popup.addLayer(layer)
     this.createTip(layer)
     this.map.addLayer(layer)
 

@@ -17,7 +17,7 @@ div.subway-icon {
 	border: 1px solid rgba(0,0,0,0.1);
 	border-radius: 16px;
 }
-div.subway-icon {
+div.subway-icon div {
 	color: #fff;
 }
 .subway-1, .subway-2, .subway-3 {
@@ -32,23 +32,26 @@ div.subway-icon {
 .subway-A, .subway-C, .subway-E {
 	background-color: #0e689a;
 }
-.subway-B, .subway-D, .subway-F {
+.subway-B, .subway-D, .subway-F, .subway-M {
 	background-color: #fa9705;
 }
 .subway-G {
 	background-color: #98cd01;
 }
-div.subway-J, div.subway-M, div.subway-Z {
+.subway-J, .subway-Z {
 	background-color: #9d6400;
 }
 .subway-L, .subway-S {
 	background-color: #999999;
 }
-div.subway-N, div.subway-Q, div.subway-R, div.subway-W {
+.subway-N, .subway-Q, .subway-R, .subway-W {
   background-color: #ffff0c;
+}
+div.subway-N div, div.subway-Q div, div.subway-R div, div.subway-W div {
   color: #000;
 }
-/* div.express {
+
+div.express {
 	padding: 0;
 	width: 18px;
 	border-radius: 0;
@@ -57,4 +60,4 @@ div.subway-N, div.subway-Q, div.subway-R, div.subway-W {
 }
 div.express div {
 	transform: rotate(-45deg);
-} */
+}
