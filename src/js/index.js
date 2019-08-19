@@ -9,8 +9,7 @@ import styles from './styles'
 new App({
   title: '<span class="screen-reader-only">NYC Pre-K Finder</span><span>Pre-K Finder</span>',
   splashOptions: {
-    message: '<div>welcome to the pre-k finder</div>',
-    buttonText: ['Continue to map']
+    message: '<div>welcome to the pre-k finder</div>'
   },
   geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example',
   facilityStyle: styles.facilityStyle,

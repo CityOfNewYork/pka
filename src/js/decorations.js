@@ -11,7 +11,7 @@ const decorations = {
     this.set('EL', (this.get('EL_SEATS')) ? 1 : -1) 
     this.set('PREK', (this.get('PREK_SEATS')) ? 1 : -1) 
     this.set('EXTEND', 
-      this.get('EARLY_DROP').trim() == '' ? 1 : 0
+      this.get('EARLY_DROP') == '1' || this.get('LATE_PICKUP') == '1' ? 1 : ''
     )
     this.set('LANG', 
       this.containsKey(this.get('ENHANCED_LANG'), lookup.enhanced_lang) || this.containsKey(this.get('ENHANCED_LANG'), lookup.dual_lang) ? 1 : 0
@@ -55,6 +55,9 @@ const decorations = {
   getDayLength() {
     return this.get('DAY_LENGTH')
   },
+  getEarlyDrop() {
+    return this.get('EARLY_DROP')
+  },
   getEmail() {
     return this.get('EMAIL')
   },
@@ -63,6 +66,9 @@ const decorations = {
   },
   getIndoorOutdoor() {
     return this.get('INDOOR_OUTDOOR')
+  },
+  getLatePickup() {
+    return this.get('LATE_PICKUP')
   },
   getMeals() {
     return this.get('MEALS')
@@ -77,7 +83,7 @@ const decorations = {
     return this.get('LOCCODE')
   },
   getProgramFeatures() {
-    const program = [this.mealsHtml(), this.ioHtml(), this.startTimeHtml()]
+    const program = [this.mealsHtml(), this.ioHtml(), this.startTimeHtml(), this.earlyDropHtml(), this.latePickupHtml()]
     return this.makeList(program)
   },
   getStartTime() {
@@ -107,6 +113,13 @@ const decorations = {
 
     return div
   },
+  earlyDropHtml() {
+    const earlyDrop = this.getEarlyDrop()
+    if (earlyDrop) {
+      return `Early Drop Off Available: ${earlyDrop == 1 ? 'Yes' : earlyDrop == 0 ? 'No' : ''} `
+    }
+    return 'Early Drop Off Available: Contact program about extended hours'
+  },
   emailHtml() {
     const email = this.getEmail()
     if (email)
@@ -116,6 +129,13 @@ const decorations = {
   ioHtml() {
     const io = this.getIndoorOutdoor() || ''
     return lookup.indoor_outdoor[io] || ''
+  },
+  latePickupHtml() {
+    const latePickup = this.getLatePickup()
+    if (latePickup) {
+      return `Late Pickup Available: ${latePickup == 1 ? 'Yes' : latePickup == 0 ? 'No' : ''} `
+    }
+    return 'Late Pickup Available: Contact program about extended hours'
   },
   mealsHtml() {
     const meals = this.getMeals() || ''
@@ -148,7 +168,7 @@ const decorations = {
     const startTime = this.getStartTime()
     if (startTime)
       return `Daily Start Time: ${this.getStartTime()}`
-    return ''
+    return 'Daily Start Time: Contact program about start time'
   },
   snapshotButton() {
     return $('<a class="btn rad-all snapshot" target="_blank"></a>')
