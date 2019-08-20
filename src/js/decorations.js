@@ -33,7 +33,7 @@ const decorations = {
       .append(this.nameHtml())
       .append(this.distanceHtml(true))
       .append(this.addressHtml())
-      .append(this.snapshotButton())
+      .append(this.dynamicButton())
       .append(this.phoneButton())
       .append(this.websiteButton())
       .append(this.mapButton())
@@ -170,13 +170,19 @@ const decorations = {
       return `Daily Start Time: ${this.getStartTime()}`
     return 'Daily Start Time: Contact program about start time'
   },
-  snapshotButton() {
+  dynamicButton() {
     return $('<a class="btn rad-all snapshot" target="_blank"></a>')
-      .html('Pre-K Snapshot')
+      .html(this.content.message('btn_pdf'))
       .attr('href', this.getSnapshotLink())
   },
   getSnapshotLink() {
-    return 'http://www.google.com'
+    let link = this.content.message('quality_pdf')
+    const progCode = this.getProgramCode()
+    if(progCode) {
+      let loccode = progCode.substring(progCode.length - 4)
+      link = link.replace('${loccode4}', loccode)
+    }
+    return link
   },
   makeList(list) {
     const ul = $('<ul></ul>')

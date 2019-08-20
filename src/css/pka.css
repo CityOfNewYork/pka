@@ -61,3 +61,18 @@ div.express {
 div.express div {
 	transform: rotate(-45deg);
 }
+
+.school-banner {
+	position: absolute;
+	left: 80px;
+	top: 23px;
+}
+
+.fnd #banner {
+	padding: 0 0 0 80px !important;
+	height: 35px;
+}
+
+#banner .school-banner {
+	font-size: 12px;
+}
