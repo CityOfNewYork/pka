@@ -4,12 +4,25 @@ import decorations from '../src/js/decorations'
 import styles from '../src/js/styles'
 import FeatureTip from 'nyc-lib/nyc/ol/FeatureTip'
 import CsvPoint from 'nyc-lib/nyc/ol/format/CsvPoint'
+import Layer from 'ol/layer/Vector'
+import FilterAndSort from 'nyc-lib/nyc/ol/source/FilterAndSort'
+import Decorate from 'nyc-lib/nyc/ol/format/Decorate'
+import VectorSource from 'ol/source/Vector'
+import TopoJson from 'ol/format/TopoJSON'
+import AutoLoad from 'nyc-lib/nyc/ol/source/AutoLoad';
+import MapMgr from 'nyc-lib/nyc/ol/MapMgr'
 
 
+jest.mock('nyc-lib/nyc/ol/source/FilterAndSort')
+// jest.mock('nyc-lib/nyc/ol/format/Decorate')
+jest.mock('ol/source/Vector')
+jest.mock('ol/layer/Vector')
 jest.mock('nyc-lib/nyc/ol/FinderApp')
 jest.mock('nyc-lib/nyc/ol/FeatureTip')
 jest.mock('nyc-lib/nyc/ol/format/CsvPoint')
 
+const setZ = jest.fn() 
+const addLayer = jest.fn()
 
 const mockMap = {
   getBaseLayers: () => {
@@ -20,6 +33,11 @@ const mockMap = {
         }
       }
     }
+  }
+}
+const mockPopup = {
+  addLayer: () => {
+    return jest.fn()
   }
 }
 class MockLayer {
@@ -42,24 +60,21 @@ const mockContent = {
   }
 }
 const rearrangeLayers = App.prototype.rearrangeLayers
-const addStationsLayer = App.prototype.addStationsLayer
-const addTransitLayer = App.prototype.addTransitLayer
-const addDistrictLayer = App.prototype.addDistrictLayer
+const setupLayers = App.prototype.setupLayers
 const createTip = App.prototype.createTip
+const makeLayer = App.prototype.makeLayer
+
 
 beforeEach(() => {
   FinderApp.mockClear()
   App.prototype.rearrangeLayers = jest.fn()
-  App.prototype.addStationsLayer = jest.fn()
-  App.prototype.addTransitLayer = jest.fn()
-  App.prototype.addDistrictLayer = jest.fn()
+  App.prototype.setupLayers = jest.fn()
+  setZ.mockClear()
 })
 
 afterEach(() => {
   App.prototype.rearrangeLayers = rearrangeLayers
-  App.prototype.addStationsLayer = addStationsLayer
-  App.prototype.addTransitLayer = addTransitLayer
-  App.prototype.addDistrictLayer = addDistrictLayer
+  App.prototype.setupLayers = setupLayers
 })
 
 
@@ -86,7 +101,7 @@ describe('constructor', () => {
 
     expect(FinderApp.mock.calls[0][0].decorations.length).toBe(2)
     expect(FinderApp.mock.calls[0][0].decorations[0].content).toBe(mockContent)
-    expect(FinderApp.mock.calls[0][0].decorations[1]).toBe(decorations)
+    expect(FinderApp.mock.calls[0][0].decorations[1]).toBe(decorations.facility)
 
     expect(FinderApp.mock.calls[0][0].filterChoiceOptions.length).toBe(5)   
      
@@ -126,14 +141,36 @@ describe('constructor', () => {
     expect(FinderApp.mock.calls[0][0].filterChoiceOptions[2].choices[4].label).toBe('Pre-K Center')
 
     expect(App.prototype.rearrangeLayers).toHaveBeenCalledTimes(1)
-    expect(App.prototype.addStationsLayer).toHaveBeenCalledTimes(1)
-    expect(App.prototype.addTransitLayer).toHaveBeenCalledTimes(1)
-    expect(App.prototype.addDistrictLayer).toHaveBeenCalledTimes(1)
+    expect(App.prototype.setupLayers).toHaveBeenCalledTimes(1)
     
     expect(app.content).toBe(mockContent)
 
   })
 })
+
+describe('rearrangeLayers', () => {
+   
+  const mockLayer = {
+    setZIndex: setZ
+  }
+  beforeEach(() => {
+    setZ.mockClear()
+  })
+  test('rearrangeLayers', () => {
+    const app = new App(mockContent)
+
+    app.map = mockMap
+    app.layer = mockLayer
+    app.rearrangeLayers = rearrangeLayers
+    
+    app.rearrangeLayers()
+    expect(setZ).toHaveBeenCalledTimes(2)
+    expect(setZ.mock.calls[0][0]).toBe(4)
+    expect(setZ.mock.calls[1][0]).toBe(3)
+
+  })
+})
+
 
 describe('createTip', () => {
   test('createTip', () => {
@@ -155,6 +192,126 @@ describe('createTip', () => {
     expect(FeatureTip.mock.calls[0][0].map).toBe(mockMap)
     expect(FeatureTip.mock.calls[0][0].tips.length).toBe(1)
     expect(FeatureTip.mock.calls[0][0].tips[0].layer).toBe(mockLayer)
+    expect(FeatureTip.mock.calls[0][0].tips[0].label).toBe(MapMgr.tipFunction)
 
   })
 })
+
+  describe('setupLayers', () => {
+    const mockSource = jest.fn() 
+    const mockStyle = jest.fn() 
+    
+    const mockLayer = {
+      source: mockSource,
+      style: mockStyle,
+      setZIndex: setZ
+    }
+    beforeEach(() => {
+      App.prototype.makeLayer = jest.fn()
+
+    })
+    afterEach(() => {
+      App.prototype.makeLayer = makeLayer
+    })
+    test('setupLayers', () => {
+    const app = new App(mockContent)
+
+    app.map = mockMap
+    app.layer = mockLayer
+    app.popup = mockPopup
+    app.map.addLayer = jest.fn()
+
+    app.setupLayers.mockClear()
+    app.setupLayers = setupLayers
+
+    app.setupLayers()
+    expect(app.makeLayer).toHaveBeenCalledTimes(3)
+    expect(app.makeLayer.mock.calls[0][0]).toEqual([decorations.district])
+    expect(app.makeLayer.mock.calls[0][1]).toBe('../src/data/school-district.json')
+    expect(app.makeLayer.mock.calls[0][2]).toBe(0)
+    expect(app.makeLayer.mock.calls[0][3]).toBe(styles.districtStyle)
+    expect(app.makeLayer.mock.calls[0][4]).toBe('topo')
+
+    expect(app.makeLayer.mock.calls[1][0]).toEqual([decorations.transit])
+    expect(app.makeLayer.mock.calls[1][1]).toBe('../src/data/subway-line.json')
+    expect(app.makeLayer.mock.calls[1][2]).toBe(1)
+    expect(app.makeLayer.mock.calls[1][3]).toBe(styles.transitStyle)
+    expect(app.makeLayer.mock.calls[1][4]).toBe('topo')
+
+    expect(app.makeLayer.mock.calls[2][0]).toEqual([decorations.station])
+    expect(app.makeLayer.mock.calls[2][1]).toBe('../src/data/subway-station.csv')
+    expect(app.makeLayer.mock.calls[2][2]).toBe(2)
+    expect(app.makeLayer.mock.calls[2][3]).toBe(styles.stationStyle)
+    expect(app.makeLayer.mock.calls[2][4]).toBe('csv')
+
+    expect(app.map.addLayer).toHaveBeenCalledTimes(3)
+    })
+  })
+
+  describe('makeLayer', () => {
+    beforeEach(() => {
+      App.prototype.createTip = jest.fn()
+    })
+    afterEach(() => {
+      App.prototype.createTip = createTip
+    })
+    test('makeLayer - topo source', () => {
+      let decoration = {}, url = '', zIndex = 0, style = {}, type = 'topo'
+      const app = new App(mockContent)
+      app.makeLayer = makeLayer
+
+      Layer.mockReset()
+
+      app.makeLayer(decoration, url, zIndex, style, type)
+      expect(VectorSource).toHaveBeenCalledTimes(1)
+      expect(VectorSource.mock.calls[0][0].url).toBe(url)
+      expect(VectorSource.mock.calls[0][0].format instanceof Decorate).toBe(true)
+      expect(VectorSource.mock.calls[0][0].format.parentFormat instanceof TopoJson).toBe(true)
+      expect(VectorSource.mock.calls[0][0].format.decorations).toBe(decoration)
+
+      expect(Layer).toHaveBeenCalledTimes(1)
+      expect(Layer.mock.calls[0][0].style).toBe(style)
+      expect(Layer.mock.calls[0][0].zIndex).toBe(zIndex)
+
+      expect(app.createTip).toHaveBeenCalledTimes(1)
+      expect(app.createTip.mock.calls[0][0] instanceof Layer).toBe(true)
+    })
+
+    test('makeLayer - csv source', () => {
+      let decoration = {}, url = '', zIndex = 0, style = {}, type = 'csv'
+      const app = new App(mockContent)
+      app.makeLayer = makeLayer
+
+      CsvPoint.mockReset()
+      Layer.mockReset()
+
+      app.makeLayer(decoration, url, zIndex, style, type)
+      expect(CsvPoint).toHaveBeenCalledTimes(1)
+      expect(CsvPoint.mock.calls[0][0].dataProjection).toBe('EPSG:2263')
+      expect(CsvPoint.mock.calls[0][0].x).toBe('X')
+      expect(CsvPoint.mock.calls[0][0].y).toBe('Y')
+
+      expect(FilterAndSort).toHaveBeenCalledTimes(1)
+      expect(FilterAndSort.mock.calls[0][0].url).toBe(url)
+      expect(FilterAndSort.mock.calls[0][0].format instanceof Decorate).toBe(true)
+      expect(FilterAndSort.mock.calls[0][0].format.parentFormat instanceof CsvPoint).toBe(true)
+      expect(FilterAndSort.mock.calls[0][0].format.decorations).toBe(decoration)
+      expect(AutoLoad).toHaveBeenCalledTimes(1)
+
+      expect(Layer).toHaveBeenCalledTimes(1)
+      expect(Layer.mock.calls[0][0].style).toBe(style)
+      expect(Layer.mock.calls[0][0].zIndex).toBe(zIndex)
+
+      expect(app.createTip).toHaveBeenCalledTimes(1)
+      expect(app.createTip.mock.calls[0][0] instanceof Layer).toBe(true)
+    })
+
+    test('makeLayer - no type', () => {
+      let decoration = {}, url = '', zIndex = 0, style = {}, type = ''
+      const app = new App(mockContent)
+      app.makeLayer = makeLayer
+
+      expect(app.makeLayer(decoration, url, zIndex, style, type)).toBeUndefined()
+
+    })
+  })

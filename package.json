@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "watch": "webpack --watch",
     "build": "webpack",
     "prebuild": "yarn roll-css",
     "roll-css": "./node_modules/nyc-lib/css/roll-css.sh ./src/css/pka.theme.css ./src/css/pka.css",
