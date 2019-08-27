@@ -17,7 +17,6 @@ const decorations = {
       this.set('LANG', 
         this.containsKey(this.get('ENHANCED_LANG'), lookup.enhanced_lang) || this.containsKey(this.get('ENHANCED_LANG'), lookup.dual_lang) ? 1 : 0
       )
-      console.warn('wtf')
     },
     containsKey(item, list) {
       let result = false
