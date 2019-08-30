@@ -9,7 +9,7 @@ const csvPoint = new CsvPoint({
   defaultDataProjection: 'EPSG:2263'
 })
 
-const featureSource = {
+const facilityFeatureSource = {
   LOCCODE: 'LOCCODE',
   TYPE: 'TYPE',
   BOROUGH: 'BOROUGH',
@@ -40,7 +40,21 @@ const featureSource = {
   SPECIAL_PRIOR: 'SPECIAL_PRIOR',
   DYNAMIC: 1
 }
-const feature = csvPoint.readFeature(featureSource)
-nyc.mixin(feature, [decorations])
+const facilityFeature = csvPoint.readFeature(facilityFeatureSource)
+nyc.mixin(facilityFeature, [decorations.facility])
 
-export default feature
+
+
+const stationFeatureSource = {
+  X: 1,
+  Y: 1,
+  NAME: 'Station_Name',
+  LINE: 'Station_Line',
+  NOTE: 'Station_Note'
+}
+const stationFeature = csvPoint.readFeature(stationFeatureSource)
+nyc.mixin(stationFeature, [decorations.station])
+
+/* TODO: add mock sources for topojson - district and transit feature sources */
+
+module.exports = {facilityFeature, stationFeature}

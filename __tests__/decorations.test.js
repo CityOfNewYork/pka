@@ -1,197 +1,217 @@
 import decorations from '../src/js/decorations'
-import feature from './features.mock'
+import {facilityFeature, stationFeature} from './features.mock'
 import $ from 'jquery'
 
-describe('decorations', () => {
-  let container
-  beforeEach(() => {
-    container = $('<div></div>')
-    $('body').append(container)
-    
-  })
-  afterEach(() => {
-    container.remove()
-  })
+let container
+beforeEach(() => {
+  container = $('<div></div>')
+  $('body').append(container)
+  
+})
+afterEach(() => {
+  container.remove()
+})
 
+describe('facility decorations', () => {
   describe('getter methods', () => {
-
-
     test('getAddress1', () => {
       expect.assertions(2)
-      expect(feature.getAddress1()).toBe(`${feature.get('ADDRESS')}`)
-      expect(feature.getAddress1()).not.toBeNull()
+      expect(facilityFeature.getAddress1()).toBe(`${facilityFeature.get('ADDRESS')}`)
+      expect(facilityFeature.getAddress1()).not.toBeNull()
     })
     test('getBorough', () => {
       expect.assertions(2)
-      expect(feature.getBorough()).toBe(`${feature.get('BOROUGH')}`)
-      expect(feature.getBorough()).not.toBeNull()
+      expect(facilityFeature.getBorough()).toBe(`${facilityFeature.get('BOROUGH')}`)
+      expect(facilityFeature.getBorough()).not.toBeNull()
     })
     describe('getCityStateZip', () => {
-      const boroughHtml = feature.boroughHtml
+      const boroughHtml = facilityFeature.boroughHtml
       beforeEach(() => {
-        feature.boroughHtml = jest.fn().mockImplementation(() => {
+        facilityFeature.boroughHtml = jest.fn().mockImplementation(() => {
           return 'mockBorough'
         })
       })
       afterEach(() => {
-        feature.boroughHtml = boroughHtml
+        facilityFeature.boroughHtml = boroughHtml
       })
       test('getCityStateZip', () => {
         expect.assertions(3)
         
-        expect(feature.getCityStateZip()).toBe(`${'mockBorough'}, NY ${feature.get('ZIP')}`)
-        expect(feature.boroughHtml).toHaveBeenCalledTimes(1)
-        expect(feature.getCityStateZip()).not.toBeNull()
+        expect(facilityFeature.getCityStateZip()).toBe(`${'mockBorough'}, NY ${facilityFeature.get('ZIP')}`)
+        expect(facilityFeature.boroughHtml).toHaveBeenCalledTimes(1)
+        expect(facilityFeature.getCityStateZip()).not.toBeNull()
         
       })
     })
     test('getDayLength', () => {
       expect.assertions(2)
-      expect(feature.getDayLength()).toBe(feature.get('DAY_LENGTH'))
-      expect(feature.getDayLength()).not.toBeNull()
+      expect(facilityFeature.getDayLength()).toBe(facilityFeature.get('DAY_LENGTH'))
+      expect(facilityFeature.getDayLength()).not.toBeNull()
+    })
+    test('getEarlyDrop', () => {
+      expect.assertions(2)
+      expect(facilityFeature.getEarlyDrop()).toBe(facilityFeature.get('EARLY_DROP'))
+      expect(facilityFeature.getEarlyDrop()).not.toBeNull()
     })
     test('getEmail', () => {
       expect.assertions(2)
-      expect(feature.getEmail()).toBe(`${feature.get('EMAIL')}`)
-      expect(feature.getEmail()).not.toBeNull()
+      expect(facilityFeature.getEmail()).toBe(`${facilityFeature.get('EMAIL')}`)
+      expect(facilityFeature.getEmail()).not.toBeNull()
     })
     test('getElSeats', () => {
       expect.assertions(2)
-      expect(feature.getElSeats()).toBe(feature.get('EL_SEATS'))
-      expect(feature.getElSeats()).not.toBeNull()
+      expect(facilityFeature.getElSeats()).toBe(facilityFeature.get('EL_SEATS'))
+      expect(facilityFeature.getElSeats()).not.toBeNull()
     })
     test('getIndoorOutdoor', () => {
       expect.assertions(2)
-      expect(feature.getIndoorOutdoor()).toBe(feature.get('INDOOR_OUTDOOR'))
-      expect(feature.getIndoorOutdoor()).not.toBeNull()
+      expect(facilityFeature.getIndoorOutdoor()).toBe(facilityFeature.get('INDOOR_OUTDOOR'))
+      expect(facilityFeature.getIndoorOutdoor()).not.toBeNull()
+    })
+    test('getLatePickup', () => {
+      expect.assertions(2)
+      expect(facilityFeature.getLatePickup()).toBe(facilityFeature.get('LATE_PICKUP'))
+      expect(facilityFeature.getLatePickup()).not.toBeNull()
     })
     test('getMeals', () => {
       expect.assertions(2)
-      expect(feature.getMeals()).toBe(feature.get('MEALS'))
-      expect(feature.getMeals()).not.toBeNull()
+      expect(facilityFeature.getMeals()).toBe(facilityFeature.get('MEALS'))
+      expect(facilityFeature.getMeals()).not.toBeNull()
     })
     test('getName', () => {
       expect.assertions(2)
-      expect(feature.getName()).toBe(`${feature.get('NAME')}`)
-      expect(feature.getName()).not.toBeNull()
+      expect(facilityFeature.getName()).toBe(`${facilityFeature.get('NAME')}`)
+      expect(facilityFeature.getName()).not.toBeNull()
     })
     test('getPrekSeats', () => {
       expect.assertions(2)
-      expect(feature.getPrekSeats()).toBe(feature.get('PREK_SEATS'))
-      expect(feature.getPrekSeats()).not.toBeNull()
+      expect(facilityFeature.getPrekSeats()).toBe(facilityFeature.get('PREK_SEATS'))
+      expect(facilityFeature.getPrekSeats()).not.toBeNull()
     })
     test('getProgramCode', () => {
       expect.assertions(2)
-      expect(feature.getProgramCode()).toBe(feature.get('LOCCODE'))
-      expect(feature.getProgramCode()).not.toBeNull()
+      expect(facilityFeature.getProgramCode()).toBe(facilityFeature.get('LOCCODE'))
+      expect(facilityFeature.getProgramCode()).not.toBeNull()
     })
-    describe('getProgramFeatures', () => {
-      const mealsHtml = feature.mealsHtml
-      const ioHtml = feature.ioHtml
-      const startTimeHtml = feature.startTimeHtml
-      const makeList = feature.makeList
+    describe('getProgramfacilityFeatures', () => {
+      const mealsHtml = facilityFeature.mealsHtml
+      const ioHtml = facilityFeature.ioHtml
+      const startTimeHtml = facilityFeature.startTimeHtml
+      const earlyDropHtml = facilityFeature.earlyDropHtml
+      const latePickupHtml = facilityFeature.latePickupHtml
+      const makeList = facilityFeature.makeList
   
       beforeEach(() => {
-        feature.mealsHtml = jest.fn().mockImplementation(() => {
+        facilityFeature.mealsHtml = jest.fn().mockImplementation(() => {
           return 'mockMeals'
         })
-        feature.ioHtml = jest.fn().mockImplementation(() => {
+        facilityFeature.ioHtml = jest.fn().mockImplementation(() => {
           return 'mockIo'
         })
-        feature.startTimeHtml = jest.fn().mockImplementation(() => {
+        facilityFeature.startTimeHtml = jest.fn().mockImplementation(() => {
           return 'mockStartTime'
         })
-        feature.makeList = jest.fn().mockImplementation(() => {
+        facilityFeature.earlyDropHtml = jest.fn().mockImplementation(() => {
+          return 'mockEarlyDrop'
+        })
+        facilityFeature.latePickupHtml = jest.fn().mockImplementation(() => {
+          return 'mockLatePickup'
+        })
+        facilityFeature.makeList = jest.fn().mockImplementation(() => {
           return 'mockList'
         })
   
       })
       afterEach(() => {
-        feature.mealsHtml = mealsHtml
-        feature.ioHtml = ioHtml
-        feature.startTimeHtml = startTimeHtml
-        feature.makeList = makeList
+        facilityFeature.mealsHtml = mealsHtml
+        facilityFeature.ioHtml = ioHtml
+        facilityFeature.startTimeHtml = startTimeHtml
+        facilityFeature.earlyDropHtml = earlyDropHtml
+        facilityFeature.latePickupHtml = latePickupHtml
+        facilityFeature.makeList = makeList
   
       })
       test('getProgramFeatures', () => {
-        expect.assertions(6)
-        let program = ['mockMeals', 'mockIo', 'mockStartTime']
-        expect(feature.getProgramFeatures()).toBe('mockList')
-        expect(feature.mealsHtml).toHaveBeenCalledTimes(1)
-        expect(feature.ioHtml).toHaveBeenCalledTimes(1)
-        expect(feature.startTimeHtml).toHaveBeenCalledTimes(1)
-        expect(feature.makeList).toHaveBeenCalledTimes(1)
-        expect(feature.makeList.mock.calls[0][0]).toEqual(program)
+        expect.assertions(8)
+        let program = ['mockMeals', 'mockIo', 'mockStartTime', 'mockEarlyDrop', 'mockLatePickup']
+        expect(facilityFeature.getProgramFeatures()).toBe('mockList')
+        expect(facilityFeature.mealsHtml).toHaveBeenCalledTimes(1)
+        expect(facilityFeature.ioHtml).toHaveBeenCalledTimes(1)
+        expect(facilityFeature.startTimeHtml).toHaveBeenCalledTimes(1)
+        expect(facilityFeature.earlyDropHtml).toHaveBeenCalledTimes(1)
+        expect(facilityFeature.latePickupHtml).toHaveBeenCalledTimes(1)
+        expect(facilityFeature.makeList).toHaveBeenCalledTimes(1)
+        expect(facilityFeature.makeList.mock.calls[0][0]).toEqual(program)
       })
     })
     test('getStartTime', () => {
       expect.assertions(2)
-      expect(feature.getStartTime()).toBe(`${feature.get('START_TIME')}`)
-      expect(feature.getStartTime()).not.toBeNull()
+      expect(facilityFeature.getStartTime()).toBe(`${facilityFeature.get('START_TIME')}`)
+      expect(facilityFeature.getStartTime()).not.toBeNull()
     })
     test('getWebsite', () => {
       expect.assertions(2)
-      expect(feature.getWebsite()).toBe(`${feature.get('WEBSITE')}`)
-      expect(feature.getWebsite()).not.toBeNull()
+      expect(facilityFeature.getWebsite()).toBe(`${facilityFeature.get('WEBSITE')}`)
+      expect(facilityFeature.getWebsite()).not.toBeNull()
     })
     test('get3kSeats', () => {
       expect.assertions(2)
-      expect(feature.get3kSeats()).toBe(feature.get('3K_SEATS'))
-      expect(feature.get3kSeats()).not.toBeNull()
+      expect(facilityFeature.get3kSeats()).toBe(facilityFeature.get('3K_SEATS'))
+      expect(facilityFeature.get3kSeats()).not.toBeNull()
     })
   
   })
 
   describe('html methods', () => {
-    const getBorough = feature.getBorough
-    const getEmail = feature.getEmail
-    const getIndoorOutdoor = feature.getIndoorOutdoor
-    const getMeals = feature.getMeals
-    const getProgramCode = feature.getProgramCode
+    const getBorough = facilityFeature.getBorough
+    const getEmail = facilityFeature.getEmail
+    const getIndoorOutdoor = facilityFeature.getIndoorOutdoor
+    const getMeals = facilityFeature.getMeals
+    const getProgramCode = facilityFeature.getProgramCode
 
 
 
     beforeEach(() => {
-      feature.getBorough = jest.fn().mockImplementation(() => {
+      facilityFeature.getBorough = jest.fn().mockImplementation(() => {
         return 'K'
       })
-      feature.getEmail = jest.fn().mockImplementation(() => {
+      facilityFeature.getEmail = jest.fn().mockImplementation(() => {
         return 'mockEmail'
       })
-      feature.getProgramCode = jest.fn().mockImplementation(() => {
+      facilityFeature.getProgramCode = jest.fn().mockImplementation(() => {
         return 'mockProgramCode'
       })
-      feature.getMeals = jest.fn().mockImplementation(() => {
+      facilityFeature.getMeals = jest.fn().mockImplementation(() => {
         return 1
       })
-      feature.getIndoorOutdoor = jest.fn().mockImplementation(() => {
+      facilityFeature.getIndoorOutdoor = jest.fn().mockImplementation(() => {
         return 1
       })
 
     })
     afterEach(() => {
-      feature.getBorough = getBorough
-      feature.getEmail = getEmail
-      feature.getProgramCode = getProgramCode
-      feature.getMeals = getMeals
-      feature.getIndoorOutdoor = getIndoorOutdoor
+      facilityFeature.getBorough = getBorough
+      facilityFeature.getEmail = getEmail
+      facilityFeature.getProgramCode = getProgramCode
+      facilityFeature.getMeals = getMeals
+      facilityFeature.getIndoorOutdoor = getIndoorOutdoor
     })
     test('boroughHtml', () => {
       expect.assertions(2)
 
-      expect(feature.boroughHtml()).toBe('Brooklyn')
-      expect(feature.getBorough).toHaveBeenCalledTimes(1)
+      expect(facilityFeature.boroughHtml()).toBe('Brooklyn')
+      expect(facilityFeature.getBorough).toHaveBeenCalledTimes(1)
 
     })
 
     test('boroughHtml - getBorough is undefined or not in borough lookup', () => {
       expect.assertions(2)
-      feature.getBorough = jest.fn().mockImplementation(() => {
+      facilityFeature.getBorough = jest.fn().mockImplementation(() => {
         return ''
       })
 
-      expect(feature.boroughHtml()).toBe('New York')
-      expect(feature.getBorough).toHaveBeenCalledTimes(1)
+      expect(facilityFeature.boroughHtml()).toBe('New York')
+      expect(facilityFeature.getBorough).toHaveBeenCalledTimes(1)
 
     })
 
@@ -201,77 +221,135 @@ describe('decorations', () => {
     test('emailHtml', () => {
       expect.assertions(2)
 
-      expect(feature.emailHtml()).toBe(`<div class="email-lnk" translate="no"><a href="mailto:mockEmail">mockEmail</a></div>`)
-      expect(feature.getEmail).toHaveBeenCalledTimes(1)
+      expect(facilityFeature.emailHtml()).toBe(`<div class="email-lnk" translate="no"><a href="mailto:mockEmail">mockEmail</a></div>`)
+      expect(facilityFeature.getEmail).toHaveBeenCalledTimes(1)
 
     })
 
     test('emailHtml - none provided', () => {
       expect.assertions(2)
 
-      feature.getEmail = jest.fn()
+      facilityFeature.getEmail = jest.fn()
 
-      expect(feature.emailHtml()).toBe('')
-      expect(feature.getEmail).toHaveBeenCalledTimes(1)
+      expect(facilityFeature.emailHtml()).toBe('')
+      expect(facilityFeature.getEmail).toHaveBeenCalledTimes(1)
 
     })
 
     test('ioHtml - getIndoorOutdoor is undefined or not in indoor_outdoor lookup', () => {
       expect.assertions(2)
-      feature.getIndoorOutdoor = jest.fn().mockImplementation(() => {
+      facilityFeature.getIndoorOutdoor = jest.fn().mockImplementation(() => {
         return ''
       })
 
-      expect(feature.ioHtml()).toBe('')
-      expect(feature.getIndoorOutdoor).toHaveBeenCalledTimes(1)
+      expect(facilityFeature.ioHtml()).toBe('')
+      expect(facilityFeature.getIndoorOutdoor).toHaveBeenCalledTimes(1)
 
     })
 
     test('ioHtml', () => {
       expect.assertions(2)
 
-      expect(feature.ioHtml()).toBe('Indoor playspace')
-      expect(feature.getIndoorOutdoor).toHaveBeenCalledTimes(1)
+      expect(facilityFeature.ioHtml()).toBe('Indoor playspace')
+      expect(facilityFeature.getIndoorOutdoor).toHaveBeenCalledTimes(1)
 
     })
 
     test('mealsHtml - getMeals is undefined or not in indoor_outdoor lookup', () => {
       expect.assertions(2)
-      feature.getMeals = jest.fn().mockImplementation(() => {
+      facilityFeature.getMeals = jest.fn().mockImplementation(() => {
         return ''
       })
 
-      expect(feature.mealsHtml()).toBe('')
-      expect(feature.getMeals).toHaveBeenCalledTimes(1)
+      expect(facilityFeature.mealsHtml()).toBe('')
+      expect(facilityFeature.getMeals).toHaveBeenCalledTimes(1)
 
     })
 
     test('mealsHtml', () => {
       expect.assertions(2)
 
-      expect(feature.mealsHtml()).toBe('Breakfast')
-      expect(feature.getMeals).toHaveBeenCalledTimes(1)
+      expect(facilityFeature.mealsHtml()).toBe('Breakfast')
+      expect(facilityFeature.getMeals).toHaveBeenCalledTimes(1)
 
     })
 
     test('programCodeHtml', () => {
       expect.assertions(2)
 
-      expect(feature.programCodeHtml()).toBe(`<div><b>Program Code: </b>${'mockProgramCode'}</div>`)
-      expect(feature.getProgramCode).toHaveBeenCalledTimes(1)
+      expect(facilityFeature.programCodeHtml()).toBe(`<div><b>Program Code: </b>${'mockProgramCode'}</div>`)
+      expect(facilityFeature.getProgramCode).toHaveBeenCalledTimes(1)
 
     })
 
     test('programCodeHtml - none provided', () => {
       expect.assertions(2)
 
-      feature.getProgramCode = jest.fn()
+      facilityFeature.getProgramCode = jest.fn()
 
-      expect(feature.programCodeHtml()).toBe('')
-      expect(feature.getProgramCode).toHaveBeenCalledTimes(1)
+      expect(facilityFeature.programCodeHtml()).toBe('')
+      expect(facilityFeature.getProgramCode).toHaveBeenCalledTimes(1)
 
     })
 
   })
 })
 
+describe('station decorations', () => {
+  test('getName', () => {
+    expect.assertions(2)
+    expect(stationFeature.getName()).toBe(`${stationFeature.get('NAME')}`)
+    expect(stationFeature.getName()).not.toBeNull()
+  })
+  test('getTip', () => {
+    expect.assertions(2)
+    expect(stationFeature.getTip()).toBe(`${stationFeature.get('NAME')}`)
+    expect(stationFeature.getTip()).not.toBeNull()
+  })
+  test('getLine', () => {
+    expect.assertions(2)
+    expect(stationFeature.getLine()).toBe(`${stationFeature.get('LINE')}`)
+    expect(stationFeature.getLine()).not.toBeNull()
+  })
+  test('getNote', () => {
+    expect.assertions(2)
+    expect(stationFeature.getNote()).toBe(`<div class="note">${stationFeature.get('NOTE')}</div>`)
+    expect(stationFeature.getNote()).not.toBeNull()
+  })
+  describe('html', () => {
+    const getSubwayIcon = stationFeature.getSubwayIcon
+    const getLine = stationFeature.getLine
+    const getNote = stationFeature.getNote
+    const getName = stationFeature.getName
+
+    beforeEach(() => {
+      stationFeature.getSubwayIcon = jest.fn().mockImplementation(() => {
+        return 'mockSubwayIcon'
+      })
+      stationFeature.getLine = jest.fn().mockImplementation(() => {
+        return 'mockLine'
+      })
+      stationFeature.getNote = jest.fn().mockImplementation(() => {
+        return 'mockNote'
+      })
+      stationFeature.getName = jest.fn().mockImplementation(() => {
+        return 'mockName'
+      })
+    })
+    afterEach(() => {
+      stationFeature.getSubwayIcon = getSubwayIcon
+      stationFeature.getLine = getLine
+      stationFeature.getNote = getNote
+      stationFeature.getName = getName
+    })
+    test('html', () => {
+      // expect(stationFeature.html()).toEqual($('<div class="station"><h1 class="station-name">mockName</h1>mockSubwayIcon mockNote</div>'))
+      stationFeature.html()
+      expect(stationFeature.getSubwayIcon).toHaveBeenCalledTimes(1)
+      expect(stationFeature.getLine).toHaveBeenCalledTimes(1)
+      expect(stationFeature.getNote).toHaveBeenCalledTimes(1)
+      expect(stationFeature.getName).toHaveBeenCalledTimes(1)
+      expect(stationFeature.getSubwayIcon.mock.calls[0][0]).toBe('mockLine')
+    })
+  })
+})
