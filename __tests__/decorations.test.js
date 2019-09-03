@@ -1,4 +1,6 @@
 import decorations from '../src/js/decorations'
+import lookup from '../src/js/lookup'
+
 import {facilityFeature, stationFeature} from './features.mock'
 import $ from 'jquery'
 
@@ -13,6 +15,40 @@ afterEach(() => {
 })
 
 describe('facility decorations', () => {
+  describe('extendFeature', () => {
+    test('extendFeature', () => {
+      expect(facilityFeature.get('3K')).toBe(undefined)
+      expect(facilityFeature.get('EL')).toBe(undefined)
+      expect(facilityFeature.get('PREK')).toBe(undefined)
+      expect(facilityFeature.get('EXTEND')).toBe(undefined)
+      // expect(facilityFeature.get('LANG')).toBe(undefined)
+
+      facilityFeature.extendFeature()
+      expect(facilityFeature.get('3K')).toBe(1)
+      expect(facilityFeature.get('EL')).toBe(1)
+      expect(facilityFeature.get('PREK')).toBe(1)
+      expect(facilityFeature.get('EXTEND')).toBe(1)
+      // expect(facilityFeature.get('LANG')).toBe(0)
+
+    })
+    test('extendFeature -', () => {
+      facilityFeature.set('3K_SEATS', '')
+      facilityFeature.set('EL_SEATS', '')
+      facilityFeature.set('PREK_SEATS', '')
+      facilityFeature.set('EARLY_DROP', '')
+      facilityFeature.set('LATE_PICKUP', '')
+      // facilityFeature.set('ENHANCED_LANG', 'Spanish')
+
+      facilityFeature.extendFeature()
+      expect(facilityFeature.get('3K')).toBe(-1)
+      expect(facilityFeature.get('EL')).toBe(-1)
+      expect(facilityFeature.get('PREK')).toBe(-1)
+      expect(facilityFeature.get('EXTEND')).toBe('')
+      // expect(facilityFeature.get('LANG')).toBe(1)
+
+    })
+  })
+
   describe('getter methods', () => {
     test('getAddress1', () => {
       expect.assertions(2)
@@ -316,6 +352,21 @@ describe('station decorations', () => {
     expect(stationFeature.getNote()).toBe(`<div class="note">${stationFeature.get('NOTE')}</div>`)
     expect(stationFeature.getNote()).not.toBeNull()
   })
+  describe('getSubwayIcon', () => {
+    test('getSubwayIcon', () => {
+      let line = '7'
+      expect(stationFeature.getSubwayIcon(line)).toBe(`<div class="subway-icon subway-7"><div>7</div></div>`)
+    })
+    test('getSubwayIcon - express', () => {
+      let line = '7 Express'
+      expect(stationFeature.getSubwayIcon(line)).toBe(`<div class="subway-icon subway-7 express"><div>7</div></div>`)
+    })
+    test('getSubwayIcon - local/express', () => {
+      let line = '7-7 Express'
+      expect(stationFeature.getSubwayIcon(line)).toBe(`<div class="subway-icon subway-7"><div>7</div></div><div class="subway-icon subway-7 express"><div>7</div></div>`)
+    })
+  })
+
   describe('html', () => {
     const getSubwayIcon = stationFeature.getSubwayIcon
     const getLine = stationFeature.getLine
@@ -343,7 +394,6 @@ describe('station decorations', () => {
       stationFeature.getName = getName
     })
     test('html', () => {
-      // expect(stationFeature.html()).toEqual($('<div class="station"><h1 class="station-name">mockName</h1>mockSubwayIcon mockNote</div>'))
       stationFeature.html()
       expect(stationFeature.getSubwayIcon).toHaveBeenCalledTimes(1)
       expect(stationFeature.getLine).toHaveBeenCalledTimes(1)
