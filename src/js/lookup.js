@@ -161,6 +161,11 @@ const lookup = {
 		N: '#ffff0c',
 		R: '#ffff0c',
 		Q: '#ffff0c'
+	},
+	filters: {
+		'EL': 'Early Learn 3s',
+		'3K': '3-K',
+		'PREK': 'Pre-K'
 	}
 }
 export default lookup

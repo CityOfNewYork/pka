@@ -76,3 +76,60 @@ div.express div {
 #banner .school-banner {
 	font-size: 12px;
 }
+
+
+
+
+
+
+/* ========================== begin splash ======================= */
+
+#splash-page .ui-content {
+	position: fixed;
+	top: 35px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: auto;
+}
+#splash-page div.splash-btns {
+	margin: auto;
+}
+#splash-page div.splash-btns * {
+	width: calc(100% - 5px);
+}
+ #splash-page div.splash-msg {
+	margin: 10px auto auto auto;
+}
+#splash-page div.splash-msg, #splash-page div.splash-btns {
+	max-width: 600px;	
+}
+#splash-page .btn {
+    background-color: #f8993a;
+    border: 1px solid #013364;
+}
+#splash-page .btn:hover, #splash-page .btn:hover span, #splash-page .btn:hover font {
+	background-color: rgb(1,51,100);
+    color: #fff;
+}
+#splash-page div[data-role="content"] {
+	background: url(../img/splash.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;	
+}
+.splash-msg {
+	background-color: rgba(255,255,255,.7);
+	padding: 1px 5px;
+	border-radius: 3px;
+}
+#splash-page p {
+	margin: 10px 0;
+}
+
+#splash-page .btn {
+	margin: 0.5em 0 0 1px;
+	padding: 5px;
+}
+/* ========================== end splash ========================= */

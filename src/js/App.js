@@ -16,12 +16,16 @@ import FeatureTip from 'nyc-lib/nyc/ol/FeatureTip'
 import Popup from 'nyc-lib/nyc/ol/MultiFeaturePopup'
 import decorations from './decorations'
 import messages from './message'
+import lookup from './lookup'
 
 
 class App extends FinderApp {
   constructor(content) {
+    $('.splash-call').html(content.message('btn_call'));
+    $('.splash-msg').html(content.message('splash_msg_no_apply'));
+    $('.splash-apply').hide();
     super({
-      title: `<span class="screen-reader-only">NYC Pre-K Finder</span><span>Pre-K Finder</span><div class="school-banner">for School Year ${content.message('school_year')}</div>`,
+      title: `<span class="screen-reader-only">NYC Pre-K Finder</span><span class="app-title">Pre-K Finder</span><div class="school-banner">for School Year ${content.message('school_year')}</div>`,
       geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example',
       facilityStyle: styles.facilityStyle,
       facilityTabTitle: 'Schools',
@@ -35,9 +39,9 @@ class App extends FinderApp {
         {
           title: 'Age Group',
           choices: [
-            {name: '3K', values: [1], label: '3-K (Born 2016)'},
-            {name: 'EL', values: [1], label: 'Early Learn (born 2016)'},
-            {name: 'PREK', values: [1], label: 'PRE-K (Born 2015)'}
+            {name: '3K', values: [1], label: '3-K (Born 2016)', checked: false},
+            {name: 'EL', values: [1], label: 'Early Learn (born 2016)', checked: false},
+            {name: 'PREK', values: [1], label: 'PRE-K (Born 2015)', checked: false}
           ]
         },
         {
@@ -85,7 +89,48 @@ class App extends FinderApp {
     this.content = content
     this.rearrangeLayers()
     this.setupLayers()
+    $('body').children().not('div#splash-page').not('#banner').wrapAll('<div id="map-page" style="display:none;"></div>')
+    this.autoFilterTitle()
+    this.splashHandler()
 
+  }
+  autoFilterTitle() {
+    this.filters.choiceControls[0].inputs.on('change', (event) => {
+      if(event.currentTarget.checked == true)
+        $('#banner .app-title').get(0).innerHTML = lookup.filters[event.currentTarget.name] + ' Finder'
+      else
+        $('#banner .app-title').get(0).innerHTML = 'Pre-K Finder'
+    })
+  }
+  checkEntry(splashFilter) {
+    let ageFilters = this.filters.choiceControls[0]
+    switch(splashFilter) {
+      case '3K':
+        this.autoFilter(ageFilters, ageFilters.inputs[0])
+        break;
+      case 'EL':
+        this.autoFilter(ageFilters, ageFilters.inputs[1])
+        break;  
+      case 'PREK':
+        this.autoFilter(ageFilters, ageFilters.inputs[2])
+        break;
+    }
+  }
+  splashHandler() {
+    $('.splash-map').click((event) => {
+      let target = event.currentTarget
+      $('#map-page').css('display','block')
+      $('#splash-page').css('display','none')
+      let targetClasses = target.className.split(' ')
+      let splashFilter = targetClasses[targetClasses.length - 1].toUpperCase()
+      this.checkEntry(splashFilter)
+    })
+  }
+  autoFilter(ageFilters, check) {
+    $.each(ageFilters.inputs, (key, value) => {
+      value.checked = false
+    });
+    $(check).trigger('click')
   }
   rearrangeLayers() {
     this.map.getBaseLayers().labels.base.setZIndex(4)
@@ -149,7 +194,6 @@ class App extends FinderApp {
 
     this.popup.addLayer(this.stationLayer)
   }
-
 }
 
 export default App
