@@ -2,6 +2,18 @@
   margin: 0 0 5px 0;
   padding-left: 20px;
 }
+#back-to-splash {
+	top: 0;
+	left: auto;
+	padding: 5px 3px 0 3px;
+	background-color: var(--color-dark);
+	border: none;
+	z-index: 1;
+	position: fixed;
+	display: block;
+	right: 0;
+	bottom: 0;
+}
 
 /* subway stations */
 h1.station-name, div.note {
@@ -133,3 +145,196 @@ div.express div {
 	padding: 5px;
 }
 /* ========================== end splash ========================= */
+
+/* ========================== begin form ======================= */
+#form-page .container.md-5 {
+	border: .5px gray solid;
+	background-color: aliceblue;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+#form-page div.ui-content {
+	position: fixed;
+	top: 45px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow: auto;
+	background-color: rgba(1,51,100,0.1);
+}
+#form-page {
+	height: 720px;
+	overflow: scroll;
+	position: relative;
+	top: 45px;
+}
+#form-page label {
+	white-space: nowrap;
+	padding-right: 10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+#form-page.info-wait {
+	background-image: url(../img/spin.gif);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+#form-page.info-wait .ui-content {
+	display: none;
+}
+#form-page iframe {
+	border: none;
+	width: 100%;
+	height: 100%;
+}
+#form-page h2, #form-page h3 {
+	color: #5681ac;
+	text-transform: capitalize;
+}
+#form-page h2 {
+	font-size: 18px;
+}
+#form-page h3 {
+	font-size: 16px;
+}
+#form-page form {
+	margin: auto;
+	max-width: 600px;
+}
+#form-page .form-sect, #form-page div.optional {
+	border-radius: 0.6em;
+	padding: 5px;
+	margin: 0 0 10px 0;
+}
+#form-page .form-sect {
+	border: 1px solid #5681ac;
+	background-color: #f9f9f9;	
+}
+#form-page div.optional {
+	background-color: rgba(1,51,100,0.1);
+}
+#student-dob {
+	margin-top: -9px;
+}
+#student-dob table {
+	width: 100%;
+}
+#student-dob td {
+	width: 33%;
+}
+#form-page td.optional {
+	text-align: center;
+}
+#form-page .ui-selectmenu-button {
+	width: 100% !important;
+}
+#form-page .err {
+	color: red !important;
+	font-weight: bold !important;
+}
+#form-review {
+	position: fixed;
+	margin: 0 calc(50% - 147px);
+	width: 270px;
+	border-radius: 0.6em;
+	border: 1px solid lightgrey;
+	box-shadow: 5px 10px 20px 5px rgba(1,51,100,0.9);
+	background-color: white;
+	padding: 5px;
+	display:none;
+	z-index: 100;
+	top: 100px;
+}
+#result-message {
+	padding: 5px;
+	text-align: center;
+}
+#result img {
+	margin: 3px calc(50% - 36px);
+	width: 72px;
+}
+#form-review h3 {
+	text-align: center;
+}
+#review-btns {
+	width: 207px;
+	margin: 20px 29px;
+}
+#req-note {
+	text-align: center;
+}
+#form-page table.fields {
+	width: 100%;
+	border-collapse: collapse;
+}
+#form-page .fields td {
+	vertical-align: top;
+	width: 50%;
+}
+#house-cell {
+	width: 30px;
+}
+#street-cell {
+	width: 300px;
+}
+#apt-cell {
+	width: 30px;
+}
+#borough-cell {
+	width: 70%;
+}
+#zip-cell {
+	width: 30%;
+}
+#form-page .ui-btn:hover, #form-page .ui-btn:hover span {
+	color: white;
+	background-color: rgb(1,51,100);
+}
+#form-page .back-btn.ui-btn:hover {
+	color: rgb(1,51,100);
+	background-color: rgb(237, 237, 237);
+}
+#form-processing {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.2);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image: url(../img/loading.svg);
+}
+@media only screen and (max-width : 600px) {
+	#street-cell {
+		width: auto;
+	}
+	#form-review {
+		top: 46px;
+		max-height: calc(100% - 60px);
+		overflow: auto;
+	}
+}
+@media only screen and (max-width : 360px) {
+	#form-page .ui-content {
+		padding: 5px;
+	}
+	#house-cell {
+		width: 60px;
+	}
+	#apt-cell {
+		width: 30px;
+	}	
+	#student-dob div.ui-btn {
+		font-size: 12px;
+	}
+}
+@media only screen and (max-height : 360px) {
+	#form-review {
+		max-height: 280px;
+		overflow: auto;
+		max-height: calc(100% - 60px);
+	}
+}
+/* ========================== end form ======================= */

@@ -21,9 +21,7 @@ import lookup from './lookup'
 
 class App extends FinderApp {
   constructor(content) {
-    $('.splash-call').html(content.message('btn_call'));
-    $('.splash-msg').html(content.message('splash_msg_no_apply'));
-    $('.splash-apply').hide();
+
     super({
       title: `<span class="screen-reader-only">NYC Pre-K Finder</span><span class="app-title">Pre-K Finder</span><div class="school-banner">for School Year ${content.message('school_year')}</div>`,
       geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example',
@@ -86,13 +84,26 @@ class App extends FinderApp {
       directionsUrl: 'https://maps.googleapis.com/maps/api/js?client=gme-newyorkcitydepartment&channel=pka&sensor=false&libraries=visualization'
     
     })
+
     this.content = content
     this.rearrangeLayers()
     this.setupLayers()
-    $('body').children().not('div#splash-page').not('#banner').wrapAll('<div id="map-page" style="display:none;"></div>')
+    $('body').children().not('div#form-page').not('div#splash-page').not('#banner').wrapAll('<div id="map-page" style="display:none;"></div>')
+    $('div#form-page').css('display', 'none')
     this.autoFilterTitle()
     this.splashHandler()
+    this.formHandler()
 
+
+  }
+  formHandler() {
+    $('#birth-year').val(content.message('birth_year'));
+    $('#start-year').val(content.message('start_year'));
+    $('#student-dob-note').html(content.message('form_dob_msg'));
+    $('#back-to-splash').click(() => {
+      $('div#form-page').hide()
+      $('div#splash-page').show()
+    })
   }
   autoFilterTitle() {
     this.filters.choiceControls[0].inputs.on('change', (event) => {
@@ -117,6 +128,13 @@ class App extends FinderApp {
     }
   }
   splashHandler() {
+    $('.splash-call').html(this.content.message('btn_call'));  
+    $('.splash-call').click(() => {
+      $('div#splash-page').hide()
+      $('div#form-page').append('<button id="back-to-splash" class="btn rad-all">Back to finder</button>').show()
+    }) 
+    $('.splash-msg').html(this.content.message('splash_msg_no_apply'));
+    $('.splash-apply').hide();
     $('.splash-map').click((event) => {
       let target = event.currentTarget
       $('#map-page').css('display','block')
@@ -125,6 +143,8 @@ class App extends FinderApp {
       let splashFilter = targetClasses[targetClasses.length - 1].toUpperCase()
       this.checkEntry(splashFilter)
     })
+    $('.splash-msg').html(this.content.message('splash_msg_no_apply'));
+    $('.splash-apply').hide();
   }
   autoFilter(ageFilters, check) {
     $.each(ageFilters.inputs, (key, value) => {

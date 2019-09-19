@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- google analytics -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta prefix="og: http://ogp.me/ns#" property="og:title" content="NYC Pre-K Finder">
-  <meta prefix="og: http://ogp.me/ns#" property="og:type" content="website">
-  <meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://maps.nyc.gov/upk">
-  <meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://maps.nyc.gov/upk/img/og.png">
-  <meta prefix="og: http://ogp.me/ns#" property="og:image:width" content="1200">
-  <meta prefix="og: http://ogp.me/ns#" property="og:image:height" content="626">
-  <meta prefix="og: http://ogp.me/ns#" property="og:description" content="NYC Pre-K Finder">
-  <meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="NYC.gov">
 
- 	<title>NYC Pre-K Finder</title>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- google analytics -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta prefix="og: http://ogp.me/ns#" property="og:title" content="NYC Pre-K Finder">
+	<meta prefix="og: http://ogp.me/ns#" property="og:type" content="website">
+	<meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://maps.nyc.gov/upk">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://maps.nyc.gov/upk/img/og.png">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image:width" content="1200">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image:height" content="626">
+	<meta prefix="og: http://ogp.me/ns#" property="og:description" content="NYC Pre-K Finder">
+	<meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="NYC.gov">
+
+	<title>NYC Pre-K Finder</title>
 
 	<link rel="manifest" href="manifest.webmanifest">
 	<link rel="apple-touch-startup-image" href="img/icon-512.png">
@@ -28,35 +29,283 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="img/icon-180.png">
 
 	<link rel="stylesheet" href="css/pka.css?%ver%">
-
-  <script src="js/babel-polyfill.js?%ver%"></script>
+	<script src="js/babel-polyfill.js?%ver%"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
+	<script src="./js/validation.js"></script>
+	<link href="https://cityofnewyork.github.io/nyc-core-framework/css/theme.css" rel="stylesheet">
 </head>
+
 <body class="loading" aria-hidden="true">
-  
-<div id="splash-page" data-role="page" data-title="NYC Pre-K Finder">
-    <div data-role="content" class="ui-content" role="main">
-      <div class="splash-btns">
-        <div id="splash-lang" ></div>
-      </div>
-      <div class="splash-msg"></div>
-      <div class="splash-btns">
-        <button class="splash-call btn rad-all" data-page="#form-page"></button>
-        <button class="splash-apply btn rad-all" target="_blank" rel="noopener noreferrer"></button>
-        <button class="splash-map btn rad-all 3k" data-page="#map-page">
-          go to&nbsp;<span class="notranslate" translate="no">3-K Finder</span>&nbsp;map
-        </button>
-        <button class="splash-map btn rad-all el" data-page="#map-page">
-          go to&nbsp;<span class="notranslate" translate="no">Early Learn 3s Finder</span>&nbsp;map
-        </button>
-        <button class="splash-map btn rad-all prek" data-page="#map-page">
-          go to&nbsp;<span class="notranslate" translate="no">Pre-K Finder</span>&nbsp;map
-        </button>
-      </div>
-    </div>
-  </div>
-  <script src="js/pka.js?%ver%"></script>
+
+	<div id="splash-page" data-role="page" data-title="NYC Pre-K Finder">
+		<div data-role="content" class="ui-content" role="main">
+			<div class="splash-btns">
+				<div id="splash-lang"></div>
+			</div>
+			<div class="splash-msg"></div>
+			<div class="splash-btns">
+				<button class="splash-call btn rad-all" data-page="#form-page"></button>
+				<button class="splash-apply btn rad-all" target="_blank" rel="noopener noreferrer"></button>
+				<button class="splash-map btn rad-all 3k" data-page="#map-page">
+					go to&nbsp;<span class="notranslate" translate="no">3-K Finder</span>&nbsp;map
+				</button>
+				<button class="splash-map btn rad-all el" data-page="#map-page">
+					go to&nbsp;<span class="notranslate" translate="no">Early Learn 3s Finder</span>&nbsp;map
+				</button>
+				<button class="splash-map btn rad-all prek" data-page="#map-page">
+					go to&nbsp;<span class="notranslate" translate="no">Pre-K Finder</span>&nbsp;map
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="form-page">
+		<form class="needs-validation" novalidate>
+			<div class="container md-5">
+				<h2 style="text-align: center;">Student Information</h2>
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-sm mb-1 mb-sm-0">
+							<label for="label-01">First Name
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<input type="text" class="form-control form-control-lg" id="label-01" required>
+						</div>
+						<div class="col-sm">
+							<label for=" label-02">Last Name
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback" aria-hidden="true">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<input type="text" class="form-control form-control-lg" id="label-02" required>
+						</div>
+					</div>
+				</div>
+				<!-- .form-group -->
+				<div class="form-group">
+					<label for="dob">Date of Birth
+						<span class="fs-md text-danger" aria-hidden="true">*</span>
+					</label>
+					<p class="invalid-feedback">
+						<span class="fas fa-exclamation-triangle" aria-hidden="true"></span>
+						<span class="invalid-description">Invalid Date of Birth</span>
+						<span class="invalid-instruction">Please fill out all date fields</span>
+					</p>
+					<div class="form-row">
+						<div class="col-sm mb-1 mb-sm-0">
+							<select class="custom-select" id="inputGroupSelect01" required>
+								<option selected>Month</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+						<div class="col-sm mb-1 mb-sm-0">
+							<select class="custom-select" id="inputGroupSelect01">
+								<option selected>Day</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+						<div class="col-sm">
+							<select class="custom-select" id="inputGroupSelect01">
+								<option selected>Year</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<!-- .form-group -->
+				<div class="form-group" id="currentAddress">
+					<h3>Current address</h3>
+					<div class="form-row">
+						<div class="col-sm mb-1 mb-sm-0">
+							<label for="label-01">House no:
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<input type="text" class="form-control form-control-lg" id="label-01" required>
+						</div>
+						<div class="col-sm mb-1 mb-sm-0">
+							<label for="label-01">Street Name:
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<input type="text" class="form-control form-control-lg" id="label-01" required>
+						</div>
+						<div class="col-sm">
+							<label for="label-01">Apt:
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<input type="text" class="form-control form-control-lg" id="label-01" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-sm mb-1 mb-sm-0">
+							<label for="label-01">Borough:
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<select class="custom-select" id="inputGroupSelect01" required>
+								<option selected>Borough</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+						<div class="col-sm">
+							<label for="label-01">Zip Code:
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<input type="text" class="form-control form-control-lg" id="label-01" required>
+						</div>
+					</div>
+					<!-- .form-group -->
+				</div>
+			</div>
+			<div class="container md-5">
+				<h2 style="text-align: center;">Parent/Guardian Information</h2>
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-sm mb-1 mb-sm-0">
+							<label for="label-01">First Name
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<input type="text" class="form-control form-control-lg" id="label-01" required>
+						</div>
+						<div class="col-sm">
+							<label for=" label-02">Last Name
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback" aria-hidden="true">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<input type="text" class="form-control form-control-lg" id="label-02" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-sm">
+							<label for="label-01">Relationship:
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<select class="custom-select" id="inputGroupSelect01" required>
+								<option selected>Choose...</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+					</div>
+					<br>
+					<h3>Contact Information</h3>
+					<div class="form-row">
+						<div class="col-sm">
+							<label for="label-01">Day Phone:
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<input type="text" class="form-control form-control-lg" id="label-01" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-sm mb-1 mb-sm-0">
+							<label for="label-01">Evening Phone
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<input type="text" class="form-control form-control-lg" id="label-01" required>
+						</div>
+						<div class="col-sm">
+							<label for=" label-02">Email Address
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback" aria-hidden="true">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<input type="text" class="form-control form-control-lg" id="label-02" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-sm">
+							<label for="label-01">Preferred Langauge:
+								<span class="fs-md text-danger" aria-hidden="true">*</span>
+							</label>
+							<p class="invalid-feedback">
+								<span class="fas fa-exclamation-triangle"></span>
+								<span class="invalid-description">Error message description</span>
+								<span class="invalid-instruction">How to fix instructions</span>
+							</p>
+							<select class="custom-select" id="inputGroupSelect01" required>
+								<option selected>Choose...</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button class="btn btn-md btn-block btn-secondary my-3" type="submit">Submit</button>
+		</form>
+	</div>
+	<script src="js/pka.js?%ver%"></script>
 </body>
+
 </html>
